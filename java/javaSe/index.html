@@ -1,2975 +1,269 @@
-<?xml version="1.0" encoding="utf-8"?>
-<search>
-  <entry>
-    <title>javaGui笔记</title>
-    <url>/java/swing/</url>
-    <content><![CDATA[<h1 id="AWT-编程"><a href="#AWT-编程" class="headerlink" title="AWT 编程"></a>AWT 编程</h1><h2 id="一、Container容器"><a href="#一、Container容器" class="headerlink" title="一、Container容器"></a>一、Container容器</h2><h3 id="1-1-Container继承体系"><a href="#1-1-Container继承体系" class="headerlink" title="1.1 Container继承体系"></a>1.1 Container继承体系</h3><pre><code class="mermaid">graph TB
-A[Obect]==&gt;B(Component)
-B==&gt;C(Container)
-C==&gt;D(Window:窗口容器)
-C==&gt;E(Panel:内嵌容器)
-C==&gt;F(ScrollPane:含有滚动条的容器)
-D==&gt;G(Frame:创建窗口)
-D==&gt;H(Dialog:创建对话框)
-E==&gt;I(Applet)
-</code></pre>
-<ul>
-<li>Window是可以独立存在的顶级窗口，默认使用Borderlayout管理内部组件布局</li>
-<li>Panel可以容纳其他组件，但不可以独立存在，他必须内嵌在其他容器中使用，默认使用Flowlayout管理内部组件布局</li>
-<li>ScrollPane是一个带滚动的容器，他也不能独立存在，默认使用BorderLayout管理其内部布局<span id="more"></span>
-<h3 id="1-2常见API"><a href="#1-2常见API" class="headerlink" title="1.2常见API"></a>1.2常见API</h3></li>
-</ul>
-<p><em><strong>Component作为基类，提供了如下方法来设置组件的大小、位置、可见等。</strong></em></p>
-<table>
-<thead>
-<tr>
-<th>方法签名</th>
-<th>方法功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>setLocation(int x,int y)</td>
-<td>设置组件的位置</td>
-</tr>
-<tr>
-<td>setSize(int width,int height)</td>
-<td>设置组件的大小</td>
-</tr>
-<tr>
-<td>setBounds(int x,int y,int width,int height)</td>
-<td>同时设置组件的位置、大小</td>
-</tr>
-<tr>
-<td>setVisable(boolean b)  (默认不可见)</td>
-<td>设置组件的可见性</td>
-</tr>
-</tbody></table>
-<p><em><strong>Container作为容器根类，提供了如下方法来访问容器内的组件</strong></em></p>
-<table>
-<thead>
-<tr>
-<th>方法签名</th>
-<th>方法功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Component add(Compontnt comp)</td>
-<td>向容器中添加其他组件（该组件可以是普通组件，也可以是容器）返回被添加的组件</td>
-</tr>
-<tr>
-<td>Component getComponentAt(int x,int y)</td>
-<td>返回指定点的组件</td>
-</tr>
-<tr>
-<td>int getComponentCount()</td>
-<td>返回容器内组件的数量</td>
-</tr>
-<tr>
-<td>Component[] getComponents()</td>
-<td>返回该容器内的所有组件</td>
-</tr>
-</tbody></table>
-<h4 id="1-2-1-Window"><a href="#1-2-1-Window" class="headerlink" title="1.2.1 Window"></a>1.2.1 Window</h4><p><img src="/images/swing/window.png"></p>
-<pre><code class="java">//创建窗口对象
-Frame frame = new Frame(&quot;测试window窗口&quot;);
-//指定窗口位置，大小
-frame.setLocation(100,100);
-frame.setSize(500,300);
-//设置窗口可见
-frame.setVisible(true);
-</code></pre>
-<h4 id="1-2-2-Panel"><a href="#1-2-2-Panel" class="headerlink" title="1.2.2 Panel"></a>1.2.2 Panel</h4><p><img src="/images/swing/panel.png"></p>
-<pre><code class="java">//创建窗口对象
-Frame frame = new Frame(&quot;测试panel&quot;);
-//创建一个Panel对象
-Panel panel = new Panel();
-//创建一个文本框和按钮并把他们放入Panel容器中
-panel.add(new TextField(&quot;这里测试文本&quot;));
-panel.add(new Button(&quot;这里是一个测试按钮&quot;));
-//把Panel放入window中
-frame.add(panel);
-//设置窗口大小
-frame.setBounds(100,100,500,300);
-//设置窗口可见
-frame.setVisible(true);
-</code></pre>
-<h4 id="1-2-3-ScrollPane"><a href="#1-2-3-ScrollPane" class="headerlink" title="1.2.3 ScrollPane"></a>1.2.3 ScrollPane</h4><p><img src="/images/swing/scrollpane.png"></p>
-<pre><code class="java">//创建一个scrollPane对象
-ScrollPane sp = new ScrollPane(ScrollPane.SCROLLBARS_ALWAYS);
-//创建一个文本框和按钮并把他们放入Panel容器中
-sp.add(new TextField(&quot;演示scrollPanel&quot;));
-sp.add(new Button(&quot;测试按钮&quot;));
-//把scrollPane放入window中
-frame.add(sp);
-</code></pre>
-<h2 id="二、LayoutManager布局管理器"><a href="#二、LayoutManager布局管理器" class="headerlink" title="二、LayoutManager布局管理器"></a>二、LayoutManager布局管理器</h2><pre><code class="mermaid">graph TB
-A[接口:LayoutManager] ==&gt; B(GridLayout)
-A==&gt;C(FlowLayout)
-A ===&gt; D(接口:LayoutManager2)
-D ==&gt; E(CardLayout)
-D ==&gt; F(GridBagLayout)
-D ==&gt; G(BorderLayout)
-</code></pre>
-<h3 id="2-1-FlowLayout"><a href="#2-1-FlowLayout" class="headerlink" title="2.1 FlowLayout"></a>2.1 FlowLayout</h3><p><em><strong>从左向右排列所有组件，遇到边界就会折回下一行重新开始</strong></em></p>
-<table>
-<thead>
-<tr>
-<th>构造芳芳</th>
-<th>方法功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>FlowLayout()</td>
-<td>使用默认的对局及默认的垂直间距、水平间距创建布局管理器</td>
-</tr>
-<tr>
-<td>FlowLayout(int align)</td>
-<td>使用指定的对齐方式及默认的垂直间距、水平间距创建布局管理器</td>
-</tr>
-<tr>
-<td>FlowLayout(int align,int hgap,int vgap)</td>
-<td>使用指定的对齐方式及指定的垂直间距、水平间距创建布局管理器</td>
-</tr>
-</tbody></table>
-<p><img src="/images/swing/flowlayout.png"></p>
-<pre><code class="java">//通过setLayout方法设置容器的布局管理器
-frame.setLayout(new FlowLayout(FlowLayout.CENTER,20,20));
-//添加多个按钮到frame中
-for(int i = 0;i&lt;100;i++)&#123;
-    frame.add(new Button(&quot;&quot;+i));
-&#125;
-//设置最佳大小 pack方法
-frame.pack();
-</code></pre>
-<h3 id="2-2-BorderLayout"><a href="#2-2-BorderLayout" class="headerlink" title="2.2 BorderLayout"></a>2.2 BorderLayout</h3><ul>
-<li>BorderLayout将容器分为EAST、SOUTH、 WEST 、NORTH、 CENTER五个区域 ,普通组件可以被放置在这5个区域的任意一个中。BorderLayout布局 管理器的布局示意图如图所示。</li>
-</ul>
-<p><img src="/images/swing/borderlayout-16490340685524.png"></p>
-<ul>
-<li>当改变使用Borderl ayout的容器大小时，NORTH、SOUTH和CENTER区域水平调整,而EAST、WEST 和CENTER区域垂直调整。使用BorderLayout 如下两个注意点:</li>
-<li><ol>
-<li>当向使用Borderl ayout布局管理器的容器中添加组件时，需 要指定要添加到哪个区域中。如果没有指定添加到哪个区域中,则默认添加到中间区域中;</li>
-<li>如果向同一个区域中添加多个组件时，后放入的组件会覆先放入的组件;</li>
-<li>如果不往某个区域放组件，那么该区域会被中间区域占据</li>
-</ol>
-</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>构造方法</th>
-<th>方法功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>BorderLayout()</td>
-<td>使用默认的水平间距，垂直间距创建BorderLayout布局管理器</td>
-</tr>
-<tr>
-<td>BorderLayout(int hgap,int vgap)</td>
-<td>使用指定的水平间距、垂直间距创建BorderLayout布局管理器</td>
-</tr>
-</tbody></table>
-<p><img src="images/swing/border.png"></p>
-<pre><code class="java">//给frame指定BorderLayout布局管理器
-frame.setLayout(new BorderLayout(30,10));
-//在指定区域添加组件
-frame.add(new Button(&quot;&quot;+1),BorderLayout.NORTH);
-frame.add(new Button(&quot;&quot;+2),BorderLayout.SOUTH);
-frame.add(new Button(&quot;&quot;+3),BorderLayout.WEST);
-frame.add(new Button(&quot;&quot;+4),BorderLayout.EAST);
-frame.add(new Button(&quot;&quot;+5),BorderLayout.CENTER);
-</code></pre>
-<h3 id="2-3-GridLayout"><a href="#2-3-GridLayout" class="headerlink" title="2.3 GridLayout"></a>2.3 GridLayout</h3><p>GridLayout布局管理器将容器分割成纵横线分隔的网格，每 个网格所占的区域大小相同。当向使用GridLayout布局管理器的容器中添加组件时，默认从左向右、从上向下依次添加到每个网格中。与FlowLayout不同的是,放置在GridL ayout布局管理器中的各组件的大小由组件所处的区域决定(每个组件将自动占满整个区域)。</p>
-<table>
-<thead>
-<tr>
-<th>构造方法</th>
-<th>方法功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>GridLayout(int rows,int cols)</td>
-<td>采用指定的行数、列数，以及默认的横向间距、纵向间距将容器分割成多个网格</td>
-</tr>
-<tr>
-<td>GridLayout(int rows,int cols,int hgap,int vgap)</td>
-<td>采用指定的行数、列数，以及指定的横向间距、纵向间距将容器分割成多个网格</td>
-</tr>
-</tbody></table>
-<p><img src="/images/swing/%E8%AE%A1%E7%AE%97%E5%99%A8.png"></p>
-<pre><code class="java">//创建panel对象，里面存放一个textFiled组件
-Panel p = new Panel();
-p.add(new TextField(30));
-//把当前这个panel添加到frame的北边区域
-frame.add(p,BorderLayout.NORTH);
-//创建一个panel对象，并且把他的布局管理其设置为GridLayout
-Panel p2 = new Panel(new GridLayout(3,5,4,4));
-//往panel中添加内容
-for(int i = 0;i&lt;10;i++)&#123;
-    p2.add(new Button(i+&quot;&quot;));
-&#125;
-p2.add(new Button(&quot;+&quot;));
-p2.add(new Button(&quot;-&quot;));
-p2.add(new Button(&quot;*&quot;));
-p2.add(new Button(&quot;/&quot;));
-p2.add(new Button(&quot;.&quot;));
-//把panel添加到frame中
-frame.add(p2);
-</code></pre>
-<h3 id="2-4-CardLayout"><a href="#2-4-CardLayout" class="headerlink" title="2.4 CardLayout"></a>2.4 CardLayout</h3><p>CardLayout布局管理器以时间而非空间来管理它里面的组件,它将加灯容器的所有组件看成一叠卡糊(每个卡片其实就是一个组件),每次只有 最上面的那个Component柯见。就好像一副扑克牌,它们叠在一起,每次只有最上面的一张扑克牌才可见.</p>
-<table>
-<thead>
-<tr>
-<th>方法名称</th>
-<th>方法功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>CardLayout()</td>
-<td>创建默认的CardLayouut布局管理器</td>
-</tr>
-<tr>
-<td>CardLayout(int hgap,int vgap)</td>
-<td>通过指定卡片与容器左右边界的间距(hgap),左右边界(vgap)的间距来创建CardLayout布局管理器</td>
-</tr>
-<tr>
-<td>first(Container target)</td>
-<td>显示target容器的第一张卡片</td>
-</tr>
-<tr>
-<td>last(Container target)</td>
-<td>显示target容器的最后一张卡片</td>
-</tr>
-<tr>
-<td>previous(Container target)</td>
-<td>显示target容器的前一张卡片</td>
-</tr>
-<tr>
-<td>next(Container target)</td>
-<td>显示target容器的后一张卡片</td>
-</tr>
-<tr>
-<td>show(Container target,String name)</td>
-<td>显示target容器中指定名字的卡片</td>
-</tr>
-</tbody></table>
-<p><img src="/images/swing/cardlayout.png"></p>
-<pre><code class="java">//创建一个panel,用来存储多张卡片
-//创建卡片布局对象并且把该对象设置给之前创建的容器
-CardLayout card = new CardLayout();
-Panel p1 = new Panel(card);
-//往panel中存放多个组件
-String[] name = &#123;&quot;第一张&quot;,&quot;第二张&quot;,&quot;第三张&quot;,&quot;第四张&quot;,&quot;第五张&quot;&#125;;
-for(String i:name)&#123;
-    p1.add(i,new Button(i));
-&#125;
-//把panelf到frame中间区域进行展示
-frame.add(p1);
-//创建另外一个panel p2，用来存储按钮组件
-Panel p2 = new Panel();
-//创建5个按钮组件
-Button b1 = new Button(&quot;上一张&quot;);
-Button b2 = new Button(&quot;下一张&quot;);
-Button b3 = new Button(&quot;第一张&quot;);
-Button b4 = new Button(&quot;最后一张&quot;);
-Button b5 = new Button(&quot;第三张&quot;);
-//创建一个监听器，监听按钮点击动作
-ActionListener listener = e -&gt; &#123;
-    String actionCommand = e.getActionCommand();
-    switch (actionCommand) &#123;
-        case &quot;上一张&quot; -&gt; card.previous(p1);
-        case &quot;下一张&quot; -&gt; card.next(p1);
-        case &quot;第一张&quot; -&gt; card.first(p1);
-        case &quot;最后一张&quot; -&gt; card.last(p1);
-        case &quot;第三张&quot; -&gt; card.show(p1, &quot;第三张&quot;);
-    &#125;
-    &#125;;
-//把当前这个监听器和按钮绑定在一起
-b1.addActionListener(listener);
-b2.addActionListener(listener);
-b3.addActionListener(listener);
-b4.addActionListener(listener);
-b5.addActionListener(listener);
-//把按钮添加到p2中
-p2.add(b1);
-p2.add(b2);
-p2.add(b3);
-p2.add(b4);
-p2.add(b5);
-//把p2放到frame的南边区域
-frame.add(p2,BorderLayout.SOUTH);
-</code></pre>
-<h3 id="2-5-BoxLayout"><a href="#2-5-BoxLayout" class="headerlink" title="2.5 BoxLayout"></a>2.5 BoxLayout</h3><p><em><strong>为了简化开发, Swing引入了一个新的布局管理器: BoxLayout。BoxLayout 可以在垂直和水平两个向上摆放GUI组件，BoxLayout 提供了如下一个简单的构造器:</strong></em></p>
-<table>
-<thead>
-<tr>
-<th>方法名称</th>
-<th>方法功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>BoxLayout(Container target,int axis)</td>
-<td>指定创建基于target容器的BoxLayout布局管理器,该布局管理器里的组件按axis向排列。中axis有BoxLayout.X_ AXIS(横向)和BoxLayout.Y_ AXIS (纵向〉两个方向。</td>
-</tr>
-</tbody></table>
-<p><img src="/images/swing/boxlayout.png"></p>
-<pre><code class="java">//创建一个BoxLayout对象，并且存放组件是垂直存放
-BoxLayout boxLayout = new BoxLayout(frame, BoxLayout.Y_AXIS);
-//把BoxLayout设置给Frame
-frame.setLayout(boxLayout);
-//往Frame里增加两个按钮组件
-frame.add(new Button(&quot;按钮1&quot;));
-frame.add(new Button(&quot;按钮2&quot;));
-</code></pre>
-<p><em><strong>在java.swing包中,提供了-个新的容器BoxI,该容器的默认布局管理器就是BoxL .ayout,大多数情况下,使用Box容器去容纳多个GUI组件,然后再把Box容器作为一个组件,添到其他的容器中,从而形成整体窗口布局。</strong></em></p>
-<table>
-<thead>
-<tr>
-<th>方法名称</th>
-<th>方法功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>static Box createHorizontalBox()</td>
-<td>创建一个水平排列组件的Box容器</td>
-</tr>
-<tr>
-<td>static Box createVerticalBox()</td>
-<td>创建一个垂直排列组件的Box容器</td>
-</tr>
-</tbody></table>
-<p><img src="/images/swing/box1.png"></p>
-<pre><code class="java">import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionListener;
-public class Test &#123;
-    public static void main(String[] args) &#123;
-        //创建窗口对象
-        Frame frame = new Frame(&quot;测试BoxLayout&quot;);
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-center-atom.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="方法名 java 基本语法1、注释 什么事注释  注释是写在程序中对代码进行解释说明的文字,方便自己和其他人查看，以便理解程序的。   注释有哪些  单行注释 &#x2F;&#x2F;注释内容，只能写一行  多行注释 &#x2F;*     注释内容1     注释内容2 *&#x2F;   文档注释  对文档中的注释是可以提取到一个程序说明文档中去的 &#x2F;**     注释内容     注释内容 *&#x2F;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java基础">
+<meta property="og:url" content="http://example.com/java/javaSe/index.html">
+<meta property="og:site_name" content="千岁">
+<meta property="og:description" content="方法名 java 基本语法1、注释 什么事注释  注释是写在程序中对代码进行解释说明的文字,方便自己和其他人查看，以便理解程序的。   注释有哪些  单行注释 &#x2F;&#x2F;注释内容，只能写一行  多行注释 &#x2F;*     注释内容1     注释内容2 *&#x2F;   文档注释  对文档中的注释是可以提取到一个程序说明文档中去的 &#x2F;**     注释内容     注释内容 *&#x2F;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2022/040561982/%E4%BA%8C%E5%8F%89%E6%A0%91-164903521838945.png">
+<meta property="og:image" content="http://example.com/2022/040561982/%E6%A0%B9%E8%8A%82%E7%82%B9-164903521018844.png">
+<meta property="og:image" content="http://example.com/2022/040561982/%E4%BA%8C%E5%8F%89%E6%9F%A5%E6%89%BE%E6%A0%91-164903520018343.png">
+<meta property="og:image" content="http://example.com/2022/040561982/%E7%BA%A2%E9%BB%91%E6%A0%91-164903518750942.png">
+<meta property="article:published_time" content="2022-04-05T11:59:40.000Z">
+<meta property="article:modified_time" content="2022-04-05T12:36:37.025Z">
+<meta property="article:author" content="千岁">
+<meta property="article:tag" content="java 笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2022/040561982/%E4%BA%8C%E5%8F%89%E6%A0%91-164903521838945.png">
+
+<link rel="canonical" href="http://example.com/java/javaSe/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>java基础 | 千岁</title>
+  
+
 
-        //创建一个水平排列的box容器
-        Box hbox = Box.createHorizontalBox();
-        //往当前容器中添加两个按钮
-        hbox.add(new Button(&quot;水平按钮1&quot;));
-        hbox.add(new Button(&quot;水平按钮2&quot;));
-        //创建一个垂直排列组件的box容器
-        Box vbox = Box.createVerticalBox();
-        //往当前容器中添加两个按钮
-        vbox.add(new Button(&quot;垂直按钮1&quot;));
-        vbox.add(new Button(&quot;垂直按钮2&quot;));
-        //把两个box添加到frame中展示
-        frame.add(hbox,BorderLayout.NORTH);
-        frame.add(vbox);
-        
-        frame.pack();
-        frame.setBounds(100,100,500,300);
-        frame.setVisible(true);
 
-    &#125;&#125;
-</code></pre>
-<p><em><strong>Box中，提供了4个方便的静态方法来生成间隔组件</strong></em></p>
-<table>
-<thead>
-<tr>
-<th>方法名称</th>
-<th>方法功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>static Component createHorizontalGlue()</td>
-<td>创建一条水平Glue(可在两个方向上同时拉伸的间距)</td>
-</tr>
-<tr>
-<td>static Component createVerticalGlue()</td>
-<td>创建一条垂直Glue(可在两个方向上同时拉伸的间距)</td>
-</tr>
-<tr>
-<td>static Component createHorizontalStrut(int width)</td>
-<td>创建一条指定宽度(宽度固定了，不能拉伸)的水平Strut(可在垂直方向上拉伸的间距)</td>
-</tr>
-<tr>
-<td>static Component createVerticalStrut(int height)</td>
-<td>创建一条指定高度(高度固定了，不能拉伸)的水平Strut(可在水平方向上拉伸的间距)</td>
-</tr>
-</tbody></table>
-<p><img src="/images/swing/box2.png"></p>
-<pre><code class="java">import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionListener;
-public class Test &#123;
-    public static void main(String[] args) &#123;
-        //创建窗口对象
-        Frame frame = new Frame(&quot;测试BoxLayout&quot;);
 
-        //创建水平排列的Box容器 hBox
-        Box hBox = Box.createHorizontalBox();
-        //往hBox容器中添加按钮，还需要在多个按钮之间添加分割
-        hBox.add(new Button(&quot;水平按钮一&quot;));
-        hBox.add(Box.createHorizontalGlue());//该分割在两个方向上均可拉伸
-        hBox.add(new Button(&quot;水平按钮二&quot;));
-        hBox.add(Box.createHorizontalStrut(30));
-        hBox.add(new Button(&quot;水平按钮三&quot;));
-        //创建水平排列的Box容器 vBox
-        Box vBox = Box.createVerticalBox();
-        //往vBox容器中添加按钮，还需要在多个按钮之间添加分割
-        vBox.add(new Button(&quot;垂直按钮一&quot;));
-        vBox.add(Box.createVerticalGlue());//可在两个方向上拉伸
-        vBox.add(new Button(&quot;垂直按钮二&quot;));
-        vBox.add(Box.createVerticalStrut(30));
-        vBox.add(new Button(&quot;垂直按钮三&quot;));
-        //把Box容器添加到frame中
-        frame.add(hBox,BorderLayout.NORTH);
-        frame.add(vBox);
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+    <a target="_blank" rel="noopener" href="https://github.com/pc1608" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
 
-        frame.pack();
-        frame.setBounds(100,100,500,300);
-        frame.setVisible(true);
+  <div class="site-meta">
 
-    &#125;
-&#125;
-</code></pre>
-<h2 id="三、-AWT中常用组件"><a href="#三、-AWT中常用组件" class="headerlink" title="三、 AWT中常用组件"></a>三、 AWT中常用组件</h2><h3 id="3-1-基本组件"><a href="#3-1-基本组件" class="headerlink" title="3.1 基本组件"></a>3.1 基本组件</h3><table>
-<thead>
-<tr>
-<th>组件名</th>
-<th>功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Button</td>
-<td>按钮</td>
-</tr>
-<tr>
-<td>Canvas</td>
-<td>用于绘图的画布</td>
-</tr>
-<tr>
-<td>Checkbox</td>
-<td>复选框组件(也可以当单选框组件使用)</td>
-</tr>
-<tr>
-<td>CheckboxGroup</td>
-<td>用于将多个Checkbox组合成一组，一组Checkbox组件只有一个可以被选中，即可全部变成单选框组件</td>
-</tr>
-<tr>
-<td>Choice</td>
-<td>下拉选择框</td>
-</tr>
-<tr>
-<td>Frame</td>
-<td>窗口，在GUI程序里通过该类创建窗口</td>
-</tr>
-<tr>
-<td>Label</td>
-<td>标签类，用于放置提示性文本</td>
-</tr>
-<tr>
-<td>List</td>
-<td>列表框组件，可以添加多项条目</td>
-</tr>
-<tr>
-<td>Panel</td>
-<td>不能单独存在基本容器类，必须放到其他容器中</td>
-</tr>
-<tr>
-<td>Scrollbar</td>
-<td>滑动条组件，如果需要用户输入某个范围的值，就可以使用滑动条组件，比如调色板中设置RGB三个值所用的滑动条。当创建一个滑动条时，必须指定他的方向、初始值、滑块的大小、最小值和最大值。</td>
-</tr>
-<tr>
-<td>ScrollPane</td>
-<td>带水平及垂直滚动条的容器组件</td>
-</tr>
-<tr>
-<td>TextArea</td>
-<td>多行文本域</td>
-</tr>
-<tr>
-<td>TextField</td>
-<td>单行文本框</td>
-</tr>
-</tbody></table>
-<p><img src="/images/swing/%E6%95%B4%E4%BD%93%E6%B5%8B%E8%AF%951.png"></p>
-<pre><code class="java">import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionListener;
-public class Test &#123;
-    Frame frame = new Frame(&quot;测试基本组件&quot;);
-    TextArea ta = new TextArea(5, 20);
-    Choice colorChooseer = new Choice();
-    CheckboxGroup cbg = new CheckboxGroup();
-    Checkbox malc = new Checkbox(&quot;男&quot;,cbg,true);
-    Checkbox female = new Checkbox(&quot;女&quot;,cbg,false);
-    Checkbox isMarried = new Checkbox(&quot;是否已婚&quot;);
-    TextField text = new TextField(20);
-    Button ok = new Button(&quot;确认&quot;);
-    List colorList = new List(6,true);
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">千岁</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
 
-    public void inti()&#123;
-        //组装界面
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
 
-        //组装底部
-        Box bBox = Box.createHorizontalBox();
-        bBox.add(text);
-        bBox.add(ok);
-        frame.add(bBox,BorderLayout.SOUTH);
-
-        //组装选择部分
-        colorChooseer.add(&quot;红色&quot;);
-        colorChooseer.add(&quot;蓝色&quot;);
-        colorChooseer.add(&quot;绿色&quot;);
-        Box cBox = Box.createHorizontalBox();
-        cBox.add(colorChooseer);
-        cBox.add(malc);
-        cBox.add(female);
-        cBox.add(isMarried);
-        //组装文本域和选择部分
-        Box tBox = Box.createVerticalBox();
-        tBox.add(ta);
-        tBox.add(cBox);
-        //组装顶部左边和列表框
-        colorList.add(&quot;红色&quot;);
-        colorList.add(&quot;绿色&quot;);
-        colorList.add(&quot;蓝色&quot;);
-        Box top = Box.createHorizontalBox();
-        top.add(tBox);
-        top.add(colorList);
-        frame.add(top);
-
-        //设置frame为最佳大小并且可见
-        frame.pack();
-        frame.setVisible(true);
-
-    &#125;
-    public static void main(String[] args) &#123;
-        new Test().inti();
-    &#125;
-&#125;
-</code></pre>
-<h3 id="3-2-对话框Dialog"><a href="#3-2-对话框Dialog" class="headerlink" title="3.2 对话框Dialog"></a>3.2 对话框Dialog</h3><h4 id="3-2-1-Dialog"><a href="#3-2-1-Dialog" class="headerlink" title="3.2.1 Dialog"></a>3.2.1 Dialog</h4><p><em><strong>Dialog是Window类的子类,是一个容器类,属于特殊组件。对话框是可以独立存在的顶级窗口，因此用法与<br>普通窗口的用法肌乎完全一样,但是使用对话框需要注意下面两点:</strong></em></p>
-<ul>
-<li>对话框通常依赖于其他窗口,就是通常需要有一个父窗口;</li>
-<li>对话框有非模式(non-modal)和模式(modal)两种,当某个模式对话框被打开后,该模式对话框总是位于它的<br>父窗口之上,在模式对话框被关闭之前,父窗口无法获得焦点。</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>方法名称</th>
-<th>方法功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Dialg(frame owner,String title,boolean modal)</td>
-<td>创建一个对话框最想<br>owner：当前对话框的父窗口<br>title:当前对话框的标题<br>modal：当前对话框是否是默认对话框，true/false</td>
-</tr>
-</tbody></table>
-<p><img src="/images/swing/%E5%AF%B9%E8%AF%9D%E6%A1%86.png"></p>
-<pre><code class="java">import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionListener;
-public class Test &#123;
-    public static void main(String[] args) &#123;
-        Frame frame = new Frame(&quot;测试Dialog&quot;);
-        //创建两个对话框，一个模式的，一个非模式的
-        Dialog d1 = new Dialog(frame,&quot;模式对话框&quot;,true);
-        Dialog d2 = new Dialog(frame,&quot;非模式对话框&quot;,false);
-        //通过setBounds方法设置Dialod的位置和大小
-        d1.setBounds(20,30,200,300);
-        d2.setBounds(20,30,200,300);
-        //创建两个按钮
-        Button b1 = new Button(&quot;打开模式对话框&quot;);
-        Button b2 = new Button(&quot;打开非模式对话框&quot;);
-        //给这两个按钮添加点击后的行为
-        b1.addActionListener(e -&gt; d1.setVisible(true));
-        b2.addActionListener(e -&gt; d2.setVisible(true));
-        //把按钮添加到frame中
-        frame.add(b1,BorderLayout.NORTH);
-        frame.add(b2);
-
-        frame.setVisible(true);
-        frame.pack();
-
-    &#125;
-&#125;
-</code></pre>
-<h4 id="3-2-2-FileDialog"><a href="#3-2-2-FileDialog" class="headerlink" title="3.2.2 FileDialog"></a>3.2.2 FileDialog</h4><p>Dialog类还有一个子类: FileDialog , 它代表一个文件对话框 ,用于打开或者保存文件需要注意的是FileDialog<br>无法指定模态或者非模态,这是因为FileDialog依赖于运行平台的实现,如果运行平台的文件对话框是模态的,<br>那么FileDialog也是模态的;否则就是非模态的。</p>
-<table>
-<thead>
-<tr>
-<th>方法名称</th>
-<th>方法功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>FileDialog(Frame parent,String title,int mode)</td>
-<td>创建一个文件对话框<br>parent:指定父窗口<br>title：对话框标题<br>mode：文件对话框类型，如果指定为FileDialog.LOAD，用于打开文件，如果指定为FileDialog.SAVE，用于保存文件</td>
-</tr>
-<tr>
-<td>String getDirectory()</td>
-<td>获取被打开或保存文件的绝对路径</td>
-</tr>
-<tr>
-<td>String getFile()</td>
-<td>获取被打开或保存文件的文件名</td>
-</tr>
-</tbody></table>
-<p><img src="/images/swing/%E6%96%87%E4%BB%B6%E5%AF%B9%E8%AF%9D%E6%A1%86.png"></p>
-<pre><code class="java">import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionListener;
-public class Test &#123;
-    public static void main(String[] args) &#123;
-        Frame frame = new Frame(&quot;测试Dialog&quot;);
-        //创建两个FileDialog对象
-        FileDialog f1 = new FileDialog(frame,&quot;选择要打开的文件&quot;,FileDialog.LOAD);
-        FileDialog f2 = new FileDialog(frame,&quot;选择要保存的文件&quot;,FileDialog.SAVE);
-        //创建两个按钮
-        Button b1 = new Button(&quot;打开文件&quot;);
-        Button b2 = new Button(&quot;保存文件&quot;);
-        //给这两个按钮设置点击后的行为，获取打开或保存文件名
-        b1.addActionListener(e -&gt; &#123;
-            f1.setVisible(true);
-            String directory = f1.getDirectory();
-            String file  = f1.getFile();
-            System.out.println(&quot;打开的路径为&quot;+directory);
-            System.out.println(&quot;打开的文件名为&quot;+file);
-        &#125;);
-        b2.addActionListener(e -&gt; &#123;
-            f2.setVisible(true);
-            String directory = f2.getDirectory();
-            String file  = f2.getFile();
-            System.out.println(&quot;保存的路径为&quot;+directory);
-            System.out.println(&quot;保存的文件名为&quot;+file);
-        &#125;);
-        //把这两个按钮添加到Frame中
-        frame.add(b1,BorderLayout.NORTH);
-        frame.add(b2);
-
-        frame.setVisible(true);
-        frame.pack();
-
-    &#125;
-&#125;
-</code></pre>
-<h2 id="四、-事件处理"><a href="#四、-事件处理" class="headerlink" title="四、 事件处理"></a>四、 事件处理</h2><h3 id="4-1-GUI事件处理机制"><a href="#4-1-GUI事件处理机制" class="headerlink" title="4.1 GUI事件处理机制"></a>4.1 GUI事件处理机制</h3><p><strong>定义:</strong><br>        当在某个组件发生某些操作的时候,自动的触发一段代码的执行。<br>在GUl事件处理机制中涉及到4个重要的概念需要理解:<br>**事件源(Event Source) **:操作发生的场所,通常指某个组件,例如按钮、口等;<br><strong>事件( Event) :</strong> 在事件源上发生的操作可以叫做事件, GUI会把事件都封装到一个Event对象中,如果需要知道<br>该事件的详细信息,就可以通过Event对象来获取。<br>**事件监听器(Event Listener):**当在某个事件源上发生了某个事件,事件监听器就可以对这个事件进行处理。<br><strong>注册监听:</strong>    把某个事件监听器(A)通过某个事件(B)绑定到某个事件源(C)上,当在事件源C.上发生了事件B之后,那么<br>事件监听器A的代码就会自动执行。</p>
-<pre><code class="mermaid">graph LR
-A(外部动作)==在事件源上执行了事件==&gt;B([事件源])
-B ==生成事件对象==&gt; C([事件])
-C ==自动执行事件监听器中的代码,并且传递事件对象==&gt;D([事件监听器])
-D ==将事件监听器通过事件注册到事件源上==&gt; B
-</code></pre>
-<p><strong>使用步骤：</strong></p>
-<ol>
-<li>创建事件源组对象；</li>
-<li>自定义类，实现XxxListener接口，重写方法</li>
-<li>创建事件监听器对象(自定义类对象)</li>
-<li>调用事件源组对象的XxxListener方法完成注册监听</li>
-</ol>
-<p><strong>案例</strong><br>$$<br>点击确认按钮，在单行文本框内显示helloworld<br>$$<br> <img src="/images/swing/%E6%B5%8B%E8%AF%95%E6%8C%89%E9%92%AE.png"></p>
-<pre><code class="java">import java.awt.*;
-public class Test &#123;
-    public static void main(String[] args) &#123;
-        Frame frame = new Frame(&quot;测试事件处理&quot;);
-        TextField text = new TextField(30);
-        Button ok = new Button(&quot;确定&quot;);
-        //组装视图
-        ok.addActionListener(e -&gt; text.setText(&quot;hello world&quot;));
-        frame.add(text,BorderLayout.NORTH);
-        frame.add(ok);
-
-        frame.setVisible(true);
-        frame.pack();
-
-    &#125;
-&#125;
-</code></pre>
-<h3 id="4-2-GUI中常见事件和时间监听器"><a href="#4-2-GUI中常见事件和时间监听器" class="headerlink" title="4.2 GUI中常见事件和时间监听器"></a>4.2 GUI中常见事件和时间监听器</h3><p>事件监听器必须实现事件监听器接口，AWT提供了大量的事件监听器接口用于实现不同类型的事件监听器,于<br>监听不同类型的事件。AWT 中提供了丰富的事件类,于封装不同组件上所发生的特定操作，AWT的事件类都<br>是AWTEvent类的子类，AWTEvent是 EventObject的子类。</p>
-<h4 id="4-2-1-事件"><a href="#4-2-1-事件" class="headerlink" title="4.2.1 事件"></a>4.2.1 事件</h4><ul>
-<li><p>AWT把事件分了两大类</p>
-</li>
-<li><ol>
-<li><p>低级事件:这类事件是基于某个特定动作的事件。比如进入、击、拖放等动作的鼠标事件,再比如得到焦<br>和失点等焦点事件。</p>
-<table>
-<thead>
-<tr>
-<th>事件</th>
-<th>触发时机</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>ComponentEvent</td>
-<td>组件事件，当组件尺寸发生变化、位置发生移动、显示/隐藏状态发生改变时触发该事件。</td>
-</tr>
-<tr>
-<td>ContainerEvent</td>
-<td>容器事件，当容器里发生添加组件、 删除组件时触发该事件。</td>
-</tr>
-<tr>
-<td>WindowEvent</td>
-<td>窗口事件，当窗口状态发生改变(如打开、关闭、最大化、最小化)时触发该事件。</td>
-</tr>
-<tr>
-<td>FocusEvent</td>
-<td>焦点事件，当组件得到焦点或失去焦点时触发该事件。</td>
-</tr>
-<tr>
-<td>KeyEvent</td>
-<td>键盘事件，当按键被按下、 松开、单击时触发该事件。</td>
-</tr>
-<tr>
-<td>MouseEvent</td>
-<td>鼠标事件,当进行单击、按下、松开、移动鼠标等动作时触发该事件。</td>
-</tr>
-<tr>
-<td>PaintEvent</td>
-<td>组件绘制事件，该事件是一个特殊的事件类型 ，当GUI组件调用update/paint方法来埕现自身时触发该事件,该事件并非专用于事件处理模型。</td>
-</tr>
-</tbody></table>
-</li>
-<li><p>高级事件：这类事件并不会基于某个特定动作，而且根据功能含义定义的事件。</p>
-<table>
-<thead>
-<tr>
-<th>事件</th>
-<th>触发时机</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>ActionEvent</td>
-<td>动作事件，当按钮、 菜单项被单击,在TextField中按Enter键时触发</td>
-</tr>
-<tr>
-<td>AjustmentEvent</td>
-<td>调节事件,在滑动条上移动滑块以调节数值时触发该事件。</td>
-</tr>
-<tr>
-<td>ItemEvent</td>
-<td>选项事件,当用户选中某项，或取消选中某项时触发该事件</td>
-</tr>
-<tr>
-<td>TextEvent</td>
-<td>文本事件，当文本框、文本域里的文本发生改变时触发该事件。</td>
-</tr>
-</tbody></table>
-</li>
-</ol>
-</li>
-</ul>
-<h3 id="4-3事件监听器"><a href="#4-3事件监听器" class="headerlink" title="4.3事件监听器"></a>4.3事件监听器</h3><p>不同的事件需要使用不同的监听器监听,不同的监听器需要实现不同的监听器接口，当指定事件发生后，事件监<br>听器就会调用所包含的事件处理器(实例方法)来处理事件。</p>
-<table>
-<thead>
-<tr>
-<th>事件类别</th>
-<th>描述信息</th>
-<th>监听器接口名</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>ActionEvent</td>
-<td>激活组件</td>
-<td>ActionListener</td>
-</tr>
-<tr>
-<td>ItemEvent</td>
-<td>选择了某些项目</td>
-<td>ItemListener</td>
-</tr>
-<tr>
-<td>MouseEvent</td>
-<td>鼠标移动</td>
-<td>MouseMotionListener</td>
-</tr>
-<tr>
-<td>MouseEvent</td>
-<td>鼠标点击等</td>
-<td>MJseListener</td>
-</tr>
-<tr>
-<td>KeyEvent</td>
-<td>键盘输入</td>
-<td>KeyListener</td>
-</tr>
-<tr>
-<td>FocusEvent</td>
-<td>组件收到或失去焦点</td>
-<td>FocusListener</td>
-</tr>
-<tr>
-<td>AdjustmentEvent</td>
-<td>移动了滚动条等组件</td>
-<td>AdjustmentListener</td>
-</tr>
-<tr>
-<td>ComponentEvent</td>
-<td>对象移动缩放显示隐藏等</td>
-<td>ComponentListener</td>
-</tr>
-<tr>
-<td>WindowEvent</td>
-<td>窗口收到窗口级事件</td>
-<td>WindowListener</td>
-</tr>
-<tr>
-<td>WindowEvent</td>
-<td>容器中增加删除了组件</td>
-<td>ContainerListener</td>
-</tr>
-<tr>
-<td>TextEvent</td>
-<td>文本字段或文本区发生改变</td>
-<td>TextListener</td>
-</tr>
-</tbody></table>
-<h3 id="4-4案例"><a href="#4-4案例" class="headerlink" title="4.4案例"></a>4.4案例</h3><p>通过ContainerListener监听Frame容器添加组件;<br>通过TextListener监听TextFiled内容变化;<br>通过ItemListener监听Choice邻目选中状态变化;</p>
-<p><img src="/images/swing/%E7%9B%91%E5%90%AC%E5%99%A8.png"></p>
-<pre><code class="java">import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ContainerEvent;
-import java.awt.event.ContainerListener;
-public class Test &#123;
-    public static void main(String[] args) &#123;
-        Frame frame = new Frame(&quot;测试事件处理&quot;);
-        TextField tf = new TextField(30);
-        Choice name = new Choice();
-        name.add(&quot;张三&quot;);
-        name.add(&quot;李四&quot;);
-        name.add(&quot;王二&quot;);
-        //给文本域添加TextListener，监听内容变化
-        tf.addActionListener(e -&gt; System.out.println(&quot;当前文本框的内容为&quot;+tf.getText()));
-        //给下拉选择框添加ItemListener，监听条目选项的变化
-        name.addItemListener(e -&gt; System.out.println(&quot;选择的是&quot;+e.getItem()));
-        //给frame注册ContainerListener监听器，监听容器中组件的添加
-        frame.addContainerListener(new ContainerListener() &#123;
-            @Override
-            public void componentAdded(ContainerEvent e) &#123;
-                System.out.println(&quot;当前frame中添加了&quot;+e.getChild());
-            &#125;
-
-            @Override
-            public void componentRemoved(ContainerEvent e) &#123;
-
-            &#125;
-        &#125;);
-
-        Box box = Box.createHorizontalBox();
-        box.add(name);
-        box.add(tf);
-        frame.add(box);
-        frame.setVisible(true);
-        frame.pack();
-
-    &#125;
-&#125;
-</code></pre>
-<p>案例2</p>
-<p>给frame设置WindowListener，监听用户点击X的动作，并关闭窗口</p>
-<pre><code class="java">import java.awt.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-
-public class Test &#123;
-    public static void main(String[] args) &#123;
-        Frame frame = new Frame(&quot;测试窗口&quot;);
-
-        //设置WindowListener,监听用户点击X的动作，如果点击X，则关闭窗口
-        frame.addWindowListener(new WindowAdapter() &#123;
-            @Override
-            public void windowClosing(WindowEvent e) &#123;
-                System.exit(0);
-            &#125;
-        &#125;);
-        frame.setVisible(true);
-        frame.setBounds(200,200,500,300);
-
-    &#125;
-&#125;
-</code></pre>
-<h2 id="五、-菜单组件"><a href="#五、-菜单组件" class="headerlink" title="五、 菜单组件"></a>五、 菜单组件</h2><table>
-<thead>
-<tr>
-<th>菜单组件名称</th>
-<th>功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>MenuBar</td>
-<td>菜单条，菜单的容器。</td>
-</tr>
-<tr>
-<td>Menu</td>
-<td>菜单组件，菜单项的容器。它也是Menultem的子类 , 所以可作为菜单项使用</td>
-</tr>
-<tr>
-<td>PopupMenu</td>
-<td>上下文菜单组件(右键菜单组件)</td>
-</tr>
-<tr>
-<td>Menultem</td>
-<td>菜单项组件。</td>
-</tr>
-<tr>
-<td>CheckboxMenultem</td>
-<td>复选框菜单项组件</td>
-</tr>
-</tbody></table>
-<p><strong>下图是常见菜单相关组件集成体系图:</strong></p>
-<pre><code class="mermaid">graph BT
-A(PopupMenu)==&gt;B(Menu)
-C(CheckBoxMenuItem)==&gt;D(MenuItem)
-B==&gt;D
-B-.-&gt;E(接口:MenuContaniner)
-F(MenuBar)==&gt;G(MenuComponent)
-D==&gt;G
-F-.-&gt;E
-</code></pre>
-<p><strong>菜单相关组件使用:</strong></p>
-<ol>
-<li>准备菜单项组件,这些组件可以是Menultem及好类对象</li>
-<li>准备菜单组件Menu或者PopupMenu(右击弹出子菜单) ,把第一步中准备好的菜单项组件添加进来;</li>
-<li>准备菜单条组件MenuBar ,把第二步中准备好的菜 单组件Menu添加进来;</li>
-<li>把第三步中准备好的菜单条组件添加到窗口对象中显示。</li>
-</ol>
-<p><strong>小技巧:</strong></p>
-<ol>
-<li>如果要在某个菜单的菜单项之间添加分割线,那么只需要调用Menu的add ( new Menultem(“-“) )即可。</li>
-<li>如果要给某个菜单项关联快捷键功能,那么只需要在创建菜单项对象时设置即可,例如给菜 单项关联ctrl+shift+Q快捷键,只需要: new Menultem(“菜单项名字”,new MenuShortcut(KeyEvent.VK Q,true);</li>
-</ol>
-<p><img src="/images/swing/%E8%8F%9C%E5%8D%95.png"></p>
-<pre><code class="java">import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-
-public class Test &#123;
-    public static void main(String[] args) &#123;
-        Frame frame = new Frame(&quot;测试菜单&quot;);
-        //创建菜单条
-        MenuBar menuBar = new MenuBar();
-        //创建菜单组件
-        Menu fileMenu = new Menu(&quot;文件&quot;);
-        Menu editMenu = new Menu(&quot;编辑&quot;);
-        Menu formatMenu = new Menu(&quot;格式&quot;);
-        //创建菜单项
-        MenuItem auto = new MenuItem(&quot;自动换行&quot;);
-        MenuItem copy = new MenuItem(&quot;复制&quot;);
-        MenuItem paste = new MenuItem(&quot;粘贴&quot;);
-        MenuItem comment = new MenuItem(&quot;注释&quot;,new MenuShortcut(KeyEvent.VK_Q,true));
-        MenuItem cancelComment = new MenuItem(&quot;取消注释&quot;);
-        TextArea ta = new TextArea(6, 40);
-        //组装视图
-        comment.addActionListener(e -&gt; ta.append(&quot;您点击了&quot;+e.getActionCommand()));
-        formatMenu.add(comment);
-        formatMenu.add(cancelComment);
-        //组装编辑菜单
-        editMenu.add(auto);
-        editMenu.add(copy);
-        editMenu.add(paste);
-        editMenu.add(formatMenu);
-        //组装MenuBar
-        menuBar.add(fileMenu);
-        menuBar.add(editMenu);
-        //把菜单条放入到frame中
-        frame.setMenuBar(menuBar);
-        frame.add(ta);
-
-        frame.setVisible(true);
-        frame.setBounds(200,200,500,300);
-
-    &#125;
-&#125;
-</code></pre>
-<p>案例 PopMenu</p>
-<p><img src="/images/swing/%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95.png"></p>
-<pre><code class="java">import java.awt.*;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-public class Test &#123;
-    public static void main(String[] args) &#123;
-        Frame frame = new Frame(&quot;测试菜单&quot;);
-        //创建文本域
-        TextArea ta = new TextArea(&quot;我爱中华&quot;,6,40);
-        //创建panel容器
-        Panel p = new Panel();
-        //创建popMenu
-        PopupMenu popupMenu = new PopupMenu();
-        //创建菜单项
-        MenuItem comment = new MenuItem(&quot;注释&quot;);
-        MenuItem cancelComment = new MenuItem(&quot;取消注释&quot;);
-        MenuItem copy = new MenuItem(&quot;复制&quot;);
-        MenuItem paste = new MenuItem(&quot;粘贴&quot;);
-        //事件监听
-        ActionListener listener = e -&gt; ta.append(&quot;\n您点击了&quot;+e.getActionCommand());
-        comment.addActionListener(listener);
-        cancelComment.addActionListener(listener);
-        copy.addActionListener(listener);
-        paste.addActionListener(listener);
-        //组装视图
-        popupMenu.add(comment);
-        popupMenu.add(cancelComment);
-        popupMenu.add(copy);
-        popupMenu.add(paste);
-        //PopMenu放入容器
-        p.add(popupMenu);
-        //设置尺寸
-        p.setPreferredSize(new Dimension(400,300));
-        //设置右键监听
-        p.addMouseListener(new MouseAdapter() &#123;
-            @Override
-            public void mouseReleased(MouseEvent e) &#123;
-                if(e.isPopupTrigger())&#123;
-                    //显示popMenu
-                    popupMenu.show(p,e.getX(),e.getY());
-                &#125;
-            &#125;
-        &#125;);
-        frame.add(ta,BorderLayout.NORTH);
-        frame.add(p);
-
-        frame.setVisible(true);
-        frame.setBounds(200,200,500,300);
-
-    &#125;
-&#125;
-</code></pre>
-<h2 id="六、-绘图"><a href="#六、-绘图" class="headerlink" title="六、 绘图"></a>六、 绘图</h2><h3 id="6-1-组件绘图原理"><a href="#6-1-组件绘图原理" class="headerlink" title="6.1 组件绘图原理"></a>6.1 组件绘图原理</h3><ul>
-<li><p>在AWT中,正提供绘图功能的是Graphics对象,那么Component组件和Graphics对象存在什么关系,能让Component绘制自身图形呢?在Component类中,提供了下列三个方法来完成组件图形的绘制与刷新:</p>
-</li>
-<li><p>paint(Graphics g):绘制组件的外观;</p>
-</li>
-<li><p>update(Graphics g):内部调用paint方法，刷新组件外观;</p>
-</li>
-<li><p>repaint():调用update方法,刷新组件外观;</p>
-</li>
-</ul>
-<p><img src="/images/swing/%E7%BB%98%E5%88%B6.png"></p>
-<p><em><strong>一般情况下, update和paint方法是由AWT系统负责调用,如果程序要希望系统重新绘制组件,可以调用repaint方法完成。</strong></em></p>
-<h3 id="6-2-Graphics对象的使用"><a href="#6-2-Graphics对象的使用" class="headerlink" title="6.2 Graphics对象的使用"></a>6.2 Graphics对象的使用</h3><p><strong>AWT中提供了Canva类充当画布,提供了Graphics类来充当画笔,通过调用Graphics对象的setColor()方法可以给画笔设置颜色。</strong></p>
-<p><strong>画图的步骤</strong></p>
-<ol>
-<li>自定义类,继承Canvas类,重写paint(Graphics g)方法完成画图;</li>
-<li>在paint方法内部,真正开始画图之前调用Graphics对象的setColor()、setFont()等方法设 置画笔的颜色、字体等属性;</li>
-<li>调用Graphics画笔的drawXxx()方法开始画图。</li>
-</ol>
-<p>其实画图的核心就在于使用Graphics画笔在Canvas画布上画出什么颜色、什么样式的图形,所以核心在画笔上,下表中列出了Graphics类中常用的一些方法:</p>
-<table>
-<thead>
-<tr>
-<th>方法名称</th>
-<th>方法功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>setColor(Color c)</td>
-<td>设置颜色</td>
-</tr>
-<tr>
-<td>setFont(Font font)</td>
-<td>设置字体</td>
-</tr>
-<tr>
-<td>drawLine()</td>
-<td>绘制直线</td>
-</tr>
-<tr>
-<td>drawRect()</td>
-<td>绘制矩形</td>
-</tr>
-<tr>
-<td>drawRoundRect()</td>
-<td>绘制圆角矩形</td>
-</tr>
-<tr>
-<td>drawOval()</td>
-<td>绘制椭圆形</td>
-</tr>
-<tr>
-<td>drawPolyon()</td>
-<td>绘制多边形</td>
-</tr>
-<tr>
-<td>drawArc()</td>
-<td>绘制圆弧</td>
-</tr>
-<tr>
-<td>drawPolyine()</td>
-<td>绘制折线</td>
-</tr>
-<tr>
-<td>fillRect()</td>
-<td>填充矩形区域</td>
-</tr>
-<tr>
-<td>fillRoundRect()</td>
-<td>填充圆角矩形区域</td>
-</tr>
-<tr>
-<td>fillOval()</td>
-<td>填充椭圆区域</td>
-</tr>
-<tr>
-<td>fillPolyon()</td>
-<td>填充多边形区域</td>
-</tr>
-<tr>
-<td>fillArc()</td>
-<td>填充圆弧对应的扇形区域</td>
-</tr>
-<tr>
-<td>drawImage()</td>
-<td>绘制位图</td>
-</tr>
-</tbody></table>
-<h4 id="案例1"><a href="#案例1" class="headerlink" title="案例1"></a>案例1</h4><p><img src="/images/swing/%E7%BB%98%E5%88%B61.png"></p>
-<pre><code class="java">import java.awt.*;
-public class Test &#123;
-    Frame frame = new Frame(&quot;测试绘图&quot;);
-    Button rect = new Button(&quot;绘制矩形&quot;);
-    Button oval = new Button(&quot;绘制椭圆&quot;);
-    //定义一个变量，记录当前要绘制的事椭圆还是矩形
-    final String rect_shape= &quot;rect&quot;;
-    final String oval_shape = &quot;oval&quot;;
-
-    //自定义类，使用Canvas类，重写paint完成构图
-    String shape = &quot;&quot;;
-    private class MyCanvas extends Canvas&#123;
-        @Override
-        public void paint(Graphics g) &#123;
-            super.paint(g);
-            if(shape.equals(rect_shape))&#123;
-                //绘制矩形
-                g.setColor(Color.BLACK);
-                g.drawRect(100,100,200,100);
-            &#125;else if(shape.equals(oval_shape))&#123;
-                //绘制椭圆
-                g.setColor(Color.red);
-                g.drawOval(100,100,200,100);
-            &#125;
-        &#125;
-    &#125;
-public void inti()&#123;
-    MyCanvas canvas = new MyCanvas();
-    //组装视图
-    rect.addActionListener(e -&gt; &#123;shape = rect_shape;canvas.repaint();&#125;);
-    oval.addActionListener(e -&gt; &#123;shape = oval_shape;canvas.repaint();&#125;);
-    //创建panel承载按钮
-    Panel p = new Panel();
-    p.add(rect);
-    p.add(oval);
-    frame.add(p,BorderLayout.SOUTH);
-    //canvas的大小需要设置
-    canvas.setPreferredSize(new Dimension(300,300));
-    frame.add(canvas);
-    frame.setVisible(true);
-    frame.setBounds(200,200,500,300);
-&#125;
-
-    public static void main(String[] args) &#123;
-        new Test().inti();
-    &#125;
-&#125;
-</code></pre>
-<h4 id="案例2-弹球游戏"><a href="#案例2-弹球游戏" class="headerlink" title="案例2 弹球游戏"></a>案例2 弹球游戏</h4><ul>
-<li>Java也可用于开发一些动画。 所谓动画,就是间隔一定的时间(通常小于0 .1秒)重新绘制新的图像,两次绘制的图像之间差异较小,肉眼看起来就成了所谓的动画。</li>
-<li>为了实现间隔-定的时间就重新调用组件的repaint()方法,可以借助于Swing提供的Timer类, Timer类是一个定时器，它有如下一个构造器:</li>
-<li>Timer(int delay, ActionListener listener):每间隔delay秒,系统自动触发ActionListener监听器里的事件处理器方法,在方法内部我们就可以调用组件的repaint方法,完成组件重绘。</li>
-</ul>
-<p><img src="/images/swing/%E5%BC%B9%E7%90%83%E6%B8%B8%E6%88%8F.png"></p>
-<pre><code class="java">import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
-
-
-public class Test &#123;
-    Frame frame = new Frame(&quot;弹球游戏&quot;);
-    //桌面宽度
-    private final int TABLE_WIDTH = 300;
-    //桌面高度
-    private final int TABLE_HEIGHT = 400;
-    //球拍的宽高
-    private final int RACKET_WIDTH = 60;
-    private final int RACKET_HEIGHT = 20;
-    //小球的大小
-    private final int BALL_SIZE = 16;
-    //定义变量，记录小球坐标
-    private int ballX = 120;
-    private int ballY = 20;
-    //定义变量，记录小球在x和y方向山分别移动的像素
-    private int speedX = 2;
-    private int speedY = 10;
-    //定义变量记录球拍的坐标
-    private int racketX = 120;
-    private final int racketY = 340;
-    //定义变量，表示当前游戏是否结束
-    private boolean isOver = false;
-    //声明一个定时器
-    private Timer timer;
-    //自定义一个类继承canvas，充当画布
-    private class MyCanvas extends Canvas&#123;
-        @Override
-        public void paint(Graphics g) &#123;
-            super.paint(g);
-            if(isOver) &#123;
-                //游戏结束
-                g.setColor(Color.BLUE);
-                g.setFont(new Font(&quot;times&quot;,Font.BOLD,30));
-                g.drawString(&quot;游戏结束&quot;,50,200);
-            &#125;else &#123;
-                //游戏中
-                //绘制小球
-                g.setColor(Color.RED);
-                g.fillOval(ballX,ballY,BALL_SIZE,BALL_SIZE);
-                //绘制球拍
-                g.setColor(Color.pink);
-                g.fillRect(racketX,racketY,RACKET_WIDTH,RACKET_HEIGHT);
-
-            &#125;
-        &#125;
-    &#125;
-    //创建绘画区域
-    MyCanvas canvas = new MyCanvas();
-public void inti()&#123;
-    //组装视图以及游戏逻辑的控制
-    //完成球拍坐标的变化
-    KeyListener listener = new KeyAdapter() &#123;
-        @Override
-        public void keyReleased(KeyEvent e) &#123;
-            if(e.getKeyCode() == KeyEvent.VK_LEFT)&#123;
-                //&lt;- 应该向左移动
-                if(racketX &gt; 0)&#123;
-                    racketX -= 10;
-                &#125;
-            &#125;else if(e.getKeyCode() == KeyEvent.VK_RIGHT)&#123;
-                //-&gt;应该向右移动
-                if(racketX &lt; (TABLE_WIDTH-RACKET_WIDTH))&#123;
-                    racketX += 10;
-                &#125;
-            &#125;
-        &#125;
-    &#125;;
-    ActionListener task = new ActionListener() &#123;
-        @Override
-        public void actionPerformed(ActionEvent e) &#123;
-            //根据边界范围修正速度
-            if(ballX&lt;=0||ballX&gt;=TABLE_WIDTH-BALL_SIZE)&#123;
-                speedX = -speedX;
-            &#125;
-            if(ballY&lt;=0||((ballY&gt;=(racketY-BALL_SIZE))&amp;&amp;(ballX&gt;racketX&amp;&amp;ballX&lt;(racketX+RACKET_WIDTH))))&#123;
-                speedY = -speedY;
-            &#125;
-            if((ballY&gt;racketY-BALL_SIZE)&amp;&amp;(ballX&lt;racketX||ballX&gt;racketX+RACKET_WIDTH))&#123;
-                //当前小球超出了球拍范围，游戏结束
-                //停止计时器
-                System.out.println(ballY);
-                timer.stop();
-                //修改游戏结束标记
-                isOver = true;
-                //重绘界面
-                canvas.repaint();
-            &#125;
-            //更新小球的坐标
-            ballX += speedX;
-            ballY +=speedY;
-            //重绘界面
-            canvas.repaint();
-        &#125;
-    &#125;;
-    //给frame和canvas注册监听器
-    frame.addKeyListener(listener);
-    canvas.addKeyListener(listener);
-    //小球坐标的控制
-    timer = new Timer(100,task);
-    timer.start();
-    canvas.setPreferredSize(new Dimension(TABLE_WIDTH,TABLE_HEIGHT));
-    frame.add(canvas);
-
-    frame.setVisible(true);
-    frame.setBounds(200,200,300,400);
-&#125;
-
-    public static void main(String[] args) &#123;
-        new Test().inti();
-</code></pre>
-<h3 id="6-3-处理位图"><a href="#6-3-处理位图" class="headerlink" title="6.3 处理位图"></a>6.3 处理位图</h3><p><em><strong>位图使用步骤:</strong></em></p>
-<ol>
-<li>创建Image的子类对象Bufferedlmage(int width,int height,int ImageType),创建时需要指定位图的宽高及类型属性;此时相当于在内存中生成了一张图片;</li>
-<li>调用Bufferedlmage对象的getGraphics(方法获取画笔,此时就可以往内存中的这张图片上绘图了,绘图的方法和之前学习的一模一样;</li>
-<li>调用组件paint方法中提供的Graphics对象的drawlmage()方法,一次性的内存中的图片 Bufferedlmage绘制到特定的组件上。</li>
-</ol>
-<ul>
-<li>使用位图绘制组件的好处:</li>
-<li>使用位图来绘制组件,相当于实现了图的缓冲区,此时绘图时没有直接把图形绘制到组件上,而是先绘制到内存中.的Bufferedlmage上,等全部绘制完毕,再-次性的图像显示到组件上即可,这样用户的体验会好一些。</li>
-</ul>
-<p><img src="/images/swing/%E6%89%8B%E7%BB%98%E7%A8%8B%E5%BA%8F.png"></p>
-<pre><code class="java">import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.awt.image.BufferedImage;
-
-
-public class Test &#123;
-    Frame frame = new Frame(&quot;简单手绘程序&quot;);
-    //定义画图区的宽高
-    private final int AERA_WIDTH = 500;
-    private final int AERA_HEIGHT = 400;
-    //定义右键菜单，用于设置画笔颜色
-    PopupMenu colorMenu = new PopupMenu();
-    MenuItem redItem = new MenuItem(&quot;红色&quot;);
-    MenuItem greenItem = new MenuItem(&quot;绿色&quot;);
-    MenuItem blueItem = new MenuItem(&quot;蓝色&quot;);
-    // 定义一个变量记录当前画笔颜色
-    Color forceColor = Color.black;
-    //创建一个BufferedImage对象
-    BufferedImage bufferedImage = new BufferedImage(AERA_WIDTH,AERA_HEIGHT , BufferedImage.TYPE_INT_RGB);
-    //通过位图获取关联的Graphics对象
-    Graphics  g = bufferedImage.getGraphics();
-    //自定义一个类继承canvas
-    private class MyCanvas extends Canvas&#123;
-        @Override
-        public void paint(Graphics g) &#123;
-            super.paint(g);
-            g.drawImage(bufferedImage,0,0,null);
-
-        &#125;
-    &#125;
-    MyCanvas canvas = new MyCanvas();
-    private int preX = -1;
-    private int preY = -1;
-    public void inti()&#123;
-        ActionListener listener = e -&gt; &#123;
-            String action = e.getActionCommand();
-            switch (action)&#123;
-                case &quot;红色&quot; -&gt; forceColor = Color.RED;
-                case &quot;绿色&quot; -&gt; forceColor = Color.GREEN;
-                case &quot;蓝色&quot; -&gt; forceColor = Color.BLUE;
-            &#125;
-        &#125;;
-        redItem.addActionListener(listener);
-        greenItem.addActionListener(listener);
-        blueItem.addActionListener(listener);
-        colorMenu.add(redItem);
-        colorMenu.add(greenItem);
-        colorMenu.add(blueItem);
-        //把colorMenu设置给绘图区域
-        canvas.add(colorMenu);
-        canvas.addMouseListener(new MouseAdapter() &#123;
-            @Override
-            public void mouseReleased(MouseEvent e) &#123;
-                if(e.isPopupTrigger())&#123;
-                    colorMenu.show(canvas,e.getX(),e.getY());
-                &#125;
-                preX = -1;
-                preY = -1;
-            &#125;
-        &#125;);
-        //设置位图的背景为白色
-        g.setColor(Color.WHITE);
-        g.fillRect(0,0,AERA_WIDTH,AERA_HEIGHT);
-        //通过监听鼠标绘制
-        canvas.addMouseMotionListener(new MouseAdapter() &#123;
-            @Override
-            public void mouseDragged(MouseEvent e) &#123;
-                if (preX&gt;0&amp;&amp;preY&gt;0)&#123;
-                    g.setColor(forceColor);
-                    g.drawLine(preX,preY,e.getX(),e.getY());
-                &#125;
-                //修正preX和preY的值
-                preX = e.getX();
-                preY = e.getY();
-                //重绘组件
-                canvas.repaint();
-            &#125;
-        &#125;);
-        canvas.setPreferredSize(new Dimension(AERA_WIDTH,AERA_HEIGHT));
-        frame.add(canvas);
-        frame.pack();
-        frame.setVisible(true);
-
-    &#125;
-    public static void main(String[] args) &#123;
-        new Test().inti();
-    &#125;
-&#125;
-</code></pre>
-<h3 id="6-4-ImageIO的使用"><a href="#6-4-ImageIO的使用" class="headerlink" title="6.4 ImageIO的使用"></a>6.4 ImageIO的使用</h3><p>在实际生活中,很多软件都支持打开本地磁盘已经存在的图片,然后进行编辑,编辑完毕后,再重新保存到本地磁<br>盘。如果使用AWT要完成这样的功能,那么需要使用到magelQ这个类,可以操作本地磁盘的图片文件。</p>
-<table>
-<thead>
-<tr>
-<th>方法名称</th>
-<th>方法功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>static Bufferedlmage read(File input)</td>
-<td>读取本地磁盘图片文件</td>
-</tr>
-<tr>
-<td>static Bufferedlmage read(InputStream input)</td>
-<td>读取本地磁盘图片文件</td>
-</tr>
-<tr>
-<td>static boolean write(Renderedlmage im, String formatName, File output)</td>
-<td>往本地磁盘中输出图片文件</td>
-</tr>
-</tbody></table>
-<p><img src="/images/swing/%E5%9B%BE%E7%89%87.png"></p>
-<pre><code class="java">import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-
-public class Test &#123;
-    Frame frame = new Frame(&quot;图片查看器&quot;);
-    MenuBar bar = new MenuBar();
-    Menu menu = new Menu(&quot;文件&quot;);
-    MenuItem open = new MenuItem(&quot;打开&quot;);
-    MenuItem save = new MenuItem(&quot;另存为&quot;);
-    BufferedImage image;
-    MyCanvas canvas = new MyCanvas();
-    private class MyCanvas extends Canvas&#123;
-        @Override
-        public void paint(Graphics g) &#123;
-            super.paint(g);
-            g.drawImage(image,0,0,null);
-        &#125;
-    &#125;
-
-    public void inti()&#123;
-        //组装视图
-        open.addActionListener(e -&gt; &#123;
-            FileDialog fileDialog = new FileDialog(frame,&quot;打开图片&quot;,FileDialog.LOAD);
-            fileDialog.setVisible(true);
-            String dir = fileDialog.getDirectory();
-            String file = fileDialog.getFile();
-            try &#123;
-                image = ImageIO.read(new File(dir,file));
-                canvas.repaint();
-            &#125; catch (IOException ex) &#123;
-                ex.printStackTrace();
-            &#125;
-        &#125;);
-        save.addActionListener(e -&gt; &#123;
-            FileDialog fileDialog = new FileDialog(frame,&quot;保存图片&quot;,FileDialog.SAVE);
-            fileDialog.setVisible(true);
-            String dir = fileDialog.getDirectory();
-            String file = fileDialog.getFile();
-            try &#123;
-                ImageIO.write(image,&quot;JPEG&quot;,new File(dir,file));
-            &#125; catch (IOException ex) &#123;
-                ex.printStackTrace();
-            &#125;
-        &#125;);
-        menu.add(open);
-        menu.add(save);
-        bar.add(menu);
-        frame.setMenuBar(bar);
-        frame.add(canvas);
-
-
-        frame.setBounds(200,200,740,508);
-        frame.setVisible(true);
-        frame.addWindowListener(new WindowAdapter() &#123;
-            @Override
-            public void windowClosing(WindowEvent e) &#123;
-                System.exit(0);
-            &#125;
-        &#125;);
-
-
-        frame.pack();
-        frame.setVisible(true);
-
-    &#125;
-    public static void main(String[] args) &#123;
-        new Test().inti();
-    &#125;
-&#125;
-</code></pre>
-<h1 id="Swing编程"><a href="#Swing编程" class="headerlink" title="Swing编程"></a>Swing编程</h1><h2 id="2-1-Swing概述"><a href="#2-1-Swing概述" class="headerlink" title="2.1 Swing概述"></a>2.1 Swing概述</h2><ul>
-<li>Swing是由100%纯Java实现的,不再低赖于本地平台的GUI，因此可以在所有平台上都保持相同的界面外观。独立于本地平台的Swing组件被称为轻量级组件;而依赖于本地平台的AWT组件被称为重量级组件。</li>
-<li>由于Swing的所有组件完全采用Java实现,不再调用本地平台的GUI ,所以导致Swing形界面的显示速度要比AWT图形界面的显示速度慢一些,但相对于快速发展的硬件设施而言, 这种微小的速度差别无妨大碍。</li>
-</ul>
-<h3 id="使用Swing的优势"><a href="#使用Swing的优势" class="headerlink" title="使用Swing的优势:"></a>使用Swing的优势:</h3><ol>
-<li>Swing组件不再依赖于本地平台的GUI ,无须采用各种平台的GUI交集,因此Swing提供了大量图形界面组件，远远超出 了AWT所提供的图形界面组件集。</li>
-<li>Swing组件不再依赖于本地平台GUI , 因此不会产生与平台相关的bug。</li>
-<li>Swing组件在各种平台上运行时可以保证具有相同的图形界面外观。Swing提供的这些优势,让Java图形界面程序真正实现了” Write Once, Run Anywhere”的目标。</li>
-</ol>
-<h3 id="Swing的特征"><a href="#Swing的特征" class="headerlink" title="Swing的特征"></a>Swing的特征</h3><ol>
-<li><p>Swing组件采用MVC(ModeI-View-Controller，即模型一视图一 控制器)设计模式:</p>
-<pre><code class="text">模型(Model):用于维护组件的各种状态;
-视图(View):是组件的可视化表现;
-控制器(Controller) :用于控制对于各种事件、组件做出响应。
-当模型发生改变时,它会通知所有依赖它的视图，视图会根据模型数据来更新自己。Swing使用UI代理来包装视图和控制器，还有-一个模型对象来维护该组件的状态。例如，按钮JButton有一个维护其状态信息的模型ButtonModel对象。Swing组件的模型是自动设置的 ，因此一般都使用JButton ，而无须关心ButtonModel对象。
-</code></pre>
-</li>
-<li><p>Swing在不同的平台，上表现一致,组有能力提供本地平台不支持的显示外观。于Swing采用MVC模式来维护各组件,所以当组件的外观被改变时,对组件的状态信息(由模型维护)没有任何影响。因此, Swing可以使用插拔式外观感觉(Pluggable Look And Feel, PLAF)来控制组件外观,使得Swing图形界面在同一个平台上运行时能拥有不同的外观,户可以选择自己喜欢的外观。相比之下,在AWT图形界面中,由于控制组件外观的对等类与具体平台相关,因此AWT组件总是具有与本地平台相同的外观。</p>
-</li>
-</ol>
-<h2 id="2-2-Swing基本组件的用法"><a href="#2-2-Swing基本组件的用法" class="headerlink" title="2.2 Swing基本组件的用法"></a>2.2 Swing基本组件的用法</h2><h3 id="2-2-1-Swing组件层次"><a href="#2-2-1-Swing组件层次" class="headerlink" title="2.2.1 Swing组件层次"></a>2.2.1 Swing组件层次</h3><p>大部分Swing组件都是JComponent抽象类的直接或间接子类(并不是全部的Swing组件) , JComponent类定义了所有子类组件的通用方法, JComponent类是AWTjava.awt. Container类的子类，这也是 AWT和Swing的联系之一。绝大部分 Swing组件类继承了Container类,所以Swing组件都可作为容器使用(JFrame继承了Frame类。</p>
-<p><strong>Swing组件和AWT组件的对应关系:</strong><br>大部分情况下,只要在AWT组件的名称前面加个,就可以得到其对应的Swing组件名称,有几个例外:</p>
-<ol>
-<li>JComboBox:对应于AWT里的Choice组件,但毗Choice组件功能更丰富。</li>
-<li>JFileChooser:对应于AWT里的FileDialog组件。</li>
-<li>JScrollBar:对应于AWT里的Scrollbar组件,注意两个组件类名中b字母的大小写差别。</li>
-<li>JCheckBox :对应于AWT里的Checkbox组件，注意两个组件类名中b字母的大小写蹉别。</li>
-<li>JCheckBoxMenultem:对应于AWT里的CheckboxMenultem组件,注意两个组件类名中b字母的大小写差别。.</li>
-</ol>
-<p><strong>Swing组件按照功能来分类:</strong></p>
-<ol>
-<li>层容器: JFrame、JApplet、 jDialog 和I[Window。</li>
-<li>中间容器: JPanel、JScrollPane 、JSplitPane、 JToolBar 等。</li>
-<li>特殊容器:在用户界面上具有特殊作用的中间容器,如JIntemalFrame、JRootPane 、JL ayeredPane和JDestopPane等。</li>
-<li>基本组件:实现人机交互的组件,如jButton、JComboBox、 JList、 JMenu、 JSlider 等。</li>
-<li>不可编辑信息的显示组件:向户显示不可编辑信息的组件,如JLabel、JProgressBar JToolTip等。</li>
-<li>可编辑信息的显示组件:向用户显示能被编辑的格式化信息的组件,如JTable、JTextArea 和TextField等</li>
-<li>特殊对话框组件:可以直接产生特殊对话框的组件，如JColorChooser和JFileChooser等。</li>
-</ol>
-<h3 id="2-2-2-AWT组件的Swing实现"><a href="#2-2-2-AWT组件的Swing实现" class="headerlink" title="2.2.2 AWT组件的Swing实现"></a>2.2.2 AWT组件的Swing实现</h3><ul>
-<li>Swing为除Canvas之外的所有AWT组件提供了相应的实现, Swing组件比AWT组件的功能更加强大。相对于AWT组件，Swing 组件具有如下4个额外的功能: </li>
-<li><ol>
-<li>可以为Swing组件设置提示信息。使用setToolTipText()方法,为组件设置对用户有帮助的提示信息。</li>
-<li>很多Swing组件如按钮、标签、菜单项等,除使用文字外,还可以使膠标修饰自己。为了允许在Swing组<br>件中使用图标，Swing为Icon接口提供了一个实现类: Imagelcon ,该实现类代表-个图像图标。</li>
-<li>支持插拔式的外观风格。每个JComponent对象都有一个相应的ComponentUl对象,为为完成所有的绘画、事件处理、决定尺寸大等工作。ComponentUl 对象依赖当前使用的PLAF，使佣UIManager.setLookAndFeel()方法可以改变图形界面的外观风格。</li>
-<li>支持设置边框。Swing 组件可以设置一个或多 个边框。Swing 中提供了各式各样的边框供用户边用,也能建立组合边框或自己设计边框。- 种空白边框可以用于增大组件,同时协助布局管理器对容器中的组件进行合理的布局。每个Swing组件都有一个对应的UI 类,例如JButton组件就有一个对应的 ButtonUl类来作为UI代理。每个Swing组件的UI代理的类名总是将该Swing组件类名的J去掉,然后在后面添加UI后缀。UI代理类通常是一 个抽象基类，不同的PLAF会有不同的UI代理实现类。Swing 类库中包含了几套UI代理,分别放在不同的包下，每套UI代理都几乎包含了所有Swing组件的ComponentUl实现,每套这样的实现都被称为-种PLAF实现。以JButton为例,其UI代理的继承层次下图:</li>
-</ol>
-</li>
-<li>每个Swing组件都有一个对应的UI类,例如JButton组件就有一个对应的ButtonUI类来作为UI代理。每个Swing组件的U代理的类名总是将该Swing组件类名的」去掉,然后在后面添加UI后缀。UI代理类通常是一 个抽象基类，不同的PLAF会有不同的UI代理实现类。Swing 类库中包含了几套UI代理,分别放在不同的包下，套UI代理都几乎包含了所有Swing组件的ComponentU实现,套这样的实现都被称为-种PLAF 实现。以JButton为例,其UI代理的继承层次下图:</li>
-</ul>
-<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h3><p><img src="/images/swing/swing%E5%9F%BA%E6%9C%AC%E7%BB%84%E4%BB%B6.png"></p>
-<pre><code class="java">import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-public class Test &#123;
-    JFrame frame = new JFrame(&quot;测试Swing基本组件&quot;);
-    //声明菜单相关的组件
-    String[] color = &#123;&quot;红色&quot;,&quot;绿色&quot;,&quot;蓝色&quot;&#125;;
-    JMenuBar bar = new JMenuBar();
-    JMenu fileMenu = new JMenu(&quot;文件&quot;);
-    JMenu editMenu = new JMenu(&quot;编辑&quot;);
-    JMenuItem auto = new JMenuItem(&quot;自动换行&quot;);
-    JMenuItem copy = new JMenuItem(&quot;复制&quot;);
-    JMenuItem peast = new JMenuItem(&quot;粘贴&quot;);
-    JMenu formatMenu = new JMenu(&quot;格式&quot;);
-    JMenuItem comment = new JMenuItem(&quot;注释&quot;);
-    JMenuItem cancelComment = new JMenuItem(&quot;取消注释&quot;);
-    //声明文本域
-    JTextArea ta = new JTextArea(8,20);
-    //声明列表框
-    JList&lt;String&gt; colorList = new JList&lt;String&gt;(color);
-    //声明选择相关组件
-    JComboBox&lt;String&gt; colorSelect = new JComboBox&lt;&gt;();
-    ButtonGroup bg = new ButtonGroup();
-    JRadioButton man = new JRadioButton(&quot;男&quot;,true);
-    JRadioButton woman = new JRadioButton(&quot;女&quot;,false);
-    JCheckBox isMerried = new JCheckBox(&quot;是否已婚?&quot;,true);
-    //声明底部
-    JTextField tf = new JTextField(40);
-    JButton ok = new JButton(&quot;确定&quot;);
-
-    //声明右键菜单
-    JPopupMenu popupMenu = new JPopupMenu();
-    ButtonGroup popButton = new ButtonGroup();
-    JRadioButtonMenuItem metalItem = new JRadioButtonMenuItem(&quot;Metal 风格&quot;);
-    JRadioButtonMenuItem nimbusItem = new JRadioButtonMenuItem(&quot;Nimbus 风格&quot;);
-    JRadioButtonMenuItem windowsItem = new JRadioButtonMenuItem(&quot;Windows 风格&quot;,true);
-    JRadioButtonMenuItem windowsClassicItem = new JRadioButtonMenuItem(&quot;Windows 经典风格&quot;);
-    JRadioButtonMenuItem motifItem = new JRadioButtonMenuItem(&quot;Motif 风格&quot;);
-    public void inti()&#123;
-        //组装视图
-        //组装底部
-        JPanel bPanel = new JPanel();
-        bPanel.add(tf);
-        bPanel.add(ok);
-        frame.add(bPanel, BorderLayout.SOUTH);
-        //组装选择相关组件
-        JPanel sPanel = new JPanel();
-        sPanel.add(colorSelect);
-        colorSelect.addItem(&quot;红色&quot;);
-        colorSelect.addItem(&quot;绿色&quot;);
-        colorSelect.addItem(&quot;蓝色&quot;);
-        bg.add(man);
-        bg.add(woman);
-        sPanel.add(man);
-        sPanel.add(woman);
-        sPanel.add(isMerried);
-        //组装文本域和选择相关组件
-        Box topLeft = Box.createVerticalBox();
-        topLeft.add(ta);
-        topLeft.add(sPanel);
-        //组装顶部
-        Box top = Box.createHorizontalBox();
-        top.add(topLeft);
-        top.add(colorList);
-        frame.add(top);
-        //组装顶部菜单
-        formatMenu.add(comment);
-        formatMenu.add(cancelComment);
-        editMenu.add(auto);
-        editMenu.addSeparator();
-        editMenu.add(copy);
-        editMenu.add(peast);
-        editMenu.addSeparator();
-        editMenu.add(formatMenu);
-        bar.add(fileMenu);
-        bar.add(editMenu);
-        frame.setJMenuBar(bar);
-        //组装右键菜单
-        ActionListener listener = new ActionListener() &#123;
-            @Override
-            public void actionPerformed(ActionEvent e) &#123;
-                String action = e.getActionCommand();
-                try &#123;
-                    changeFlavor(action);
-                &#125; catch (Exception ex) &#123;
-                    ex.printStackTrace();
-                &#125;
-            &#125;
-        &#125;;
-        metalItem.addActionListener(listener);
-        nimbusItem.addActionListener(listener);
-        windowsClassicItem.addActionListener(listener);
-        windowsItem.addActionListener(listener);
-        motifItem.addActionListener(listener);
-        popButton.add(metalItem);
-        popButton.add(nimbusItem);
-        popButton.add(windowsClassicItem);
-        popButton.add(windowsItem);
-        popButton.add(motifItem);
-        popupMenu.add(metalItem);
-        popupMenu.add(nimbusItem);
-        popupMenu.add(windowsItem);
-        popupMenu.add(windowsClassicItem);
-        popupMenu.add(motifItem);
-
-        //不需要在监听鼠标事件
-        ta.setComponentPopupMenu(popupMenu);
-
-        frame.pack();
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-    &#125;
-    //设置风格
-    private void changeFlavor(String command) throws Exception &#123;
-        switch (command)&#123;
-            case &quot;Metal 风格&quot;-&gt; UIManager.setLookAndFeel(&quot;javax.swing.plaf.metal.MetalLookAndFeel&quot;);
-            case &quot;Nimbus 风格&quot;-&gt;UIManager.setLookAndFeel(&quot;javax.swing.plaf.nimbus.NimbusLookAndFeel&quot;);
-            case &quot;Windows 风格&quot;-&gt;UIManager.setLookAndFeel(&quot;com.sun.java.swing.plaf.windows.WindowsLookAndFeel&quot;) ;
-            case &quot;Windows 经典风格&quot;-&gt;UIManager.setLookAndFeel(&quot;com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel&quot;);
-            case &quot;Motif 风格&quot;-&gt;UIManager.setLookAndFeel(&quot;com.sun.java.swing.plaf.motif.MotifLookAndFeel&quot;);
-        &#125;
-        //刷新组件外观
-        SwingUtilities.updateComponentTreeUI(frame.getContentPane());
-        SwingUtilities.updateComponentTreeUI(bar);
-        SwingUtilities.updateComponentTreeUI(popupMenu);
-    &#125;
-
-    public static void main(String[] args) &#123;
-        new Test().inti();
-    &#125;
-
-&#125;
-</code></pre>
-<h3 id="2-2-3-边框"><a href="#2-2-3-边框" class="headerlink" title="2.2.3 边框"></a>2.2.3 边框</h3><p><img src="/images/swing/%E8%BE%B9%E6%A1%86%E6%A6%82%E8%A7%88.png"></p>
-<p><strong>特殊的Border :</strong></p>
-<ol>
-<li>TitledBorder:它的作用并不是直接为其他组件添加边框,而是为其他边框设置标题,创建该类的对象时,要传入一个其他的Border对象;</li>
-<li>CompoundBorder:用来组合其他两个边框,创建该类的对象时,需要传入其他两个Border对象,一个作为内边框,一个作为外边框</li>
-</ol>
-<p><strong>给组件设置边框步骤:</strong></p>
-<ol>
-<li>使用BorderFactory或者XxxBorder创建Border的实例对象;</li>
-<li>调用Swing组件的setBorder ( Border b )方法为组件设置边框; </li>
-</ol>
-<h4 id="案例-1"><a href="#案例-1" class="headerlink" title="案例"></a><strong>案例</strong></h4><p><img src="/images/swing/%E8%BE%B9%E6%A1%86-164903460214824.png"></p>
-<pre><code class="java">import javax.swing.*;
-import javax.swing.border.*;
-import java.awt.*;
-
-public class Test &#123;
-    JFrame frame = new JFrame(&quot;测试边框&quot;);
-    public void inti()&#123;
-        //组装视图
-        //修改frame布局为GridLayout
-        frame.setLayout(new GridLayout(2,4));
-        //往网格中填充不同的组件并设置边框和内容
-        Border beverBorder = BorderFactory.createBevelBorder(BevelBorder.RAISED,Color.RED,Color.GREEN,Color.BLUE,Color.GRAY);
-        frame.add(getJpanelWithBorder(beverBorder,&quot;BeverBorder&quot;));
-        Border lineBorder = BorderFactory.createLineBorder(Color.ORANGE,10);
-        frame.add(getJpanelWithBorder(lineBorder,&quot;LineBorder&quot;));
-        Border emptyBorder = BorderFactory.createEmptyBorder(10,5,10,10);
-        frame.add(getJpanelWithBorder(emptyBorder,&quot;EmptyBorder&quot;));
-        Border etcheBorder = BorderFactory.createEtchedBorder(EtchedBorder.RAISED,Color.RED,Color.GREEN);
-        frame.add(getJpanelWithBorder(etcheBorder,&quot;EtcheBorder&quot;));
-        TitledBorder titledBorder = new TitledBorder(new LineBorder(Color.ORANGE,10),&quot;这是标题&quot;,TitledBorder.LEFT,TitledBorder.BOTTOM,new Font(&quot;StSon&quot;,Font.BOLD,18),Color.GREEN);
-        frame.add(getJpanelWithBorder(titledBorder,&quot;TitledBorder&quot;));
-        MatteBorder matteBorder = new MatteBorder(10,5 ,20, 10, Color.GREEN);
-        frame.add(getJpanelWithBorder(matteBorder,&quot;MatteBorder&quot;));
-        CompoundBorder compoundBorder = new CompoundBorder(new LineBorder(Color.RED,10),titledBorder);
-        frame.add(getJpanelWithBorder(compoundBorder,&quot;CompoundBorder&quot;));
-        //设置窗口最佳大小并且可见，处理关闭操作
-        frame.pack();
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-    &#125;
-    public JPanel getJpanelWithBorder(Border border,String content)&#123;
-        JPanel panel = new JPanel();
-        panel.add(new JLabel(content));
-        //设置边框
-        panel.setBorder(border);
-        return panel;
-    &#125;
-
-    public static void main(String[] args) &#123;
-        new Test().inti();
-    &#125;
-
-&#125;
-</code></pre>
-<h3 id="2-2-4-使用JToolBar添加工具条"><a href="#2-2-4-使用JToolBar添加工具条" class="headerlink" title="2.2.4 使用JToolBar添加工具条"></a>2.2.4 使用JToolBar添加工具条</h3><table>
-<thead>
-<tr>
-<th>方法名称</th>
-<th>方法功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>JToolBar( String name , int  orientation)</td>
-<td>创建-个名字为name ,方向为orientation的工条对象,其orientation的是取值可以是SwingConstants.HORIZONTAL或SwingConstants.VERTICAL</td>
-</tr>
-<tr>
-<td>JButton add(Action a)</td>
-<td>通过Action对象为JToolBar工具条添加对应的工具按钮</td>
-</tr>
-<tr>
-<td>addSeparator(Dimension size )</td>
-<td>向工具条中添加指定大小的分隔符</td>
-</tr>
-<tr>
-<td>setFloatable(boolean b )</td>
-<td>设定工具条是否可以被拖动</td>
-</tr>
-<tr>
-<td>setMargin(Insets m)</td>
-<td>设置工具条与工具按钮的边距</td>
-</tr>
-<tr>
-<td>setOrientation( int o)</td>
-<td>设置工具条的方向</td>
-</tr>
-</tbody></table>
-<p><strong>add(Action a)方法:</strong></p>
-<ul>
-<li>上述API中add(Action a)这个方法比较难理解,为什么呢,之前说过, Action接口是ActlonListener的一个子接口,那么它就代表-个事件监听器,而这里add方法是在给I具条添加一个工具按钮,为什么传递的是一个事件监听器呢?</li>
-<li>首先要明确的是不管是菜单条中的菜单项还是工具条中的工具按钮,最终肯定是需要点击来完成一些操作 ,所以ToolBar以及JMenu都提供了更加便捷的添加子组件的方法add(Action a)，在这个方法的内部会做如下几件事:<ol>
-<li>创建一个 适用于该容器的组件(例如,在工具栏中创建一个工 具按钮);</li>
-<li>从Action对象中获得对应的属性来设置该组件(通过lcon来设置按钮图标) ;</li>
-<li>把Action监听器注册到刚才创建的组件上;</li>
-</ol>
-</li>
-</ul>
-<h4 id="案例-2"><a href="#案例-2" class="headerlink" title="案例"></a>案例</h4><p><img src="/images/swing/%E5%B7%A5%E5%85%B7%E6%9D%A1.png"></p>
-<pre><code class="java">import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-
-public class Test &#123;
-    JFrame frame = new JFrame(&quot;测试工具条&quot;);
-    JTextArea ta = new JTextArea(6,35);
-    JToolBar toolBar = new JToolBar(&quot;播放工具条&quot;,SwingConstants.HORIZONTAL);
-    //创建action对象
-    Action pre = new AbstractAction(&quot;上一曲&quot;) &#123;
-        @Override
-        public void actionPerformed(ActionEvent e) &#123;
-            ta.append(&quot;上一曲\n&quot;);
-        &#125;
-    &#125;;
-    Action next = new AbstractAction(&quot;下一曲&quot;) &#123;
-        @Override
-        public void actionPerformed(ActionEvent e) &#123;
-            ta.append(&quot;下一曲\n&quot;);
-        &#125;
-    &#125;;
-    Action pause = new AbstractAction(&quot;暂停&quot;) &#123;
-        @Override
-        public void actionPerformed(ActionEvent e) &#123;
-            ta.append(&quot;暂停\n&quot;);
-        &#125;
-    &#125;;
-    public void inti() &#123;
-        toolBar.add(pre);
-        toolBar.addSeparator();
-        toolBar.add(pause);
-        toolBar.addSeparator();
-        toolBar.add(next);
-        //让工具条可以拖动
-        toolBar.setFloatable(true);
-        //把一个组件设置到jScrollPane中，就可以支持滚动条
-        Component table;
-        JScrollPane sp = new JScrollPane(ta);
-        frame.add(toolBar, BorderLayout.NORTH);
-        frame.add(sp);
-
-        frame.pack();
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-    &#125;
-
-    public static void main(String[] args) &#123;
-        new Test().inti();
-    &#125;
-
-&#125;
-</code></pre>
-<h3 id="2-2-5-JColorChooser和JFileChooser"><a href="#2-2-5-JColorChooser和JFileChooser" class="headerlink" title="2.2.5 JColorChooser和JFileChooser"></a>2.2.5 JColorChooser和JFileChooser</h3><p><strong>Swing提供了」ColorChooser和IFileChooser这两种对话框，可以很方便的完成颜色的选择和本地文件的选择。</strong></p>
-<h4 id="2-2-5-1-JColorChooser"><a href="#2-2-5-1-JColorChooser" class="headerlink" title="2.2.5.1 JColorChooser"></a>2.2.5.1 JColorChooser</h4><p>JColorChooser盱创建颜色选择器对话框，该类的用法非常简单,只需要调用它的静态方法就可以快速生成一个颜色选择对话框:</p>
-<pre><code class="java">public static Color showDialog(Component component,String title,Color intialColor)
-/*
-    参数：
-        component：指定当前对话框父组件
-        title：当前对话框名称
-        intialColor：指定默认选择的颜色
-    返回值：
-        返回用户选中的颜色
-*/
-</code></pre>
-<h4 id="案例-3"><a href="#案例-3" class="headerlink" title="案例"></a>案例</h4><p><img src="/images/swing/%E9%A2%9C%E8%89%B2%E9%80%89%E6%8B%A9%E5%99%A8.png"></p>
-<pre><code class="java">import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-
-public class Test &#123;
-    JFrame frame = new JFrame(&quot;测试颜色选择器&quot;);
-    JTextArea ta = new JTextArea(6,30);
-    //声明按钮
-    JButton button = new JButton(new AbstractAction(&quot;改变文本框颜色&quot;) &#123;
-        @Override
-        public void actionPerformed(ActionEvent e) &#123;
-            //弹出一个颜色选择器
-            Color result = JColorChooser.showDialog(frame,&quot;颜色选择器&quot;,Color.WHITE);
-            //修改文本框背景
-            ta.setBackground(result);
-        &#125;
-    &#125;);
-    public void inti() &#123;
-        //组装视图
-        frame.add(ta);
-        frame.add(button,BorderLayout.NORTH);
-
-
-        frame.pack();
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-    &#125;
-
-    public static void main(String[] args) &#123;
-        new Test().inti();
-    &#125;
-
-&#125;
-</code></pre>
-<h4 id="2-2-5-2-JFileChooser"><a href="#2-2-5-2-JFileChooser" class="headerlink" title="2.2.5.2 JFileChooser"></a>2.2.5.2 JFileChooser</h4><p>FileChooser的功能与AWT中的FileDialog基本相似,也是用于生成”打开文件”、”保存文件”对话框。与.FileDialog不同的是，JFileChooser 无须依赖于本地平台的GUI，它由100%纯Java实现，在所有平台.上具有完全相同的行为,可以在所有平台上具有相同的外观风格。</p>
-<p><strong>JFileChooser使用步骤</strong></p>
-<ol>
-<li><p>创建JFileChooser对象：</p>
-<pre><code class="java">JFileChooser chooser= new JFileChooser(&quot;D//a);//指定默认打开的本地磁盘路径
-</code></pre>
-</li>
-<li><p>调用JFileChooser的一系列可选方法,进行初始化</p>
-<pre><code class="java">setSelectedFile(File file)/setSelectedFiles(File[] selectedFiles) :设定默认选中的文件
-setMultiselectionEnabled(boolean b) :设置是否允许多选，默认是单选
-setFileselectionMode(int mode) :设置可以选择内容，例如文件、文件夹等，默认只能选择文件
-</code></pre>
-</li>
-<li><p>打开文件对话框</p>
-<pre><code class="java">showopenDi alog( Component parent) :打开文件加载对话框,并指定父组件
-showSaveDialog(Component parent) :打开文件保存对话框,并指定父组件
-</code></pre>
-</li>
-<li><p>获取用户选择的结果</p>
-<pre><code class="java">File getSelectedFile():获取用户选择的一 一个文件
-File[] getSelectedFiles() :获取用户选择的多个文件
-</code></pre>
-</li>
-</ol>
-<h4 id="案例-4"><a href="#案例-4" class="headerlink" title="案例"></a>案例</h4><p><img src="/images/swing/%E5%9B%BE%E7%89%87%E9%80%89%E6%8B%A9.png"></p>
-<pre><code class="java">import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-public class Test &#123;
-    JFrame frame = new JFrame(&quot;测试JFileChooser&quot;);
-    //创建菜单条
-    JMenuBar bar = new JMenuBar();
-    JMenu file = new JMenu(&quot;文件&quot;);
-    JMenuItem open = new JMenuItem(new AbstractAction(&quot;打开&quot;) &#123;
-        @Override
-        public void actionPerformed(ActionEvent e) &#123;
-            JFileChooser fileChooser = new JFileChooser(&quot;.&quot;);
-            fileChooser.showOpenDialog(frame);
-            File file = fileChooser.getSelectedFile();
-            try &#123;
-                image = ImageIO.read(file);
-                my.repaint();
-            &#125; catch (IOException ex) &#123;
-                ex.printStackTrace();
-            &#125;
-        &#125;
-    &#125;);
-    JMenuItem save = new JMenuItem(new AbstractAction(&quot;另存为&quot;) &#123;
-        @Override
-        public void actionPerformed(ActionEvent e) &#123;
-            JFileChooser fileChooser = new JFileChooser(&quot;.&quot;);
-            fileChooser.showSaveDialog(frame);
-            File file = fileChooser.getSelectedFile();
-            try &#123;
-                ImageIO.write(image,&quot;JPEG&quot;,file);
-                my.repaint();
-            &#125; catch (IOException ex) &#123;
-                ex.printStackTrace();
-            &#125;
-        &#125;
-    &#125;);
-    BufferedImage image;
-//Swing提供的组件，都是用了图像缓冲区技术
-    private class My extends JPanel&#123;
-    @Override
-    protected void paintComponent(Graphics g) &#123;
-        super.paintComponent(g);
-        g.drawImage(image,0,0,null);
-    &#125;
-&#125;
-My my = new My();
-    public void inti() &#123;
-        //组装视图
-        file.add(open);
-        file.add(save);
-        bar.add(file);
-        my.setPreferredSize(new Dimension(588,822));
-        frame.add(my);
-        frame.add(bar,BorderLayout.NORTH);
-
-        frame.pack();
-        frame.setBounds(100,100,588,822);
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-    &#125;
-
-    public static void main(String[] args) &#123;
-        new Test().inti();
-    &#125;
-&#125;
-</code></pre>
-<h3 id="2-2-6-使用JOptionPane"><a href="#2-2-6-使用JOptionPane" class="headerlink" title="2.2.6 使用JOptionPane"></a>2.2.6 使用JOptionPane</h3><h4 id="2-2-6-1-使用概述"><a href="#2-2-6-1-使用概述" class="headerlink" title="2.2.6.1 使用概述"></a>2.2.6.1 使用概述</h4><p>通过JOptionPane可以非常方便地创建一些简单的对话框 ，Swing 已经为这些对话框添加了相应的组件,无须程席员手动添加组件。lOptionPane 提供了如下4个方法来创建对话框</p>
-<table>
-<thead>
-<tr>
-<th>方法名称</th>
-<th>方法功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>showMessageDialog/showInternalMessageDialog</td>
-<td>消息对话框，告知用户某事己发生 ，户只能单击”确定’按钮，类似于JavaScript的alert函数。</td>
-</tr>
-<tr>
-<td>showConfirmDialog/showInternalConfirmDialog</td>
-<td>确认对话框,向用户确认某个问题,用户可以选择yes、no - cancel等选项。类似于JavaScript的comfirm函数。该访法返回用户单击了哪个按钮</td>
-</tr>
-<tr>
-<td>showInputDialog/showInternallnputDialog</td>
-<td>输入对话框,提示要求输入某些信息,类似于JavaScript的prompt函数。该访法返回用户输入的字符串。</td>
-</tr>
-<tr>
-<td>showOptionDialog/showInternalOptionDialog</td>
-<td>自定义选项对话框,允许使用自定义选项，可以取代showConfirmDialog所产生的对话框，只是用起来更复杂。</td>
-</tr>
-</tbody></table>
-<pre><code class="java">showXxxDialog(Component parentComponent ，
-        object message ,
-        string title,
-        int opmionType, 
-        int messageType,
-            Icon icon,
-        object[] opt ions,
-        object initialVvalue)
---参数解释:
-parentComponent :当前对话框的父组件
-message :对话框上显示的信息,信息可以是字符串、组件、图等
-title :当前对话框的标题
-optionType :当前对话框上显示的按钮类型: DEFAULT_ OPTION、 YES_ _NO_ OPTION、 YES_ _NO_ CANCEL_ OPTION、OK_ CANCEL_ _OPTION
-messageType:当前对话框的类型: ERROR_ MESSAGE、 INFORMATION_ MESSAGE、WARNING_ MESSAGE、QUESTION_ MESSAGE、 PLAIN MESSAGE
-icon:当前对话框左上角的图标
-options:自定义下拉列表的选项
-initialvalue :自定义选项中的默认选中项
-</code></pre>
-<p><strong>当用户与对话框交互结束后 ,不同类型对话框的返回值如下 :</strong></p>
-<ul>
-<li>showMessageDialog: 无返回值。</li>
-<li>showlnputDialog:返回用户输入或选择的字符串。</li>
-<li>showConfirmDialog: 返回一个整数代表用户选择的选项。</li>
-<li>showOptionDialog :返回一个整数代表用户选择的选项,如果用户选择第一项,则返回0;如果选择第二项,则返回1…依.类推。</li>
-</ul>
-<p><strong>对showConfirmDialg所产生的对话框,有如下几个返回值:</strong></p>
-<ul>
-<li>YES OPTION:户单击了”是”按钮后返回。</li>
-<li>NO OPTION:用户单击了”否”按钮后返回。</li>
-<li>CANCEL OPTION:户单陆了”取消”按钮后返回。</li>
-<li>OK OPTION :户陆了”确定”按钮后返回</li>
-<li>CLOSED OPTION:用户击了对话框右上角的” X”按钮后返回。</li>
-</ul>
-<h4 id="2-2-6-2-四中对话框演示"><a href="#2-2-6-2-四中对话框演示" class="headerlink" title="2.2.6.2 四中对话框演示"></a>2.2.6.2 四中对话框演示</h4><h5 id="消息对话框"><a href="#消息对话框" class="headerlink" title="消息对话框"></a>消息对话框</h5><p><img src="/images/swing/%E6%B6%88%E6%81%AF%E5%AF%B9%E8%AF%9D%E6%A1%86.png"></p>
-<pre><code class="java">import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-
-public class Test &#123;
-    JFrame frame = new JFrame(&quot;测试消息对话框&quot;);
-    JTextArea ta = new JTextArea(6,30);
-    //声明按钮
-    JButton button = new JButton(new AbstractAction(&quot;弹出消息对话框&quot;) &#123;
-        @Override
-        public void actionPerformed(ActionEvent e) &#123;
-            //弹出一个对话框，并且显示文本域中输入的内容
-            String text = ta.getText();
-            //参数messageType,指定消息对话框类型
-            JOptionPane.showMessageDialog(frame,text,&quot;消息对话框&quot;,JOptionPane.ERROR_MESSAGE);
-        &#125;
-    &#125;);
-    public void inti() &#123;
-        //组装视图
-        frame.add(ta);
-        frame.add(button, BorderLayout.SOUTH);
-
-
-        frame.pack();
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-    &#125;
-
-    public static void main(String[] args) &#123;
-        new Test().inti();
-    &#125;
-&#125;
-</code></pre>
-<h5 id="确认对话框"><a href="#确认对话框" class="headerlink" title="确认对话框"></a>确认对话框</h5><p><img src="/images/swing/%E7%A1%AE%E8%AE%A4%E5%AF%B9%E8%AF%9D%E6%A1%86.png"></p>
-<pre><code class="java">import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-
-public class Test &#123;
-    JFrame frame = new JFrame(&quot;测试确认对话框&quot;);
-    JTextArea ta = new JTextArea(6,30);
-    //声明按钮
-    JButton button = new JButton(new AbstractAction(&quot;弹出确认对话框&quot;) &#123;
-        @Override
-        public void actionPerformed(ActionEvent e) &#123;
-            //弹出确认对话框
-            String text = ta.getText();
-            int result = JOptionPane.showConfirmDialog(frame,text,&quot;确认对话框&quot;,JOptionPane.YES_NO_CANCEL_OPTION);
-            if(result == JOptionPane.YES_OPTION)&#123;
-                ta.append(&quot;你点击了确定\n&quot;);
-            &#125;if (result == JOptionPane.NO_OPTION)&#123;
-                ta.append(&quot;你点击了否\n&quot;);
-            &#125;if(result == JOptionPane.OK_OPTION)&#123;
-                ta.append(&quot;你点击了确认\n&quot;);
-            &#125;if(result == JOptionPane.CANCEL_OPTION)&#123;
-                ta.append(&quot;你点击了取消\n&quot;);
-            &#125;
-        &#125;
-    &#125;);
-    public void inti() &#123;
-        //组装视图
-        frame.add(ta);
-        frame.add(button, BorderLayout.SOUTH);
-
-
-        frame.pack();
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-    &#125;
-
-    public static void main(String[] args) &#123;
-        new Test().inti();
-    &#125;
-&#125;
-</code></pre>
-<h5 id="输入对话框"><a href="#输入对话框" class="headerlink" title="输入对话框"></a>输入对话框</h5><p><img src="/images/swing/%E8%BE%93%E5%85%A5%E5%AF%B9%E8%AF%9D%E6%A1%86.png"></p>
-<pre><code class="java">import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-
-public class Test &#123;
-    JFrame frame = new JFrame(&quot;测试输入对话框&quot;);
-    JTextArea ta = new JTextArea(6,30);
-    //声明按钮
-    JButton button = new JButton(new AbstractAction(&quot;弹出输入对话框&quot;) &#123;
-        @Override
-        public void actionPerformed(ActionEvent e) &#123;
-            //弹出确认对话框
-            String text = ta.getText();
-            String result = JOptionPane.showInputDialog(frame,&quot;输入账号&quot;,&quot;输入对话框&quot;,JOptionPane.INFORMATION_MESSAGE);
-            ta.append(result);
-        &#125;
-    &#125;);
-    public void inti() &#123;
-        //组装视图
-        frame.add(ta);
-        frame.add(button, BorderLayout.SOUTH);
-
-
-        frame.pack();
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-    &#125;
-
-    public static void main(String[] args) &#123;
-        new Test().inti();
-    &#125;
-&#125;
-</code></pre>
-<h5 id="选项对话框"><a href="#选项对话框" class="headerlink" title="选项对话框"></a>选项对话框</h5><p><img src="/images/swing/%E9%80%89%E9%A1%B9%E5%AF%B9%E8%AF%9D%E6%A1%86.png"></p>
-<pre><code class="java">import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-
-public class Test &#123;
-    JFrame frame = new JFrame(&quot;测试选项对话框&quot;);
-    JTextArea ta = new JTextArea(6,30);
-    //声明按钮
-    JButton button = new JButton(new AbstractAction(&quot;弹出选项对话框&quot;) &#123;
-        @Override
-        public void actionPerformed(ActionEvent e) &#123;
-            //弹出确认对话框
-            String[] choice = &#123;&quot;大号&quot;,&quot;中号&quot;,&quot;小号&quot;&#125;;
-            int result = JOptionPane.showOptionDialog(frame,&quot;请选择衣服号码&quot;,&quot;选择对话框&quot;,
-                    JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,null,
-                    choice,&quot;中号&quot;);
-            switch (result)&#123;
-                case 0 -&gt; ta.setText(&quot;用户选择了大号&quot;);
-                case 1 -&gt; ta.setText(&quot;用户选择了中号&quot;);
-                case 2 -&gt; ta.setText(&quot;用户选择了小号&quot;);
-            &#125;
-        &#125;
-    &#125;);
-    public void inti() &#123;
-        //组装视图
-        frame.add(ta);
-        frame.add(button, BorderLayout.SOUTH);
-
-
-        frame.pack();
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-    &#125;
-
-    public static void main(String[] args) &#123;
-        new Test().inti();
-    &#125;
-&#125;
-</code></pre>
-<h2 id="2-3-Swing中的特殊容器"><a href="#2-3-Swing中的特殊容器" class="headerlink" title="2.3 Swing中的特殊容器"></a>2.3 Swing中的特殊容器</h2><h3 id="2-3-1-使用JSplitPane"><a href="#2-3-1-使用JSplitPane" class="headerlink" title="2.3.1 使用JSplitPane"></a>2.3.1 使用JSplitPane</h3><p>JSplitPane用于创建一个分割面板,它可以将 一个组件(通常是一个容器)分割成两个部分 ,并提供一个分割条,用户可以拖动该分割条来调整两个部分的大小。</p>
-<h4 id="1-创建SplitPane对象"><a href="#1-创建SplitPane对象" class="headerlink" title="1.创建SplitPane对象"></a>1.创建SplitPane对象</h4><pre><code class="java">通过如下构造方法可以创建JSplitPane对象
-JSplitpane(int neworientation, Component newLeftComponent , Component     newRightComponent)
-    neworientation :指定JSplitPane容器的分割方向:
-        如果值为JSplitPane .VERTICAL_ SPLIT,为纵向分割;
-        如果值为JSplitPane . HORIZONTAL_ SPLIT ,为横向分割;
-
-    newLeftComponent :左侧或者上侧的组件;
-    newRightComponent :右侧或者下侧的组件;
-</code></pre>
-<h4 id="2-设置是否开启连续布局的支持（可选）"><a href="#2-设置是否开启连续布局的支持（可选）" class="headerlink" title="2.设置是否开启连续布局的支持（可选）"></a>2.设置是否开启连续布局的支持（可选）</h4><pre><code class="java">setContinuouslayout( boolean newContinuouslayout): 
-    默认是关闭的，如果设置为true ,则打开连续布局的支持,但由于连续布局支持需要不断的重绘组件，所以效率会低一些
-</code></pre>
-<h4 id="3-设置是否支持“一触即展”的支持-可选"><a href="#3-设置是否支持“一触即展”的支持-可选" class="headerlink" title="3.设置是否支持“一触即展”的支持(可选)"></a>3.设置是否支持“一触即展”的支持(可选)</h4><pre><code class="java">setoneTouchExpaqdable(boolean newvalue) :
-默认是关闭的，如果设置为true ,则打开&quot;一触即展&quot;的支持
-</code></pre>
-<h4 id="4-其他设置"><a href="#4-其他设置" class="headerlink" title="4.其他设置"></a>4.其他设置</h4><pre><code class="java">setDividerlocation( double proportionallocation): 设置分隔条的位置JSplitPane的某个百分比
-setDividerlocation(int ] bcation) :通过像素值设置分隔条的位置
-setDividersize(int newSize) :通过像素值设置分隔条的大小
-setLeftComponent(Component comp)/ setTopComponent(Component comp)/ setRightComponent (Componentcomp)/ setBottomC omponent(Component comp):设置指定位置的组件
-</code></pre>
-<h4 id="案例-5"><a href="#案例-5" class="headerlink" title="案例"></a>案例</h4><p><img src="/images/swing/SplitPane.png"></p>
-<pre><code class="java">import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import java.awt.*;
-import java.awt.print.Book;
-
-public class Test &#123;
-    JFrame f = new JFrame(&quot;测试JSplitPane&quot;);
-    Book[] books = &#123;new Book(&quot;预言家&quot;,new ImageIcon(&quot;D:\\Users\\Administrator\\Desktop\\狼人杀\\狼人杀\\预言家.jpg&quot;),&quot;每晚可查验一名玩家具体身份&quot;),
-                    new Book(&quot;训熊师&quot;,new ImageIcon(&quot;D:\\Users\\Administrator\\Desktop\\狼人杀\\狼人杀\\恶灵骑士.jpg&quot;),&quot;可查验两边玩家身份&quot;),
-                    new Book(&quot;恶灵骑士&quot;,new ImageIcon(&quot;D:\\Users\\Administrator\\Desktop\\狼人杀\\狼人杀\\训熊师.jpg&quot;),&quot;不会死在夜里，可以反弹&quot;)
-    &#125;;
-    JList&lt;Book&gt; bookList = new JList&lt;&gt;(books);
-    JLabel bookCover = new JLabel();
-    JTextArea bookDesc = new JTextArea();
-    public void inti()&#123;
-        //组装视图
-        //设置组件大小
-        bookList.setPreferredSize(new Dimension(150,400));
-        bookCover.setPreferredSize(new Dimension(220,270));
-        bookDesc.setPreferredSize(new Dimension(220,130));
-
-        //为bookList设置选中监听器
-        bookList.addListSelectionListener(e -&gt; &#123;
-            //获取选中的是哪个条目
-            Book book = bookList.getSelectedValue();
-            //把书籍的图片用bookCover展示
-            bookCover.setIcon(book.getIcon());
-            //把书籍的介绍用bookDesc展示
-            bookDesc.setText(book.getDesc());
-        &#125;);
-        //组装左边区域
-        JSplitPane left = new JSplitPane(JSplitPane.VERTICAL_SPLIT,bookCover,new JScrollPane(bookDesc));
-        left.setOneTouchExpandable(true);
-        JSplitPane hole = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,left,bookList);
-        //支持连续布局
-        hole.setContinuousLayout(true);
-        f.add(hole);
-
-        f.setVisible(true);
-        f.pack();
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    &#125;
-
-    class Book&#123;
-        private String name;
-        private Icon icon;
-        private String desc;
-
-        public Book(String name, Icon icon, String desc) &#123;
-            this.name = name;
-            this.icon = icon;
-            this.desc = desc;
-        &#125;
-
-        public String getName() &#123;
-            return name;
-        &#125;
-
-        public void setName(String name) &#123;
-            this.name = name;
-        &#125;
-
-        public Icon getIcon() &#123;
-            return icon;
-        &#125;
-
-        public void setIcon(Icon icon) &#123;
-            this.icon = icon;
-        &#125;
-
-        public String getDesc() &#123;
-            return desc;
-        &#125;
-
-        public void setDesc(String desc) &#123;
-            this.desc = desc;
-        &#125;
-
-        @Override
-        public String toString() &#123;
-            return name;
-        &#125;
-    &#125;
-
-    public static void main(String[] args) &#123;
-        new Test().inti();
-    &#125;
-&#125;
-</code></pre>
-<h3 id="2-3-2使用JTabbedPane"><a href="#2-3-2使用JTabbedPane" class="headerlink" title="2.3.2使用JTabbedPane"></a>2.3.2使用JTabbedPane</h3><p>JTabbedPane可以很方便地在窗口上放置多个标签页,每个标签页相当于获得了一个与外部容器具有相同大小的组件摆放区域。通过这种方式，就可以在一个容器里放置更多的组件，例如右击桌面 上的”我的电脑”图标,在弹出的快捷菜单里单击”属性”菜单工项，就可以看到一个”系统属性”对话框,这 个对话框里包含了若干个标领。</p>
-<ol>
-<li><p>创建JTabbedPane对象</p>
-<pre><code class="java">JTabbedpane(int tabPlacement, int tabl ayoutPolicy):
-    tabPlacement :
-        指定标签标题的放置位置,可以选择SwingConstants中的四个常量: TOP、        LEFT、 BOTTOM、 RIGHT
-    tablayoutPolicy:
-        指定当窗口不能容纳标签页标题时的布局策略，可以选择JT abbedPane .         WRAP_TAB_ _LAYOUT和JTabbedPane. SCROLL_ TAB_ LAYOUT
-</code></pre>
-</li>
-<li><p>通过JTabbedPane对象标签进行增删改查</p>
-<pre><code class="java">addTab(String title, Icon icon, Component component, string tip):
-添加标签
-    title:标签的名称
-    icon:标签的图标
-    component :标签对应的组件
-    tip :光标放到标签上的提示
-insertTab(String title, Icon icon, Component component, string tip, int index) :插入标签页
-    title :标签的名称
-    icon:标签的图标
-    component :标签对应的组件
-    tip:光标放到标签上的提示
-    index :在哪个索引处插入标签页
-setComponentAt(int index, Component component) :修改标签页对应的组件
-    index:修改哪个索引|处的标签
-    component :标签对应的组件
-removeTabAt(int index):
-    index :删除哪个索弓|处的标签
-</code></pre>
-</li>
-<li><p>设置当前显示的标签页</p>
-<pre><code class="java">setselectedIndex(int imdex) :设置哪个索|处的标签被选中
-</code></pre>
-</li>
-<li><p>设置JTabbedPane的其他属性</p>
-<pre><code class="java">setDi sabledIconAtint index, Icon disabledIcon): 将指定位置的禁用图标设置为icon ,该图标也可以是
-null表示不使用禁用图标。
-setEnabledAt(int index, boolean enabled): 设置指定位置的标签页是否启用。
-setTitleAt(int index, string title):设置指定位置标签页的标题为title ,该title可以是null,这表明设置
-该标签页的标题为空。
-setToolTipTextAt(int index, String toolTipText): 设置指定位置标签页的提示文本
-</code></pre>
-</li>
-<li><p>设置监听器</p>
-<p><code>addChangeL istener( ChangeL istener 1)</code></p>
-</li>
-<li><p><strong>案例</strong></p>
-<p><img src="/images/swing/tabbledPane.png"></p>
-<pre><code class="java">import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import java.awt.*;
-import java.awt.print.Book;
-
-public class Test &#123;
-    JFrame f = new JFrame(&quot;测试JSplitPane&quot;);
-    JTabbedPane tabbedPane = new JTabbedPane(SwingConstants.LEFT,JTabbedPane.SCROLL_TAB_LAYOUT);
-
-    public void inti()&#123;
-        //添加标签
-        tabbedPane.addTab(&quot;用户管理&quot;,null,new JList&lt;String&gt;(new String[]&#123;&quot;用户一&quot;,&quot;用户二&quot;,&quot;用户三&quot;&#125;));
-        tabbedPane.addTab(&quot;商品管理&quot;,null,new JList&lt;String&gt;(new String[]&#123;&quot;商品一&quot;,&quot;商品二&quot;,&quot;商品三&quot;&#125;));
-        tabbedPane.addTab(&quot;订单管理&quot;,null,new JList&lt;String&gt;(new String[]&#123;&quot;订单一&quot;,&quot;订单二&quot;,&quot;订单三&quot;,&quot;订单四&quot;&#125;));
-        tabbedPane.setEnabledAt(0,false);
-        tabbedPane.setSelectedIndex(1);
-        //创建监听
-        tabbedPane.addChangeListener(e -&gt; &#123;
-            int selectedIndex = tabbedPane.getSelectedIndex();
-            JOptionPane.showMessageDialog(f,&quot;当前选中了第&quot;+(selectedIndex+1)+&quot;个标签&quot;);
-        &#125;);
-        f.add(tabbedPane);
-
-        f.setVisible(true);
-        f.pack();
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //居中
-        f.setLocationRelativeTo(null);
-        f.setSize(400,400);
-        //窗口大小不可调节
-        f.setResizable(false);
-    &#125;
-
-
-    public static void main(String[] args) &#123;
-        new Test().inti();
-    &#125;
-&#125;
-</code></pre>
-</li>
-</ol>
-<h2 id="2-4-进度条"><a href="#2-4-进度条" class="headerlink" title="2.4 进度条"></a>2.4 进度条</h2><p>进度条是图形界面中广泛使用的GUI组件，当复制一 个较大的文件时,操作系统会显示一个进度条,用于标识复制操作完成的比例:当启动Eclipse等程序时，因为需要加载较多的资源， 故而启动速度较慢，程序也会在启动过程中显示一个进度条， 用以表示该软件启动完成的比例 ….. </p>
-<h3 id="2-4-1-创建进度条"><a href="#2-4-1-创建进度条" class="headerlink" title="2.4.1 创建进度条"></a>2.4.1 创建进度条</h3><p>使用ProgressBar创建进度条步骤</p>
-<ol>
-<li><p>创建ProgressBar对象</p>
-<pre><code class="java">public JProgressBar(int orient, int min, int max):
-    orient :方向
-    min:最小值
-    max:最大值
-</code></pre>
-</li>
-<li><p>设置属性</p>
-<pre><code class="java">setBorderPainted( boolean b) :设置进度条是否有边框
-set Indeterminate( boolean newValue) :设置当前进度条是不是进度不确定的进度条,如果是,则将看到一一个滑块在进度条中左右移动
-setstringPainted(boolean b) :设置进度条是否显示当前完成的百分比
-</code></pre>
-</li>
-<li><p>获取和设置当前进度条的进度状态</p>
-<pre><code class="java">setValue(int n): 设置当前进度值
-double getPercentComplete(): 获取进度条的完成百分比
-String getstring() :返回进度字符串的当前值
-</code></pre>
-</li>
-<li><p><strong>案例</strong></p>
-<p><img src="/images/swing/%E8%BF%9B%E5%BA%A6%E6%9D%A1.png"></p>
-<pre><code class="java">import javax.swing.*;
-import java.awt.*;
-import java.util.stream.IntStream;
-
-public class Test &#123;
-    JFrame f = new JFrame(&quot;测试进度条&quot;);
-    JCheckBox c1 = new JCheckBox(&quot;不确定进度&quot;);
-    JCheckBox c2 = new JCheckBox(&quot;不绘制边框&quot;);
-    JProgressBar bar = new JProgressBar(JProgressBar.HORIZONTAL,0,100);
-    public void inti()&#123;
-        //处理复选框的点击行为
-        c1.addActionListener(e -&gt; bar.setIndeterminate(c1.isSelected()));
-        c2.addActionListener(e -&gt; bar.setBorderPainted(!c2.isSelected()));
-        Box box = Box.createVerticalBox();
-        box.add(c1);
-        box.add(c2);
-        bar.setStringPainted(true);
-        bar.setBorderPainted(true);
-        f.setLayout(new FlowLayout());
-        f.add(box);
-        f.add(bar);
-        f.setVisible(true);
-        f.pack();
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //居中
-        f.setLocationRelativeTo(null);
-        //窗口大小不可调节
-        f.setResizable(false);
-        for (int i=0;i&lt;=100;i++)&#123;
-            bar.setValue(i);
-            try &#123;
-                Thread.sleep(500);
-            &#125; catch (InterruptedException e) &#123;
-                e.printStackTrace();
-            &#125;
-        &#125;
-    &#125;
-
-
-    public static void main(String[] args) &#123;
-        new Test().inti();
-    &#125;
-&#125;
-</code></pre>
-</li>
-</ol>
-<p><strong>增加多线程改进后</strong></p>
-<pre><code class="java">import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.stream.IntStream;
-
-public class Test &#123;
-    JFrame f = new JFrame(&quot;测试进度条&quot;);
-    JCheckBox c1 = new JCheckBox(&quot;不确定进度&quot;);
-    JCheckBox c2 = new JCheckBox(&quot;不绘制边框&quot;);
-    JProgressBar bar = new JProgressBar(JProgressBar.HORIZONTAL,0,100);
-    public void inti()&#123;
-        //处理复选框的点击行为
-        c1.addActionListener(e -&gt; bar.setIndeterminate(c1.isSelected()));
-        c2.addActionListener(e -&gt; bar.setBorderPainted(!c2.isSelected()));
-        Box box = Box.createVerticalBox();
-        box.add(c1);
-        box.add(c2);
-        bar.setStringPainted(true);
-        bar.setBorderPainted(true);
-        f.setLayout(new FlowLayout());
-        f.add(box);
-        f.add(bar);
-        f.setVisible(true);
-        f.pack();
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //居中
-        f.setLocationRelativeTo(null);
-        //窗口大小不可调节
-        f.setResizable(false);
-        Download download = new Download(bar.getMaximum());
-        new Thread(download).start();
-        Timer timer = new Timer(200, e -&gt; bar.setValue(download.getCurrent()));
-        timer.start();
-        //监听进度条的任务变化
-        bar.addChangeListener(e -&gt;&#123;
-            if (bar.getValue()==download.getCount())&#123;
-                timer.stop();
-            &#125;
-        &#125; );
-    &#125;
-    private class Download implements Runnable&#123;
-        private int count;
-        private volatile int current;
-
-        public Download(int count) &#123;
-            this.count = count;
-        &#125;
-
-        public int getCount() &#123;
-            return count;
-        &#125;
-
-        public void setCount(int count) &#123;
-            this.count = count;
-        &#125;
-
-        public int getCurrent() &#123;
-            return current;
-        &#125;
-
-        public void setCurrent(int current) &#123;
-            this.current = current;
-        &#125;
-
-        @Override
-        public void run() &#123;
-            //模拟下载过程
-            while (current&lt;count)&#123;
-                try &#123;
-                    Thread.currentThread().sleep(50);
-                &#125; catch (InterruptedException e) &#123;
-                    e.printStackTrace();
-                &#125;
-                current++;
-            &#125;
-        &#125;
-    &#125;
-
-
-    public static void main(String[] args) &#123;
-        new Test().inti();
-    &#125;
-&#125;
-</code></pre>
-<h3 id="2-4-2-创建对话进度条"><a href="#2-4-2-创建对话进度条" class="headerlink" title="2.4.2 创建对话进度条"></a>2.4.2 创建对话进度条</h3><pre><code class="java">public HogressMoni tor(Component parentComponent , object message,String note, int min,int max):
-    parentComponent :对话框的父组件
-    message :对话框的描述信息
-    note:进度的提示信息
-    min:进度条的最小值
-    max:进度条的最大值
-</code></pre>
-<p><strong>案例</strong></p>
-<p><img src="/images/swing/%E5%AF%B9%E8%AF%9D%E8%BF%9B%E5%BA%A6%E6%9D%A1.png"></p>
-<pre><code class="java">import javax.swing.*;
-
-public class Test &#123;
-    public void inti()&#123;
-        //创建进度对话框
-        ProgressMonitor monitor = new ProgressMonitor(null,&quot;等待任务完成&quot;,&quot;已完成&quot;,0,100);
-        Download download = new Download(100);
-        new Thread(download).start();
-        Timer timer = new Timer(200,e -&gt; monitor.setProgress(download.getCurrent()));
-        //判断用户是否点击了取消按钮
-        if (monitor.isCanceled())&#123;
-            timer.stop();
-            monitor.close();
-            System.exit(0);
-        &#125;
-        timer.start();
-
-
-    &#125;
-    private class Download implements Runnable&#123;
-        private int count;
-        private volatile int current;
-
-        public Download(int count) &#123;
-            this.count = count;
-        &#125;
-
-        public int getCount() &#123;
-            return count;
-        &#125;
-
-        public void setCount(int count) &#123;
-            this.count = count;
-        &#125;
-
-        public int getCurrent() &#123;
-            return current;
-        &#125;
-
-        public void setCurrent(int current) &#123;
-            this.current = current;
-        &#125;
-
-        @Override
-        public void run() &#123;
-            //模拟下载过程
-            while (current&lt;count)&#123;
-                try &#123;
-                    Thread.currentThread().sleep(50);
-                &#125; catch (InterruptedException e) &#123;
-                    e.printStackTrace();
-                &#125;
-                current++;
-            &#125;
-        &#125;
-    &#125;
-
-
-    public static void main(String[] args) &#123;
-        new Test().inti();
-    &#125;
-&#125;
-</code></pre>
-<h2 id="2-5-JList、JComboBox实现列表框"><a href="#2-5-JList、JComboBox实现列表框" class="headerlink" title="2.5 JList、JComboBox实现列表框"></a>2.5 JList、JComboBox实现列表框</h2><h3 id="2-5-1-简单列表框"><a href="#2-5-1-简单列表框" class="headerlink" title="2.5.1 简单列表框"></a>2.5.1 简单列表框</h3><ol>
-<li><p>创建List或ComboBox对象</p>
-<pre><code class="java">JList(final E[] listData) :创建JList对象，把listData数组中的每项内容转换成一个列表项展示
-JList(final yector&lt;? extends E&gt; listData) :创建JList对象,把listData数组中的每项内容转换成一个列表项
-展示
-JComboBox(E[] items):
-JComboBox(Vector&lt;E&gt; items):
-</code></pre>
-</li>
-<li><p>设置List或ComboBox的外观行为</p>
-<pre><code class="java">-----------------------------JList---------------------------------
-addSelectionInterval(int anchor, int lead) :在已经选中列表项的基础上，增加选中从anchor到lead索引范围内的所有列表项
-setFixedCellHeight(int height )/setFixedCellwidth(int width) :设置列表项的高度和宽度
-setlayoutorientation(int layoutrientation) :设置列表框的布局方向
-setSelectedInex(int index) :设置默认选中项
-setselectedIndices(int [] indices) :设置默认选中的多个列表项
-setSelectedValue(object anObject , boolean shouldScroll) :设置默认选中项,并滚动到该项显示
-setselectionBackground(Color selectionBackground) :设置选中项的背景颜色
-setSelectionForeground(Color selectionForeground) :设置选中项的前景色
-setselectionInterval(int anchor, int lead) :设置从anchor到1 ead范围内的所有列表项被选中
-setSelectionMode(int selectionMode) :设置选中模式，默认没有限制，也可以设置为单选或者区域选中
-setVisibleRowCount(int visibleRowCount) :设置列表框的可视高度足以显示多少行列表项
----------------------------JComboB0x----------------------------
-setEditable(boolean aFlag) :设置是否可以直接修改列表文本框的值,默认为不可以
-setMaximumRowCount(int count) : 设置列表框的可视高度足以显示多少行列表项
-setSelectedIndex(int anIndex) :设置默认选中项
-setSelectedItem(Object anobject) :根据列表项的值,设置默认选中项
-</code></pre>
-</li>
-<li><p>设置监听器，监听列表项的变化，JList通过addListSelection完成，JComboBox通过addItemListener监听</p>
-<p><img src="/images/swing/%E4%B8%8B%E6%8B%89%E5%88%97%E8%A1%A8.png"></p>
-</li>
-</ol>
-<pre><code class="java">import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.EtchedBorder;
-import javax.swing.border.TitledBorder;
-import java.awt.*;
-import java.util.List;
-
-public class Test &#123;
-    JFrame frame = new JFrame(&quot;列表测试框&quot;);
-    String[] books = &#123;&quot;三国演义&quot;,&quot;红楼梦&quot;,&quot;水浒传&quot;,&quot;西游记&quot;&#125;;
-    JPanel layoutPanel = new JPanel();
-    ButtonGroup buttonGroup = new ButtonGroup();
-    JPanel selectPanel = new JPanel();
-    ButtonGroup selectGroup = new ButtonGroup();
-    JTextArea favorite = new JTextArea(4,40);
-    JList&lt;String&gt; bookList;
-    JComboBox&lt;String&gt; bookComboBox;
-    public void inti()&#123;
-        bookList = new JList&lt;&gt;(books);
-        addLayoutButton(&quot;纵向滚动&quot;,JList.VERTICAL);
-        addLayoutButton(&quot;纵向换行&quot;,JList.VERTICAL_WRAP);
-        addLayoutButton(&quot;横向换行&quot;,JList.HORIZONTAL_WRAP);
-        addSelectedModel(&quot;无限制&quot;,ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-        addSelectedModel(&quot;单选&quot;,ListSelectionModel.SINGLE_SELECTION);
-        addSelectedModel(&quot;多选&quot;,ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-        //对Jlist做设置
-        bookList.setVisibleRowCount(3);
-        bookList.setSelectionInterval(2,4);
-        Box bookListBox = Box.createVerticalBox();
-        bookListBox.add(new JScrollPane(bookList));
-        bookListBox.add(layoutPanel);
-        bookListBox.add(selectPanel);
-        bookList.addListSelectionListener(e -&gt; &#123;
-            List&lt;String&gt; selectedValuesList = bookList.getSelectedValuesList();
-            favorite.setText(&quot;&quot;);
-            for (String i:selectedValuesList)&#123;
-                favorite.append(i);
-            &#125;
-        &#125;);
-        //组装JComboBox
-        bookComboBox = new JComboBox&lt;&gt;(books);
-        bookComboBox.addItemListener(e -&gt; favorite.setText((String) bookComboBox.getSelectedItem()));
-        bookComboBox.setEditable(true);
-        bookComboBox.setMaximumRowCount(4);
-        Box topBox = Box.createHorizontalBox();
-        topBox.add(bookListBox);
-        JPanel bookComboBoxPanel = new JPanel();
-        bookComboBoxPanel.add(bookComboBox);
-        topBox.add(bookComboBoxPanel);
-        JPanel bottomPanel = new JPanel(new BorderLayout());
-        bottomPanel.add(new JLabel(&quot;您最喜欢的书&quot;),BorderLayout.NORTH);
-        bottomPanel.add(favorite);
-        frame.add(topBox);
-        frame.add(bottomPanel,BorderLayout.SOUTH);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
-
-
-    &#125;
-    private void addLayoutButton(String name,int layoutType)&#123;
-        layoutPanel.setBorder(new TitledBorder(new EtchedBorder(),&quot;确定选项布局&quot;));
-        JRadioButton button = new JRadioButton(name);
-        layoutPanel.add(button);
-        if (buttonGroup.getButtonCount()==0)&#123;
-            button.setSelected(true);
-        &#125;
-        buttonGroup.add(button);
-        button.addActionListener(e -&gt; bookList.setLayoutOrientation(layoutType));
-
-    &#125;
-    private void addSelectedModel(String name,int selectedModel)&#123;
-        selectPanel.setBorder(new TitledBorder(new EtchedBorder(),&quot;确认选择模式&quot;));
-        JRadioButton button = new JRadioButton(name);
-        button.addActionListener(e -&gt; bookList.setSelectionMode(selectedModel));
-        selectPanel.add(button);
-    &#125;
-
-
-
-    public static void main(String[] args) &#123;
-        new Test().inti();
-    &#125;
-&#125;
-</code></pre>
-<h2 id="树"><a href="#树" class="headerlink" title="树"></a>树</h2><h3 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h3><ul>
-<li>Swing使用JTree对象来代表一棵树，JTree树中结点可以使用Treepath来标识，该对象封装了当前结点及其所有的父结点。</li>
-</ul>
-<p>当一个结点具有子结点时，该结点有两种状态：</p>
-<ul>
-<li>展开状态：当父结点处于展开状态时，其子结点是可见的；</li>
-<li>折叠状态：当父结点处于折叠状态时，其子结点都是不可见的</li>
-</ul>
-<p>按照结点是否包含子结点，可以把结点分为下面两类：</p>
-<ul>
-<li>普通结点：包含子结点的结点；</li>
-<li>叶子结点：没有子结点的结点； </li>
-</ul>
-<p>JTree常用构造方法：</p>
-<pre><code class="java">JTree（TreeModel newModel）：使用指定的数据模型创建JTree对象，它默认显示根结点
-JTree（TreeNode root）：使用root作为根节点创建JTree对象，它默认显示根结点。
-JTree（TreeNode root，booleanasksAlgowschildren）：使用root作为根结点创建了Tree对象，它默认显示根结点。asksA11owschildren参数控制怎样的结点才算叶子结点，如果该参数为true，则只有当程序使用
-setA1lowschildren（false）显式设置某个结点不允许添加子结点时（以后也不会拥有子结点），该结点才会被JTrec
-当成叶子结点：如果该参数为false，则只要某个结点当时没有子结点（不管以后是否拥有子结点），该结点都会被JTree当成叶子结点。
-</code></pre>
-<p><img src="/images/swing/%E6%A0%91.jpg"></p>
-<pre><code class="java">import javax.swing.*;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeModel;
-
-public class Demo &#123;
-    JFrame f = new JFrame(&quot;简单树&quot;);
-    public void inti()&#123;
-        DefaultMutableTreeNode root = new DefaultMutableTreeNode(&quot;中国&quot;);
-        DefaultMutableTreeNode gd = new DefaultMutableTreeNode(&quot;广东&quot;);
-        DefaultMutableTreeNode gx = new DefaultMutableTreeNode(&quot;广西&quot;);
-        DefaultMutableTreeNode fs = new DefaultMutableTreeNode(&quot;佛山&quot;);
-        DefaultMutableTreeNode st = new DefaultMutableTreeNode(&quot;汕头&quot;);
-        DefaultMutableTreeNode gl = new DefaultMutableTreeNode(&quot;桂林&quot;);
-        DefaultMutableTreeNode nl = new DefaultMutableTreeNode(&quot;南宁&quot;);
-        root.add(gd);
-        root.add(gx);
-        gd.add(fs);
-        gd.add(st);
-        gx.add(gl);
-        gx.add(nl);
-        //创建JTree对象
-        JTree t = new JTree(root);
-        f.add(t);
-        f.setSize(400,300);
-        f.setLocationRelativeTo(null);
-        f.setVisible(true);
-        f.setResizable(false);
-        f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-    &#125;
-    public static void main(String[] args) &#123;
-        new Demo().inti();
-    &#125;
-&#125;
-</code></pre>
-<h3 id="2-其他设置"><a href="#2-其他设置" class="headerlink" title="2.其他设置"></a>2.其他设置</h3><p>外观</p>
-<pre><code class="java">tree·putclientProperty(“None”)：设置结点之间没有连接线
-tree·putclientproperty(“Tree.linestyle&quot;,“Horizontal”）：设置结点之间只有水平分割线
-</code></pre>
-<p>其他成员方法</p>
-<pre><code class="java">Enumeration breadthFirstEnumerationC）/preorderEnumerationC）：按广度优先的顺序遍历以此结点为根的子树，并返回所有结点组成的枚举对象。
-Enumeration depthFirstEnumerationC）/postorderEnumerationO：按深度优先的顺序遍历以此结点为根的子树，并返回所有结点组成的枚举对象
-DefaultMutableTreeNodegetMextsibling（）：返回此结点的下一个兄弟结点。
-TreeNode getparent（）：返回此结点的父结点。如果此结点没有父结点，则返回nu11
-TreeNode[] getPath()：返回从根结点到达此结点的所有结点组成的数组。
-DefaultMutableTreeNode getPrevioussibling（）：返回此结点的上一个兄弟结点。
-TreeNode getRoot（）：返回包含此结点的树的根结点。
-TreeNode getsharedAncestor(DefaultMutableTreeodeallde）：返回此结点和aNode最近的共同祖先。
-int getsiblingcount（）：返回此结点的兄弟结点数
-boolean isLeaf（）：返回该结点是否是叶子结点
-boolean isNodeAncestor（TreeNode anotherNode）：判断anotherNode是否是当前结点的祖先结点（包括父结点）
-boolean isNodechild（TreeNode node）：如果Node是此结点的子结点，则返回true。
-boolean isNodeDescendant(DefaultMutableTreeuode anotheruode）：如果anotheruode 是此结点的后代，包括是此结点本身、此结点的子结点或此结点的子结点的后代，都将返回true
-boolean isModeRelated（DefaultMutableTreeNodeaNode）：当auode和当前结点位于同一棵树中时返回true
-boolean isNodesibling（TreeNodeanotherNode）：返回anotherNode是否是当前结点的兄弟结点。
-boolean isRoot（）：返回当前结点是否是根结点。
-Enumeration pathFromAncestorEnumeration（TreeNode ancestor）：返回从指定祖先结点到当前结点的所有结点组成的枚举对象                       
-</code></pre>
-<h2 id="2-6表格"><a href="#2-6表格" class="headerlink" title="2.6表格"></a>2.6表格</h2><h3 id="2-6-1使用JTable创建简单表格步骤"><a href="#2-6-1使用JTable创建简单表格步骤" class="headerlink" title="2.6.1使用JTable创建简单表格步骤"></a>2.6.1使用JTable创建简单表格步骤</h3><ol>
-<li>创建一个一维数组，存储表格中每一列的标题</li>
-<li>创建一个二维数组，存储表格中每一行数据，其中二维数组内部的每个一维数组，代表表格中的一行数据</li>
-<li>根据第一步和第二步创建的一维数组和二维数组，创建JTable对缘</li>
-<li>把Table添加到其他容器中显示 </li>
-</ol>
-<p><img src="/images/swing/%E8%A1%A8%E6%A0%BC.jpg"></p>
-<pre><code class="java">import javax.swing.*;
-
-public class Demo &#123;
-    JFrame f = new JFrame(&quot;简单表格&quot;);
-    Object[] titles = &#123;&quot;姓名&quot;,&quot;年龄&quot;,&quot;性别&quot;&#125;;
-    Object[][] data = &#123;
-            &#123;&quot;李清照&quot;,29,&quot;女&quot;&#125;,
-            &#123;&quot;苏格拉底&quot;,56,&quot;男&quot;&#125;,
-            &#123;&quot;李白&quot;,35,&quot;男&quot;&#125;,
-            &#123;&quot;弄玉&quot;,18,&quot;女&quot;&#125;,
-            &#123;&quot;虎头&quot;,2,&quot;男&quot;&#125;
-    &#125;;
-    public void inti()&#123;
-        JTable table = new JTable(data, titles);
-        f.add(table);
-
-        f.setSize(400,300);
-        f.setLocationRelativeTo(null);
-        f.setVisible(true);
-        f.setResizable(false);
-        f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-    &#125;
-    public static void main(String[] args) &#123;
-        new Demo().inti();
-    &#125;
-&#125;
-</code></pre>
-<h3 id="2-6-2调整表格"><a href="#2-6-2调整表格" class="headerlink" title="2.6.2调整表格"></a>2.6.2调整表格</h3><p>列宽</p>
-<ul>
-<li>Jable使用Tablecolumn来表示表格中的每一列，Iable中表格列的所有属性，如最佳宽度、是否可调整宽度、最小和最大宽度等都保存在该Tablecolumn中。<ol>
-<li>setMaxwidth（intmaxwidth）:设置该列的最大宽度。如果指定的maxwidth小于该列的最小宽度，则maxWidth被设置成最小宽度。</li>
-<li>setMinwidth（intminwidth）:设置该列的最小宽度。</li>
-<li>setPreferredwidth（intpreferredwidth）:设置该列的最佳宽度。</li>
-</ol>
-</li>
-</ul>
-<p>选择模式</p>
-<p>与lList类似的是，Iable使用了一个ListSelectionModel表示该表格的选择状态，程序可以通过ListSelectionModel.setselectionMode（intmode）控制Iable的选择模式。Jable的选择模式有如下三种：</p>
-<ol>
-<li>ListSelectionMode.MULTIPLEINTERVAL_SELECTION:没有任何限制。</li>
-<li>ListselectionMode.SINGLE_INTERVAL_SELECTION:选择单个连续区域。</li>
-<li>ListSele_SELECTION:只能选择单行。</li>
-</ol>
-<h3 id="2-6-3TableModel"><a href="#2-6-3TableModel" class="headerlink" title="2.6.3TableModel"></a>2.6.3TableModel</h3><p>自定义TableModel步骤：</p>
-<ol>
-<li><p>自定义类，继承AbsractTableModel抽象类，重写下面几个方法：</p>
-<pre><code class="java">intgetcolumncount（）：返回表格列的数量
-intgetRowcount（）：返回表格行的数量
-object getvalueAt(int rowIndex,intcolumnIndex）：返回rowIndex行，colum列的单元格的值
-String getcolumnName（int columnIndex）：返回columnIndex列的列名称
-boolean iscellEditable（int rowIndex，int columnIndex）：设置rowIndex行，columnIndex列单格是否可痛辑
-</code></pre>
-</li>
-<li><p>创建自定义类对象，根据该对象，创建JIable对象</p>
-</li>
-</ol>
-<p><img src="/images/swing/%E8%A1%A8%E9%AB%98%E7%BA%A71.jpg"></p>
-<pre><code class="java">import javax.swing.*;
-import javax.swing.table.AbstractTableModel;
-import javax.swing.table.TableColumn;
-import java.awt.*;
-import java.util.*;
-
-public class Demo &#123;
-    JFrame f = new JFrame(&quot;简单表格&quot;);
-    Object[][] data = &#123;
-            &#123;&quot;李清照&quot;,29,&quot;女&quot;&#125;,
-            &#123;&quot;苏格拉底&quot;,56,&quot;男&quot;&#125;,
-            &#123;&quot;李白&quot;,35,&quot;男&quot;&#125;,
-            &#123;&quot;弄玉&quot;,18,&quot;女&quot;&#125;,
-            &#123;&quot;虎头&quot;,2,&quot;男&quot;&#125;
-    &#125;;
-    Vector&lt;Object&gt; title = new Vector&lt;&gt;();
-    Vector&lt;Vector&lt;Object&gt;&gt; d = new Vector&lt;&gt;();
-    private class MyTableModel extends AbstractTableModel&#123;
-
-        @Override
-        public int getRowCount() &#123;
-            return d.size();
-        &#125;
-
-        @Override
-        public int getColumnCount() &#123;
-            return title.size();
-        &#125;
-
-        @Override
-        public Object getValueAt(int rowIndex, int columnIndex) &#123;
-            return d.get(rowIndex).get(columnIndex);
-        &#125;
-
-        @Override
-        public String getColumnName(int column) &#123;
-            return (String) title.get(column);
-        &#125;
-        @Override
-        public boolean isCellEditable(int rowIndex, int columIndex)&#123;
-            return false;
-        &#125;
-    &#125;
-    public void inti()&#123;
-        Collections.addAll(title,&quot;姓名&quot;,&quot;年龄&quot;,&quot;性别&quot;);
-        for (Object[] da : data) &#123;
-            Vector&lt;Object&gt; v = new Vector&lt;&gt;(Arrays.asList(da));
-            d.add(v);
-        &#125;
-        MyTableModel my = new MyTableModel();
-        JTable table = new JTable(my);
-        f.add(new JScrollPane(table));
-        //设置选择模式
-        table.getSelectionModel().setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-        //设置列宽
-        TableColumn column1 = table.getColumn(title.get(0));
-        column1.setMinWidth(40);
-        TableColumn column2 = table.getColumn(title.get(1));
-        column2.setMaxWidth(50);
-        TableColumn column3 = table.getColumn(title.get(2));
-        JButton button = new JButton(&quot;确认&quot;);
-        button.addActionListener(e-&gt;&#123;
-            int colum = table.getSelectedColumn();
-            int row = table.getSelectedRow();
-            System.out.println(colum+&quot;行&quot;+row+&quot;列&quot;);
-            System.out.println(my.getValueAt(row,colum));
-        &#125;);
-        f.add(button, BorderLayout.SOUTH);
-
-        f.setSize(400,300);
-        f.setLocationRelativeTo(null);
-        f.setVisible(true);
-        f.setResizable(false);
-        f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-    &#125;
-    public static void main(String[] args) &#123;
-        new Demo().inti();
-    &#125;
-&#125;
-</code></pre>
-<p>​        不仅用户可以扩展AbstractTableModel抽象类，Swing本身也为AbstractTableModel提供了一个DefaultTableModel实现类，程序可以通过使用DefaultTableModel实现类来创建jTable对象。通过pefaultTableMedel对象创建Jable对象后，就可以调用它提供的方法来添加数据行、插入数据行、删除数据行和移动数据行。PefaultTableMogel提供了如下几个方法来控制数据行操作：</p>
-<pre><code class="java">addcolumn(object columnName)/addcolumnCobject columnName,object[]columnData）：添加一列
-addRow（object[] rouData）：添加一行
-insertRow（introw，Object[]rowData）：指定位置处插入一行
-removeRow（introw）：删除一行
-movgRow（intstart，intend，intto）：移动指定范围内的数据行
-</code></pre>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>-Java -笔记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>java基础</title>
-    <url>/java/javaSe/</url>
-    <content><![CDATA[<p>方法名</p>
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-随笔">
+
+    <a href="/essay/" rel="section"><i class="fa fa-calendar fa-fw"></i>随笔</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/java/javaSe/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/%E6%9F%AF%E5%93%80.gif">
+      <meta itemprop="name" content="千岁">
+      <meta itemprop="description" content="天予不取，反受其咎；时至不迎，反受其殃">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千岁">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          java基础
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-04-05 19:59:40 / 修改时间：20:36:37" itemprop="dateCreated datePublished" datetime="2022-04-05T19:59:40+08:00">2022-04-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/java/javaSe/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/java/javaSe/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>方法名</p>
 <h1 id="java-基本语法"><a href="#java-基本语法" class="headerlink" title="java 基本语法"></a>java 基本语法</h1><h2 id="1、注释"><a href="#1、注释" class="headerlink" title="1、注释"></a>1、注释</h2><ul>
 <li><p><strong>什么事注释</strong></p>
 <ul>
@@ -8718,12 +6012,246 @@ encoding：本XML文件的编码
 <li>XPath在解析XML文档方面提供了一独树一帜的路径思想，更加优雅，高效</li>
 <li>XPath使用路径表达式来定位XML文档中的元素节点或属性节点。</li>
 </ul>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>java 笔记</tag>
-      </tags>
-  </entry>
-</search>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/java-%E7%AC%94%E8%AE%B0/" rel="tag"># java 笔记</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/java/swing/" rel="prev" title="javaGui笔记">
+      <i class="fa fa-chevron-left"></i> javaGui笔记
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#java-%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">java 基本语法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E6%B3%A8%E9%87%8A"><span class="nav-number">1.1.</span> <span class="nav-text">1、注释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81%E5%AD%97%E9%9D%A2%E9%87%8F"><span class="nav-number">1.2.</span> <span class="nav-text">2、字面量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81%E5%8F%98%E9%87%8F"><span class="nav-number">1.3.</span> <span class="nav-text">3、变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4%E3%80%81%E5%8F%98%E9%87%8F%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">1.4.</span> <span class="nav-text">4、变量使用注意事项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5%E3%80%81%E5%8F%98%E9%87%8F%E9%87%8C%E7%9A%84%E6%95%B0%E6%8D%AE%E5%9C%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E7%9A%84%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86"><span class="nav-number">1.5.</span> <span class="nav-text">5、变量里的数据在计算机中的底层原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6%E3%80%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.6.</span> <span class="nav-text">6、数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">1.6.1.</span> <span class="nav-text">6.1数据类型的分类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7%E3%80%81%E5%85%B3%E9%94%AE%E5%AD%97%E3%80%81%E6%A0%87%E8%AF%86%E7%AC%A6"><span class="nav-number">1.7.</span> <span class="nav-text">7、关键字、标识符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E5%AD%97"><span class="nav-number">1.7.1.</span> <span class="nav-text">关键字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%87%E8%AF%86%E7%AC%A6"><span class="nav-number">1.7.2.</span> <span class="nav-text">标识符</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="nav-number">2.</span> <span class="nav-text">类型转换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E8%87%AA%E5%8A%A8%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="nav-number">2.1.</span> <span class="nav-text">1、自动类型转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%AD%E7%9A%84%E8%87%AA%E5%8A%A8%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="nav-number">2.2.</span> <span class="nav-text">2、表达式中的自动类型转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E5%8C%96"><span class="nav-number">2.3.</span> <span class="nav-text">3、强制类型转化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">3.</span> <span class="nav-text">运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E7%AE%97%E6%95%B0%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">3.1.</span> <span class="nav-text">1、算数运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81-%E7%AC%A6%E5%8F%B7%E5%81%9A%E8%BF%9E%E6%8E%A5%E7%AC%A6"><span class="nav-number">3.2.</span> <span class="nav-text">2、+符号做连接符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81%E8%87%AA%E5%A2%9E%E8%87%AA%E5%87%8F%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">3.3.</span> <span class="nav-text">3、自增自减运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4%E3%80%81%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">3.4.</span> <span class="nav-text">4、赋值运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-%E5%9F%BA%E6%9C%AC%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">3.4.1.</span> <span class="nav-text">4.1 基本赋值运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E6%89%A9%E5%B1%95%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">3.4.2.</span> <span class="nav-text">4.2 扩展赋值运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-%E5%85%B3%E7%B3%BB%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">3.4.3.</span> <span class="nav-text">4.3 关系运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">3.4.4.</span> <span class="nav-text">4.4逻辑运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5%E4%B8%89%E5%85%83%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">3.4.5.</span> <span class="nav-text">4.5三元运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-%E8%BF%90%E7%AE%97%E4%BC%98%E5%85%88%E7%BA%A7"><span class="nav-number">3.4.6.</span> <span class="nav-text">4.5 运算优先级</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6"><span class="nav-number">4.</span> <span class="nav-text">程序流程控制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%88%86%E6%94%AF%E7%BB%93%E6%9E%84"><span class="nav-number">4.1.</span> <span class="nav-text">1 分支结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-if%E5%88%86%E6%94%AF"><span class="nav-number">4.1.1.</span> <span class="nav-text">1.1 if分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-switch%E5%88%86%E6%94%AF"><span class="nav-number">4.1.2.</span> <span class="nav-text">1.2 switch分支</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84"><span class="nav-number">4.2.</span> <span class="nav-text">2 循环结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-for%E5%BE%AA%E7%8E%AF"><span class="nav-number">4.2.1.</span> <span class="nav-text">2.1 for循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-while%E5%BE%AA%E7%8E%AF"><span class="nav-number">4.2.2.</span> <span class="nav-text">2.2 while循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-do%E2%80%A6while%E5%BE%AA%E7%8E%AF"><span class="nav-number">4.2.3.</span> <span class="nav-text">2.3 do…while循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-%E4%B8%89%E4%B8%AD%E5%BE%AA%E7%8E%AF%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">4.2.4.</span> <span class="nav-text">2.4 三中循环的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-%E6%AD%BB%E5%BE%AA%E7%8E%AF"><span class="nav-number">4.2.5.</span> <span class="nav-text">2.5 死循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6-%E5%B5%8C%E5%A5%97%E5%BE%AA%E7%8E%AF"><span class="nav-number">4.2.6.</span> <span class="nav-text">2.6 嵌套循环</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E8%B7%B3%E8%BD%AC%E5%85%B3%E9%94%AE%E5%AD%97"><span class="nav-number">4.3.</span> <span class="nav-text">3跳转关键字</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E7%BB%84"><span class="nav-number">5.</span> <span class="nav-text">数组</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%95%B0%E7%BB%84%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">5.1.</span> <span class="nav-text">1.数组的定义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E9%9D%99%E6%80%81%E5%88%9D%E5%A7%8B%E5%8C%96%E6%95%B0%E7%BB%84"><span class="nav-number">5.1.1.</span> <span class="nav-text">1.1 静态初始化数组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-1-%E6%95%B0%E7%BB%84%E7%9A%84%E8%AE%BF%E9%97%AE"><span class="nav-number">5.1.1.1.</span> <span class="nav-text">1.1.1 数组的访问</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-2%E6%95%B0%E7%BB%84%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">5.1.1.2.</span> <span class="nav-text">1.1.2数组的注意事项</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2%E5%8A%A8%E6%80%81%E5%88%9D%E5%A7%8B%E5%8C%96%E6%95%B0%E7%BB%84"><span class="nav-number">5.1.2.</span> <span class="nav-text">1.2动态初始化数组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-1%E5%8A%A8%E6%80%81%E5%88%9D%E5%A7%8B%E5%8C%96%E6%95%B0%E7%BB%84%E7%9A%84%E5%85%83%E7%B4%A0%E9%BB%98%E8%AE%A4%E5%80%BC"><span class="nav-number">5.1.2.1.</span> <span class="nav-text">1.2.1动态初始化数组的元素默认值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%95%B0%E7%BB%84%E7%9A%84%E9%81%8D%E5%8E%86"><span class="nav-number">5.2.</span> <span class="nav-text">2.数组的遍历</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%B9%E6%B3%95"><span class="nav-number">6.</span> <span class="nav-text">方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E6%96%B9%E6%B3%95%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">6.1.</span> <span class="nav-text">1方法的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E6%96%B9%E6%B3%95%E7%9A%84%E8%B0%83%E7%94%A8"><span class="nav-number">6.2.</span> <span class="nav-text">2方法的调用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%96%B9%E6%B3%95%E7%9A%84%E5%86%85%E5%AD%98%E5%8E%9F%E7%90%86"><span class="nav-number">6.3.</span> <span class="nav-text">3.方法的内存原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E6%96%B9%E6%B3%95%E7%9A%84%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6"><span class="nav-number">6.4.</span> <span class="nav-text">4.方法的参数传递机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92"><span class="nav-number">6.4.1.</span> <span class="nav-text">4.1 基本类型的参数传递</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92"><span class="nav-number">6.4.2.</span> <span class="nav-text">4.2 引用类型的参数传递</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E6%96%B9%E6%B3%95%E9%87%8D%E8%BD%BD"><span class="nav-number">6.5.</span> <span class="nav-text">5.方法重载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-return%E5%85%B3%E9%94%AE%E5%AD%97%E5%8D%95%E7%8B%AC%E4%BD%BF%E7%94%A8"><span class="nav-number">6.6.</span> <span class="nav-text">5.return关键字单独使用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1"><span class="nav-number">7.</span> <span class="nav-text">面向对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E8%AE%BE%E8%AE%A1%E5%AF%B9%E8%B1%A1%E5%B9%B6%E4%BD%BF%E7%94%A8"><span class="nav-number">7.1.</span> <span class="nav-text">1.设计对象并使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E8%AE%BE%E8%AE%A1%E7%B1%BB"><span class="nav-number">7.1.1.</span> <span class="nav-text">1.1 设计类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2%E5%BE%97%E5%88%B0%E7%B1%BB%E7%9A%84%E5%AF%B9%E8%B1%A1"><span class="nav-number">7.1.2.</span> <span class="nav-text">1.2得到类的对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3%E4%BD%BF%E7%94%A8%E5%AF%B9%E8%B1%A1"><span class="nav-number">7.1.3.</span> <span class="nav-text">1.3使用对象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%AE%9A%E4%B9%89%E7%B1%BB%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">7.2.</span> <span class="nav-text">2.定义类的注意事项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%AF%B9%E8%B1%A1%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6"><span class="nav-number">7.3.</span> <span class="nav-text">3.对象在内存中的运行机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E5%A4%9A%E4%B8%AA%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%86%85%E5%AD%98%E5%9B%BE"><span class="nav-number">7.3.1.</span> <span class="nav-text">3.1 多个对象的内存图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E4%B8%A4%E4%B8%AA%E5%8F%98%E9%87%8F%E6%8C%87%E5%90%91%E5%90%8C%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1%E5%86%85%E5%AD%98%E5%9B%BE"><span class="nav-number">7.3.2.</span> <span class="nav-text">3.2 两个变量指向同一个对象内存图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E6%9E%84%E9%80%A0%E5%99%A8"><span class="nav-number">7.4.</span> <span class="nav-text">4.构造器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-this%E5%85%B3%E9%94%AE%E5%AD%97"><span class="nav-number">7.5.</span> <span class="nav-text">5.this关键字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E5%B0%81%E8%A3%85"><span class="nav-number">7.6.</span> <span class="nav-text">6.封装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1%E5%B0%81%E8%A3%85%E6%80%9D%E6%83%B3%E6%A6%82%E8%BF%B0"><span class="nav-number">7.6.1.</span> <span class="nav-text">6.1封装思想概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2%E5%A6%82%E4%BD%95%E6%9B%B4%E5%A5%BD%E7%9A%84%E5%B0%81%E8%A3%85"><span class="nav-number">7.6.2.</span> <span class="nav-text">6.2如何更好的封装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E6%A0%87%E5%87%86JavaBean"><span class="nav-number">7.7.</span> <span class="nav-text">7.标准JavaBean</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F%E3%80%81%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">7.8.</span> <span class="nav-text">8.成员变量、局部变量的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-static"><span class="nav-number">7.9.</span> <span class="nav-text">9.static</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#9-1%E6%A6%82%E8%BF%B0"><span class="nav-number">7.9.1.</span> <span class="nav-text">9.1概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-2-static%E4%BF%AE%E9%A5%B0%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F%E5%86%85%E5%AD%98%E6%9C%BA%E5%88%B6"><span class="nav-number">7.9.2.</span> <span class="nav-text">9.2 static修饰成员变量内存机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-3-static%E4%BF%AE%E9%A5%B0%E6%88%90%E5%91%98%E6%96%B9%E6%B3%95"><span class="nav-number">7.9.3.</span> <span class="nav-text">9.3 static修饰成员方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-4-static%E8%AE%BF%E9%97%AE%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">7.9.4.</span> <span class="nav-text">9.4 static访问注意事项:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-5%E5%B7%A5%E5%85%B7%E7%B1%BB"><span class="nav-number">7.9.5.</span> <span class="nav-text">9.5工具类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-6-%E4%BB%A3%E7%A0%81%E5%9D%97"><span class="nav-number">7.9.6.</span> <span class="nav-text">9.6 代码块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-7%E5%8D%95%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="nav-number">7.9.7.</span> <span class="nav-text">9.7单例设计模式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-%E7%BB%A7%E6%89%BF"><span class="nav-number">7.10.</span> <span class="nav-text">10.继承</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#10-1%E6%A6%82%E8%BF%B0"><span class="nav-number">7.10.1.</span> <span class="nav-text">10.1概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-2%E7%BB%A7%E6%89%BF%E7%9A%84%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83"><span class="nav-number">7.10.2.</span> <span class="nav-text">10.2继承的设计规范</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-3-%E7%BB%A7%E6%89%BF%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-number">7.10.3.</span> <span class="nav-text">10.3 继承的特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-4-%E7%BB%A7%E6%89%BF%E5%90%8E%EF%BC%8C%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F%E5%92%8C%E6%88%90%E5%91%98%E6%96%B9%E6%B3%95%E7%9A%84%E8%AE%BF%E9%97%AE%E7%89%B9%E7%82%B9"><span class="nav-number">7.10.4.</span> <span class="nav-text">10.4 继承后，成员变量和成员方法的访问特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-%E7%BB%A7%E6%89%BF%E5%90%8E%EF%BC%8C%E6%96%B9%E6%B3%95%E9%87%8D%E5%86%99"><span class="nav-number">7.10.5.</span> <span class="nav-text">10.5 继承后，方法重写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-6-%E7%BB%A7%E6%89%BF%E5%90%8E%E5%AD%90%E7%B1%BB%E6%9E%84%E9%80%A0%E5%99%A8%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-number">7.10.6.</span> <span class="nav-text">10.6 继承后子类构造器的特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-7-%E7%BB%A7%E6%89%BF%E5%90%8E%E5%AD%90%E7%B1%BB%E6%9E%84%E9%80%A0%E5%99%A8%E8%AE%BF%E9%97%AE%E7%88%B6%E7%B1%BB%E6%97%A0%E5%8F%82%E6%9E%84%E9%80%A0%E5%99%A8"><span class="nav-number">7.10.7.</span> <span class="nav-text">10.7 继承后子类构造器访问父类无参构造器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-8-this%E5%92%8Csupper"><span class="nav-number">7.10.8.</span> <span class="nav-text">10.8 this和supper</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-%E6%8A%BD%E8%B1%A1%E7%B1%BB"><span class="nav-number">7.11.</span> <span class="nav-text">11.抽象类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-%E6%8E%A5%E5%8F%A3"><span class="nav-number">7.12.</span> <span class="nav-text">12.接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#12-1-%E6%A6%82%E8%BF%B0"><span class="nav-number">7.12.1.</span> <span class="nav-text">12.1 概述</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-%E5%A4%9A%E6%80%81"><span class="nav-number">7.13.</span> <span class="nav-text">13.多态</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#13-1-%E6%A6%82%E8%BF%B0"><span class="nav-number">7.13.1.</span> <span class="nav-text">13.1 概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-2-%E4%BC%98%E5%8A%BF"><span class="nav-number">7.13.2.</span> <span class="nav-text">13.2 优势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-3%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="nav-number">7.13.3.</span> <span class="nav-text">13.3类型转换</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-%E5%86%85%E9%83%A8%E7%B1%BB"><span class="nav-number">7.14.</span> <span class="nav-text">14.内部类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#14-1%E6%A6%82%E8%BF%B0"><span class="nav-number">7.14.1.</span> <span class="nav-text">14.1概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-2%E9%9D%99%E6%80%81%E5%86%85%E9%83%A8%E7%B1%BB"><span class="nav-number">7.14.2.</span> <span class="nav-text">14.2静态内部类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-3-%E6%88%90%E5%91%98%E5%86%85%E9%83%A8%E7%B1%BB"><span class="nav-number">7.14.3.</span> <span class="nav-text">14.3 成员内部类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-4-%E5%B1%80%E9%83%A8%E5%86%85%E9%83%A8%E7%B1%BB"><span class="nav-number">7.14.4.</span> <span class="nav-text">14.4 局部内部类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-5-%E5%8C%BF%E5%90%8D%E5%86%85%E9%83%A8%E7%B1%BB"><span class="nav-number">7.14.5.</span> <span class="nav-text">14.5 匿名内部类</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#String"><span class="nav-number">8.</span> <span class="nav-text">String</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-String%E6%A6%82%E8%BF%B0"><span class="nav-number">8.1.</span> <span class="nav-text">1.String概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-String%E7%B1%BB%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="nav-number">8.2.</span> <span class="nav-text">2.String类创建对象的两种方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-String%E5%86%85%E5%AE%B9%E6%AF%94%E8%BE%83"><span class="nav-number">8.3.</span> <span class="nav-text">3.String内容比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-String%E5%B8%B8%E7%94%A8API"><span class="nav-number">8.4.</span> <span class="nav-text">4.String常用API</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ArrayLsit"><span class="nav-number">9.</span> <span class="nav-text">ArrayLsit</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E9%9B%86%E5%90%88%E7%9A%84%E6%A6%82%E8%BF%B0"><span class="nav-number">9.1.</span> <span class="nav-text">1.集合的概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-ArrayLsit%E9%9B%86%E5%90%88"><span class="nav-number">9.2.</span> <span class="nav-text">2.ArrayLsit集合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-ArrayLsit%E5%AF%B9%E4%BA%8E%E6%B3%9B%E5%9E%8B%E7%9A%84%E6%94%AF%E6%8C%81"><span class="nav-number">9.3.</span> <span class="nav-text">3.ArrayLsit对于泛型的支持</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-ArrayLsit%E5%B8%B8%E7%94%A8API"><span class="nav-number">9.4.</span> <span class="nav-text">4.ArrayLsit常用API</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%AD%E6%B3%95%E7%9F%A5%E8%AF%86"><span class="nav-number">10.</span> <span class="nav-text">语法知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%8C%85"><span class="nav-number">10.1.</span> <span class="nav-text">1. 包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%9D%83%E9%99%90%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="nav-number">10.2.</span> <span class="nav-text">2.权限修饰符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-final"><span class="nav-number">10.3.</span> <span class="nav-text">3.final</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%B8%B8%E9%87%8F"><span class="nav-number">10.4.</span> <span class="nav-text">4.常量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E6%9E%9A%E4%B8%BE"><span class="nav-number">10.5.</span> <span class="nav-text">5.枚举</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8API"><span class="nav-number">11.</span> <span class="nav-text">常用API</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Object%E7%B1%BB"><span class="nav-number">11.1.</span> <span class="nav-text">1. Object类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-StringBuilder"><span class="nav-number">11.2.</span> <span class="nav-text">2. StringBuilder</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Math%E7%B1%BB"><span class="nav-number">11.3.</span> <span class="nav-text">3.Math类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-System"><span class="nav-number">11.4.</span> <span class="nav-text">4. System</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-BigDecimal"><span class="nav-number">11.5.</span> <span class="nav-text">5.BigDecimal</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%97%A5%E6%9C%9F"><span class="nav-number">12.</span> <span class="nav-text">日期</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Date"><span class="nav-number">12.1.</span> <span class="nav-text">1.Date</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-SimpleDateFormat"><span class="nav-number">12.2.</span> <span class="nav-text">2. SimpleDateFormat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Calendar"><span class="nav-number">12.3.</span> <span class="nav-text">3. Calendar</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E6%96%B0%E5%A2%9E%E6%97%A5%E6%9C%9F%E7%B1%BB"><span class="nav-number">12.4.</span> <span class="nav-text">4.新增日期类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1LocalDate%E3%80%81LocalTime%E3%80%81LocalDateTime"><span class="nav-number">12.4.1.</span> <span class="nav-text">4.1LocalDate、LocalTime、LocalDateTime</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-Instant%E6%97%B6%E9%97%B4%E6%88%B3"><span class="nav-number">12.4.2.</span> <span class="nav-text">4.2 Instant时间戳</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3DateTimeFormatter"><span class="nav-number">12.4.3.</span> <span class="nav-text">4.3DateTimeFormatter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-Period"><span class="nav-number">12.4.4.</span> <span class="nav-text">4.4 Period</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-Duration"><span class="nav-number">12.4.5.</span> <span class="nav-text">4.5 Duration</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6ChronoUnit"><span class="nav-number">12.4.6.</span> <span class="nav-text">4.6ChronoUnit</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8C%85%E8%A3%85%E7%B1%BB"><span class="nav-number">13.</span> <span class="nav-text">包装类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">14.</span> <span class="nav-text">正则表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%A6%82%E8%BF%B0"><span class="nav-number">14.0.1.</span> <span class="nav-text">1.概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%8C%B9%E9%85%8D%E8%A7%84%E5%88%99"><span class="nav-number">14.0.2.</span> <span class="nav-text">2.匹配规则</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Arrays%E7%B1%BB"><span class="nav-number">15.</span> <span class="nav-text">Arrays类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%A6%82%E8%BF%B0-1"><span class="nav-number">15.1.</span> <span class="nav-text">1.概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%B8%B8%E7%94%A8API"><span class="nav-number">15.2.</span> <span class="nav-text">2. 常用API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%AF%94%E8%BE%83%E5%99%A8"><span class="nav-number">15.3.</span> <span class="nav-text">3.比较器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Lanbda%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">15.4.</span> <span class="nav-text">4.Lanbda表达式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9B%86%E5%90%88"><span class="nav-number">16.</span> <span class="nav-text">集合</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%A6%82%E8%BF%B0-2"><span class="nav-number">16.1.</span> <span class="nav-text">1.概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E4%BD%93%E7%B3%BB%E7%89%B9%E7%82%B9"><span class="nav-number">16.2.</span> <span class="nav-text">2.体系特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%B8%B8%E7%94%A8API"><span class="nav-number">16.3.</span> <span class="nav-text">3. 常用API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E9%81%8D%E5%8E%86"><span class="nav-number">16.4.</span> <span class="nav-text">4.遍历</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-%E8%BF%AD%E4%BB%A3%E5%99%A8"><span class="nav-number">16.4.1.</span> <span class="nav-text">4.1 迭代器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-foreach%E5%BE%AA%E7%8E%AF"><span class="nav-number">16.4.2.</span> <span class="nav-text">4.2 foreach循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-Lambda"><span class="nav-number">16.4.3.</span> <span class="nav-text">4.3 Lambda</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="nav-number">16.5.</span> <span class="nav-text">5.常见数据结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="nav-number">16.6.</span> <span class="nav-text">6.二叉树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="nav-number">16.6.1.</span> <span class="nav-text">7.平衡二叉树</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E7%BA%A2%E9%BB%91%E6%A0%91"><span class="nav-number">16.7.</span> <span class="nav-text">7.红黑树</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#List%E7%B3%BB%E5%88%97%E9%9B%86%E5%90%88"><span class="nav-number">17.</span> <span class="nav-text">List系列集合</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E7%89%B9%E7%82%B9"><span class="nav-number">17.1.</span> <span class="nav-text">1.特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E9%81%8D%E5%8E%86"><span class="nav-number">17.2.</span> <span class="nav-text">2.遍历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86"><span class="nav-number">17.3.</span> <span class="nav-text">3. 底层原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-LinkList"><span class="nav-number">17.4.</span> <span class="nav-text">4.LinkList</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E6%B3%9B%E5%9E%8B"><span class="nav-number">17.5.</span> <span class="nav-text">5.泛型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-%E6%B3%9B%E5%9E%8B%E7%B1%BB"><span class="nav-number">17.5.1.</span> <span class="nav-text">5.1 泛型类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-%E6%B3%9B%E5%9E%8B%E6%96%B9%E6%B3%95"><span class="nav-number">17.5.2.</span> <span class="nav-text">5.2 泛型方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-%E6%B3%9B%E5%9E%8B%E6%8E%A5%E5%8F%A3"><span class="nav-number">17.5.3.</span> <span class="nav-text">5.3 泛型接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4%E6%B3%9B%E5%9E%8B%E9%80%9A%E9%85%8D%E7%AC%A6"><span class="nav-number">17.5.4.</span> <span class="nav-text">5.4泛型通配符</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Set%E9%9B%86%E5%90%88"><span class="nav-number">18.</span> <span class="nav-text">Set集合</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%93%88%E5%B8%8C%E5%80%BC"><span class="nav-number">18.1.</span> <span class="nav-text">1.哈希值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-LinkedHashSet%E9%9B%86%E5%90%88"><span class="nav-number">18.2.</span> <span class="nav-text">2.LinkedHashSet集合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-TreeSet"><span class="nav-number">18.3.</span> <span class="nav-text">3. TreeSet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0"><span class="nav-number">18.4.</span> <span class="nav-text">4.可变参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E9%9B%86%E5%90%88%E5%B7%A5%E5%85%B7%E7%B1%BB"><span class="nav-number">18.5.</span> <span class="nav-text">5.集合工具类</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Map%E9%9B%86%E5%90%88%E4%BD%93%E7%B3%BB"><span class="nav-number">19.</span> <span class="nav-text">Map集合体系</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%A6%82%E8%BF%B0-3"><span class="nav-number">19.1.</span> <span class="nav-text">1.概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E7%89%B9%E7%82%B9"><span class="nav-number">19.2.</span> <span class="nav-text">2.特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%B8%B8%E7%94%A8API-1"><span class="nav-number">19.3.</span> <span class="nav-text">3.常用API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E9%81%8D%E5%8E%86-1"><span class="nav-number">19.4.</span> <span class="nav-text">4.遍历</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1%E9%94%AE%E6%89%BE%E5%80%BC"><span class="nav-number">19.4.1.</span> <span class="nav-text">4.1键找值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2%E9%94%AE%E5%80%BC%E5%AF%B9"><span class="nav-number">19.4.2.</span> <span class="nav-text">4.2键值对</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3Lambda%E9%81%8D%E5%8E%86"><span class="nav-number">19.4.3.</span> <span class="nav-text">4.3Lambda遍历</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-TreeMap"><span class="nav-number">19.5.</span> <span class="nav-text">5.TreeMap</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8D%E5%8F%AF%E5%8F%98%E9%9B%86%E5%90%88"><span class="nav-number">20.</span> <span class="nav-text">不可变集合</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Stream%E6%B5%81"><span class="nav-number">21.</span> <span class="nav-text">Stream流</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%A6%82%E8%BF%B0-4"><span class="nav-number">21.1.</span> <span class="nav-text">1.概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Stream%E6%B5%81%E7%9A%84%E4%B8%89%E7%B1%BB%E6%96%B9%E6%B3%95"><span class="nav-number">21.2.</span> <span class="nav-text">2.Stream流的三类方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%B8%B8%E7%94%A8API-2"><span class="nav-number">21.3.</span> <span class="nav-text">3.常用API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E6%94%B6%E9%9B%86Stream%E6%B5%81"><span class="nav-number">21.4.</span> <span class="nav-text">4.收集Stream流</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%82%E5%B8%B8"><span class="nav-number">22.</span> <span class="nav-text">异常</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%A6%82%E8%BF%B0-5"><span class="nav-number">22.1.</span> <span class="nav-text">1.概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E8%BF%90%E8%A1%8C%E6%97%B6%E5%BC%82%E5%B8%B8"><span class="nav-number">22.2.</span> <span class="nav-text">2.运行时异常</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E7%BC%96%E8%AF%91%E6%97%B6%E5%BC%82%E5%B8%B8"><span class="nav-number">22.3.</span> <span class="nav-text">3.编译时异常</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B"><span class="nav-number">22.4.</span> <span class="nav-text">4.异常处理流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1%E9%BB%98%E8%AE%A4%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B"><span class="nav-number">22.4.1.</span> <span class="nav-text">4.1默认处理流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E7%BC%96%E8%AF%91%E6%97%B6%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="nav-number">22.4.2.</span> <span class="nav-text">4.2 编译时异常处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3%E8%BF%90%E8%A1%8C%E6%97%B6%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E6%96%B9%E5%BC%8F"><span class="nav-number">22.4.3.</span> <span class="nav-text">4.3运行时异常处理方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%82%E5%B8%B8"><span class="nav-number">22.5.</span> <span class="nav-text">5.自定义异常</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%97%A5%E5%BF%97%E6%A1%86%E6%9E%B6"><span class="nav-number">23.</span> <span class="nav-text">日志框架</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%A6%82%E8%BF%B0-6"><span class="nav-number">23.1.</span> <span class="nav-text">1.概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E4%BD%93%E7%B3%BB"><span class="nav-number">23.2.</span> <span class="nav-text">2.体系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-logback%E6%A6%82%E8%BF%B0"><span class="nav-number">23.3.</span> <span class="nav-text">3.logback概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%85%A5%E9%97%A8"><span class="nav-number">23.4.</span> <span class="nav-text">4.入门</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#File%E7%B1%BB"><span class="nav-number">24.</span> <span class="nav-text">File类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%A6%82%E8%BF%B0-7"><span class="nav-number">24.1.</span> <span class="nav-text">1.概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%B8%B8%E7%94%A8API-1"><span class="nav-number">24.2.</span> <span class="nav-text">2.常用API</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1%E5%88%A4%E6%96%AD%E6%96%87%E4%BB%B6%E7%B1%BB%E5%9E%8B%E3%80%81%E8%8E%B7%E5%8F%96%E6%96%87%E4%BB%B6%E4%BF%A1%E6%81%AF"><span class="nav-number">24.2.1.</span> <span class="nav-text">2.1判断文件类型、获取文件信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6%E3%80%81%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6"><span class="nav-number">24.2.2.</span> <span class="nav-text">2.2创建文件、删除文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3%E9%81%8D%E5%8E%86%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="nav-number">24.2.3.</span> <span class="nav-text">2.3遍历文件夹</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%80%92%E5%BD%92"><span class="nav-number">25.</span> <span class="nav-text">递归</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E9%9B%86"><span class="nav-number">26.</span> <span class="nav-text">字符集</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%B8%B8%E8%A7%81%E5%AD%97%E7%AC%A6%E9%9B%86"><span class="nav-number">26.1.</span> <span class="nav-text">1.常见字符集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E7%BC%96%E7%A0%81%E3%80%81%E8%A7%A3%E7%A0%81"><span class="nav-number">26.2.</span> <span class="nav-text">2.编码、解码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IO%E6%B5%81"><span class="nav-number">27.</span> <span class="nav-text">IO流</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%A6%82%E8%BF%B0-8"><span class="nav-number">27.1.</span> <span class="nav-text">1.概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%88%86%E7%B1%BB"><span class="nav-number">27.2.</span> <span class="nav-text">2.分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1%E5%AD%97%E8%8A%82%E6%B5%81"><span class="nav-number">27.2.1.</span> <span class="nav-text">2.1字节流</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%AD%97%E8%8A%82%E8%BE%93%E5%85%A5%E6%B5%81-FileInputStream"><span class="nav-number">27.2.1.1.</span> <span class="nav-text">文件字节输入流: FileInputStream</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%AD%97%E8%8A%82%E8%BE%93%E5%87%BA%E6%B5%81-FileOutputStream"><span class="nav-number">27.2.1.2.</span> <span class="nav-text">文件字节输出流: FileOutputStream</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E5%AD%97%E7%AC%A6%E6%B5%81"><span class="nav-number">27.2.2.</span> <span class="nav-text">2.2 字符流</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%AD%97%E7%AC%A6%E8%BE%93%E5%85%A5%E6%B5%81-Reader"><span class="nav-number">27.2.2.1.</span> <span class="nav-text">文件字符输入流: Reader</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%AD%97%E7%AC%A6%E8%BE%93%E5%87%BA%E6%B5%81-Writer"><span class="nav-number">27.2.2.2.</span> <span class="nav-text">文件字符输出流 Writer</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E7%BC%93%E5%86%B2%E6%B5%81"><span class="nav-number">27.3.</span> <span class="nav-text">3.缓冲流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1%E6%A6%82%E8%BF%B0"><span class="nav-number">27.3.1.</span> <span class="nav-text">3.1概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1%E5%AD%97%E8%8A%82%E7%BC%93%E5%86%B2%E6%B5%81"><span class="nav-number">27.3.2.</span> <span class="nav-text">3.1字节缓冲流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2%E5%AD%97%E7%AC%A6%E7%BC%93%E5%86%B2%E6%B5%81"><span class="nav-number">27.3.3.</span> <span class="nav-text">3.2字符缓冲流</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E8%BD%AC%E6%8D%A2%E6%B5%81"><span class="nav-number">27.4.</span> <span class="nav-text">4.转换流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1%E5%AD%97%E7%AC%A6%E8%BE%93%E5%85%A5%E8%BD%AC%E6%8D%A2%E6%B5%81"><span class="nav-number">27.4.1.</span> <span class="nav-text">4.1字符输入转换流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2%E5%AD%97%E7%AC%A6%E8%BE%93%E5%87%BA%E8%BD%AC%E6%8D%A2%E6%B5%81"><span class="nav-number">27.4.2.</span> <span class="nav-text">4.2字符输出转换流</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E5%AF%B9%E8%B1%A1%E5%BA%8F%E5%88%97%E5%8C%96"><span class="nav-number">27.5.</span> <span class="nav-text">5.对象序列化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1%E5%AF%B9%E8%B1%A1%E5%BA%8F%E5%88%97%E5%8C%96"><span class="nav-number">27.5.1.</span> <span class="nav-text">5.1对象序列化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-%E5%AF%B9%E8%B1%A1%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="nav-number">27.5.2.</span> <span class="nav-text">5.2 对象反序列化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E6%89%93%E5%8D%B0%E6%B5%81"><span class="nav-number">27.6.</span> <span class="nav-text">6.打印流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-Properties"><span class="nav-number">27.7.</span> <span class="nav-text">7.Properties</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-IO%E6%A1%86%E6%9E%B6"><span class="nav-number">27.8.</span> <span class="nav-text">8.IO框架</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="nav-number">28.</span> <span class="nav-text">多线程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%88%9B%E5%BB%BA%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="nav-number">28.1.</span> <span class="nav-text">1.创建多线程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1%E7%BB%A7%E6%89%BFThread%E7%B1%BB"><span class="nav-number">28.1.1.</span> <span class="nav-text">1.1继承Thread类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2%E5%AE%9E%E7%8E%B0Runnable%E6%8E%A5%E5%8F%A3"><span class="nav-number">28.1.2.</span> <span class="nav-text">1.2实现Runnable接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3%E5%88%A9%E7%94%A8Callable%E3%80%81FutureTask%E6%8E%A5%E5%8F%A3%E5%AE%9E%E7%8E%B0%E3%80%82"><span class="nav-number">28.1.3.</span> <span class="nav-text">1.3利用Callable、FutureTask接口实现。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Thread%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-number">28.2.</span> <span class="nav-text">2.Thread常用方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8"><span class="nav-number">28.3.</span> <span class="nav-text">3.线程安全</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5"><span class="nav-number">28.4.</span> <span class="nav-text">4.线程同步</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1%E7%9B%AE%E7%9A%84%EF%BC%9A"><span class="nav-number">28.4.1.</span> <span class="nav-text">4.1目的：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2%E5%90%8C%E6%AD%A5%E4%BB%A3%E7%A0%81%E5%9D%97"><span class="nav-number">28.4.2.</span> <span class="nav-text">4.2同步代码块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3%E5%90%8C%E6%AD%A5%E6%96%B9%E6%B3%95"><span class="nav-number">28.4.3.</span> <span class="nav-text">4.3同步方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4Lock%E9%94%81"><span class="nav-number">28.4.4.</span> <span class="nav-text">4.4Lock锁</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1"><span class="nav-number">28.5.</span> <span class="nav-text">5.线程通信</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E7%BA%BF%E7%A8%8B%E6%B1%A0"><span class="nav-number">28.6.</span> <span class="nav-text">6.线程池</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1%E6%A6%82%E8%BF%B0"><span class="nav-number">28.6.1.</span> <span class="nav-text">6.1概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2%E5%AE%9E%E7%8E%B0%E7%BA%BF%E7%A8%8B%E6%B1%A0"><span class="nav-number">28.6.2.</span> <span class="nav-text">6.2实现线程池</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%A4%84%E7%90%86%E4%BB%BB%E5%8A%A1"><span class="nav-number">28.6.3.</span> <span class="nav-text">6.3线程池处理任务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-1-ThreadPoolExecutor"><span class="nav-number">28.6.3.1.</span> <span class="nav-text">6.3.1 ThreadPoolExecutor</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-2-Executors"><span class="nav-number">28.6.3.2.</span> <span class="nav-text">6.3.2 Executors</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E5%AE%9A%E6%97%B6%E5%99%A8"><span class="nav-number">28.7.</span> <span class="nav-text">7.定时器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-Timer%E5%AE%9A%E6%97%B6%E5%99%A8"><span class="nav-number">28.7.1.</span> <span class="nav-text">7.1 Timer定时器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2ScheduledExecutorService%E5%AE%9A%E6%97%B6%E5%99%A8"><span class="nav-number">28.7.2.</span> <span class="nav-text">7.2ScheduledExecutorService定时器</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B"><span class="nav-number">29.</span> <span class="nav-text">网络编程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%B8%89%E8%A6%81%E7%B4%A0"><span class="nav-number">29.1.</span> <span class="nav-text">1.三要素</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1IP%E5%9C%B0%E5%9D%80"><span class="nav-number">29.1.1.</span> <span class="nav-text">1.1IP地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2%E7%AB%AF%E5%8F%A3%E5%8F%B7"><span class="nav-number">29.1.2.</span> <span class="nav-text">1.2端口号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3%E5%8D%8F%E8%AE%AE"><span class="nav-number">29.1.3.</span> <span class="nav-text">1.3协议</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-UDP%E9%80%9A%E4%BF%A1"><span class="nav-number">29.2.</span> <span class="nav-text">2.UDP通信</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1%E5%85%A5%E9%97%A8"><span class="nav-number">29.2.1.</span> <span class="nav-text">2.1入门</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2%E5%A4%9A%E5%8F%91%E5%A4%9A%E6%94%B6"><span class="nav-number">29.2.2.</span> <span class="nav-text">2.2多发多收</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-1-UDP%E7%9A%84%E4%B8%89%E7%A7%8D%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F"><span class="nav-number">29.2.2.1.</span> <span class="nav-text">2.2.1 UDP的三种通信方式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-TCP%E9%80%9A%E4%BF%A1"><span class="nav-number">29.3.</span> <span class="nav-text">3.TCP通信</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-BS%E6%9E%B6%E6%9E%84"><span class="nav-number">29.4.</span> <span class="nav-text">4.BS架构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95"><span class="nav-number">30.</span> <span class="nav-text">单元测试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Junit%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E6%A1%86%E6%9E%B6"><span class="nav-number">30.1.</span> <span class="nav-text">1.Junit单元测试框架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1%E6%A6%82%E8%BF%B0"><span class="nav-number">30.1.1.</span> <span class="nav-text">1.1概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E5%85%A5%E9%97%A8"><span class="nav-number">30.1.2.</span> <span class="nav-text">1.2 入门</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3%E6%B3%A8%E8%A7%A3"><span class="nav-number">30.1.3.</span> <span class="nav-text">1.3注解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%8F%8D%E5%B0%84"><span class="nav-number">30.2.</span> <span class="nav-text">2.反射</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1%E6%A6%82%E8%BF%B0"><span class="nav-number">30.2.1.</span> <span class="nav-text">2.1概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E8%8E%B7%E5%8F%96class%E7%B1%BB%E7%9A%84%E5%AF%B9%E8%B1%A1"><span class="nav-number">30.2.2.</span> <span class="nav-text">2.2 获取class类的对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3%E8%8E%B7%E5%8F%96%E6%9E%84%E9%80%A0%E5%99%A8%E5%AF%B9%E8%B1%A1"><span class="nav-number">30.2.3.</span> <span class="nav-text">2.3获取构造器对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4%E8%8E%B7%E5%8F%96%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F%E5%AF%B9%E8%B1%A1"><span class="nav-number">30.2.4.</span> <span class="nav-text">2.4获取成员变量对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5%E8%8E%B7%E5%8F%96%E6%96%B9%E6%B3%95%E5%AF%B9%E8%B1%A1"><span class="nav-number">30.2.5.</span> <span class="nav-text">2.5获取方法对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6-%E4%BD%9C%E7%94%A8"><span class="nav-number">30.2.6.</span> <span class="nav-text">2.6 作用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B3%A8%E8%A7%A3"><span class="nav-number">31.</span> <span class="nav-text">注解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3"><span class="nav-number">32.</span> <span class="nav-text">1.自定义注解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E5%85%83%E6%B3%A8%E8%A7%A3"><span class="nav-number">33.</span> <span class="nav-text">2.元注解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%B3%A8%E8%A7%A3%E8%A7%A3%E6%9E%90"><span class="nav-number">33.1.</span> <span class="nav-text">3.注解解析</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86"><span class="nav-number">34.</span> <span class="nav-text">动态代理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#XML"><span class="nav-number">35.</span> <span class="nav-text">XML</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%A6%82%E8%BF%B0-9"><span class="nav-number">35.1.</span> <span class="nav-text">1.概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%88%9B%E5%BB%BA"><span class="nav-number">35.2.</span> <span class="nav-text">2.创建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%96%87%E6%A1%A3%E7%BA%A6%E6%9D%9F"><span class="nav-number">35.3.</span> <span class="nav-text">3.文档约束</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-XML%E8%A7%A3%E6%9E%90"><span class="nav-number">35.4.</span> <span class="nav-text">4.XML解析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dom4j-%E8%A7%A3%E6%9E%90%E5%87%BAXML%E6%96%87%E4%BB%B6"><span class="nav-number">35.4.1.</span> <span class="nav-text">Dom4j 解析出XML文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XPath"><span class="nav-number">35.4.2.</span> <span class="nav-text">XPath</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="千岁"
+      src="/images/%E6%9F%AF%E5%93%80.gif">
+  <p class="site-author-name" itemprop="name">千岁</p>
+  <div class="site-description" itemprop="description">天予不取，反受其咎；时至不迎，反受其殃</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/pc1608" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;pc1608" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:2540188156@qq.com" title="E-Mail → mailto:2540188156@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/151309993" title="bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;151309993" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>bilibili</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">千岁</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'bG2iciQlWXvLMuEMOSfS3l1k-gzGzoHsz',
+      appKey     : 'tvES47dxcLlv87yBWofHYIEc',
+      placeholder: "写下您的评论",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"live2d-widget-model-wanko"},"display":{"position":"right","width":85,"height":170},"mobile":null,"log":false});</script></body>
+</html>
