@@ -2963,7 +2963,7 @@ movgRow（intstart，intend，intto）：移动指定范围内的数据行
         <category>java</category>
       </categories>
       <tags>
-        <tag>-Java -笔记</tag>
+        <tag>-JavaGUI -笔记</tag>
       </tags>
   </entry>
   <entry>
@@ -5719,8 +5719,8 @@ Collection&lt;String&gt; lists = new ArrayList&lt;&gt;(); // JDK 1. 7开始后�
 </ul>
 </li>
 </ol>
-<h2 id="6-二叉树"><a href="#6-二叉树" class="headerlink" title="6.二叉树"></a>6.二叉树</h2><p><img src="/2022/040561982/%E4%BA%8C%E5%8F%89%E6%A0%91-164903521838945.png"></p>
-<p><img src="/2022/040561982/%E6%A0%B9%E8%8A%82%E7%82%B9-164903521018844.png"></p>
+<h2 id="6-二叉树"><a href="#6-二叉树" class="headerlink" title="6.二叉树"></a>6.二叉树</h2><p><img src="/.com//%E4%BA%8C%E5%8F%89%E6%A0%91-164903521838945.png"></p>
+<p><img src="/.com//%E6%A0%B9%E8%8A%82%E7%82%B9-164903521018844.png"></p>
 <ul>
 <li>只能有一个根节点，每个节点最多支持2个直接子节点。</li>
 <li>节点的度:<ul>
@@ -5740,7 +5740,7 @@ Collection&lt;String&gt; lists = new ArrayList&lt;&gt;(); // JDK 1. 7开始后�
 </ul>
 </li>
 </ul>
-<p><img src="/2022/040561982/%E4%BA%8C%E5%8F%89%E6%9F%A5%E6%89%BE%E6%A0%91-164903520018343.png"></p>
+<p><img src="/.com//%E4%BA%8C%E5%8F%89%E6%9F%A5%E6%89%BE%E6%A0%91-164903520018343.png"></p>
 <ul>
 <li>二叉查找树又称二叉排序树或者二叉搜索树。</li>
 <li>特点:<ol>
@@ -5794,7 +5794,7 @@ Collection&lt;String&gt; lists = new ArrayList&lt;&gt;(); // JDK 1. 7开始后�
 <li>1972年出现，当时被称之为平衡二叉B树。1978年被修改为如今的”红黑树”。</li>
 <li>每一个节点可以是红或者黑;红黑树不是通过高度平衡的，它的平衡是通过“红黑规则”进行实现的。</li>
 </ul>
-<p><img src="/2022/040561982/%E7%BA%A2%E9%BB%91%E6%A0%91-164903518750942.png"></p>
+<p><img src="/.com//%E7%BA%A2%E9%BB%91%E6%A0%91-164903518750942.png"></p>
 <p>规则</p>
 <ul>
 <li>每一个节点或是红色的，或者是黑色的，根节点必须是黑色。</li>
@@ -8723,7 +8723,3507 @@ encoding：本XML文件的编码
         <category>java</category>
       </categories>
       <tags>
-        <tag>java 笔记</tag>
+        <tag>javSe</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>javaWeb</title>
+    <url>/java/javaWeb/</url>
+    <content><![CDATA[<h1 id="一、数据类型"><a href="#一、数据类型" class="headerlink" title="一、数据类型"></a>一、数据类型</h1><h2 id="1、数值类型"><a href="#1、数值类型" class="headerlink" title="1、数值类型"></a>1、数值类型</h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>大小</th>
+<th>有符号的范围</th>
+<th>无符号的范围</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>tinyint</td>
+<td>1 byte</td>
+<td>(-2^7^,2^7^-1)</td>
+<td>(0,2^8^-1)</td>
+<td>小整数值</td>
+</tr>
+<tr>
+<td>smallint</td>
+<td>2 bytes</td>
+<td>(-2^15^,2^15^-1)</td>
+<td>(0,2^16^-1)</td>
+<td>大整数值</td>
+</tr>
+<tr>
+<td>mediumint</td>
+<td>3 bytes</td>
+<td>(-2^23^,2^23^-1)</td>
+<td>(0,2^24^-1)</td>
+<td>大整数值</td>
+</tr>
+<tr>
+<td>int或integer</td>
+<td>4 bytes</td>
+<td>(-2^31^,2^31^-1)</td>
+<td>(0,2^32^-1)</td>
+<td>大整数值</td>
+</tr>
+<tr>
+<td>bigint</td>
+<td>8 bytes</td>
+<td>(-2^63^,2^63^-1)</td>
+<td>(0,2^64^-1)</td>
+<td>极大整数值</td>
+</tr>
+<tr>
+<td>float</td>
+<td>4 bytes</td>
+<td></td>
+<td></td>
+<td>单精度浮点数值</td>
+</tr>
+<tr>
+<td>double</td>
+<td>8 bytes</td>
+<td></td>
+<td></td>
+<td>双精度浮点数值</td>
+</tr>
+<tr>
+<td>dectmal</td>
+<td></td>
+<td>依赖M(精度)和D(标度)的值</td>
+<td>依赖M(精度)和D(标度)的值</td>
+<td>小数值(精确定点数)</td>
+</tr>
+</tbody></table>
+<h2 id="1、字符串类型"><a href="#1、字符串类型" class="headerlink" title="1、字符串类型"></a>1、字符串类型</h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>大小</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>char</td>
+<td>0-255 bytes</td>
+<td>定长字符串</td>
+</tr>
+<tr>
+<td>varchar</td>
+<td>0-65535 bytes</td>
+<td>变长字符串</td>
+</tr>
+<tr>
+<td>tinyblob</td>
+<td>0-255 bytes</td>
+<td>不超过255个字符的二进制数据</td>
+</tr>
+<tr>
+<td>tinytext</td>
+<td>0-255 bytes</td>
+<td>短文本字符串</td>
+</tr>
+<tr>
+<td>blob</td>
+<td>0-65535 bytes</td>
+<td>二进制形式的长文本数据</td>
+</tr>
+<tr>
+<td>text</td>
+<td>0-65535 bytes</td>
+<td>长文本数据</td>
+</tr>
+<tr>
+<td>mediumblob</td>
+<td>0-16777215 bytes</td>
+<td>二进制形式的中等长文本数据</td>
+</tr>
+<tr>
+<td>mediumtext</td>
+<td>0-16777215 bytes</td>
+<td>中等长文本数据</td>
+</tr>
+<tr>
+<td>longblob</td>
+<td>0-4294967295 bytes</td>
+<td>二进制形式的极大文本数据</td>
+</tr>
+<tr>
+<td>longtext</td>
+<td>0-4294967295 bytes</td>
+<td>极大文本数据</td>
+</tr>
+</tbody></table>
+<hr>
+<h1 id="二、增删改数据库"><a href="#二、增删改数据库" class="headerlink" title="二、增删改数据库"></a>二、增删改数据库</h1><h2 id="1、数据库操作"><a href="#1、数据库操作" class="headerlink" title="1、数据库操作"></a>1、数据库操作</h2><table>
+<thead>
+<tr>
+<th align="center">创建数据库</th>
+<th align="left">create database 数据库名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">删除数据库</td>
+<td align="left">drop database 数据库名</td>
+</tr>
+<tr>
+<td align="center">展示数据库</td>
+<td align="left">show databases 数据库名</td>
+</tr>
+<tr>
+<td align="center">使用数据库</td>
+<td align="left">use 数据库名</td>
+</tr>
+<tr>
+<td align="center">展示使用的哪个数据库</td>
+<td align="left">select database()；</td>
+</tr>
+</tbody></table>
+<h2 id="2、表操作"><a href="#2、表操作" class="headerlink" title="2、表操作"></a>2、表操作</h2><table>
+<thead>
+<tr>
+<th>展示所有表</th>
+<th>show tables;</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>创建表</td>
+<td>create 表名(字段 字段类型，字段 字段类型)</td>
+</tr>
+<tr>
+<td>查看表</td>
+<td>desc 表名</td>
+</tr>
+<tr>
+<td>查看表具体信息</td>
+<td>show create table 表名</td>
+</tr>
+<tr>
+<td>修改表</td>
+<td>alter table  表名 add</td>
+</tr>
+<tr>
+<td>删除表</td>
+<td>drop table 表名</td>
+</tr>
+</tbody></table>
+<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h3><pre><code class="mysql">create table emp
+(id int comment &#39;编号&#39;,workno varchar(10) comment &#39;工号&#39;,
+name varchar(10) comment &#39;姓名&#39;,
+gender char(1) comment &#39;性别&#39;,
+age tinyint unsigned comment &#39;年龄&#39;,
+ idcard char(18) comment &#39;身份证号&#39;,
+)comment &#39;员工表&#39;;
+</code></pre>
+<h3 id="修改表"><a href="#修改表" class="headerlink" title="修改表"></a>修改表</h3><table>
+<thead>
+<tr>
+<th align="left">add</th>
+<th>modffy</th>
+<th>change</th>
+<th>drop</th>
+<th>rename</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">字段名 字段类型</td>
+<td>字段名 新数据类型</td>
+<td>旧字段名 新字段名 类型 comment 注释</td>
+<td>字段名</td>
+<td>rename to 新表名</td>
+</tr>
+<tr>
+<td align="left">增加数据</td>
+<td>只修改字段类型</td>
+<td>修改数据名和数据类型</td>
+<td>删除字段名</td>
+<td>重命名新表名</td>
+</tr>
+</tbody></table>
+<hr>
+<h1 id="三、数据"><a href="#三、数据" class="headerlink" title="三、数据"></a>三、数据</h1><h2 id="1、增删改"><a href="#1、增删改" class="headerlink" title="1、增删改"></a>1、增删改</h2><table>
+<thead>
+<tr>
+<th>给指定字段添加数据</th>
+<th>insert into 表名（字段名1，字段名2…) values(值1，值2，…);</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>给全部字段添加数据</td>
+<td>insert into  表名 values(值1，值2，…);</td>
+</tr>
+<tr>
+<td>批量添加数据</td>
+<td>insert into  表名[（字段名1，字段名2,…) ] values(值1，值2，…),(值1，值2，…);</td>
+</tr>
+<tr>
+<td>修改数据</td>
+<td>update  表名 set 字段1=值1，字段2=值2 [where 条件]</td>
+</tr>
+<tr>
+<td>删除数据</td>
+<td>delete from 表名 [where 条件]</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="2、查询"><a href="#2、查询" class="headerlink" title="2、查询"></a>2、查询</h2><h3 id="查询表1"><a href="#查询表1" class="headerlink" title="查询表1"></a>查询表1</h3><table>
+<thead>
+<tr>
+<th>查询多个字段</th>
+<th>select 字段1，字段2，字段3… from 表名;</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>查询所有字段</td>
+<td>select *from 表名;</td>
+</tr>
+<tr>
+<td>设置别名</td>
+<td>select 字段1[as 别名1],字段2[as 别名2]…from 表名;</td>
+</tr>
+<tr>
+<td>去除重复记录</td>
+<td>select distinct 字段列表 from 表名；</td>
+</tr>
+<tr>
+<td>条件查询</td>
+<td>select 字段列表 from 表名 where  条件;</td>
+</tr>
+</tbody></table>
+<h3 id="条件"><a href="#条件" class="headerlink" title="条件"></a>条件</h3><table>
+<thead>
+<tr>
+<th>&gt;  &gt;=  &lt;   &lt;=   =   &lt;&gt;或!=</th>
+<th>比较运算符</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>beyween…and…</td>
+<td>在某个范围内 含最大最小值</td>
+</tr>
+<tr>
+<td>in(…)</td>
+<td>在in之后的列表中的值，多选一</td>
+</tr>
+<tr>
+<td>like 占位符</td>
+<td>模糊匹配（_匹配单个字符，%匹配任意个字符）</td>
+</tr>
+<tr>
+<td>is null</td>
+<td>是null</td>
+</tr>
+</tbody></table>
+<p>###逻辑运算符</p>
+<table>
+<thead>
+<tr>
+<th>and 或 &amp;&amp;</th>
+<th>与</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>or 或  ||</td>
+<td>或</td>
+</tr>
+<tr>
+<td>not 或 ！</td>
+<td>非</td>
+</tr>
+</tbody></table>
+<h3 id="聚合函数"><a href="#聚合函数" class="headerlink" title="聚合函数"></a>聚合函数</h3><table>
+<thead>
+<tr>
+<th>count</th>
+<th>统计数量</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>max</td>
+<td>最大值</td>
+</tr>
+<tr>
+<td>min</td>
+<td>最小值</td>
+</tr>
+<tr>
+<td>avg</td>
+<td>平均值</td>
+</tr>
+<tr>
+<td>sun</td>
+<td>求和</td>
+</tr>
+</tbody></table>
+<p>语法:select 聚合函数 from 表名</p>
+<h3 id="查询表2"><a href="#查询表2" class="headerlink" title="查询表2"></a>查询表2</h3><table>
+<thead>
+<tr>
+<th>分组查询</th>
+<th>select 字段列表 from 表名 [where 条件] group by 分组字段名 [having 分组过滤条件]</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>排序查询</td>
+<td>select 字段列表 from 表名 order by 字段1 排序方式1，字段2，排序方式2；</td>
+</tr>
+<tr>
+<td>排序方式</td>
+<td>ASC:升序（默认值）     desc:降序</td>
+</tr>
+<tr>
+<td>分页查询</td>
+<td>selete 字段列表 from 表名 limit 起始索引,查询记录数；[^起始索引]</td>
+</tr>
+</tbody></table>
+<p>[^起始索引]:<strong><em>起始索引从0开始，起始索引=（查询页码-1）</em>每页显示记录数,如果查询的是第一页数据，起始索引可以省略，直接简写limit 10</strong></p>
+<h3 id="编写顺序"><a href="#编写顺序" class="headerlink" title="编写顺序"></a>编写顺序</h3><p><code>***select from where group by having order by limit***</code></p>
+<hr>
+<h1 id="四、权限"><a href="#四、权限" class="headerlink" title="四、权限"></a>四、权限</h1><h2 id="1、用户操作"><a href="#1、用户操作" class="headerlink" title="1、用户操作"></a>1、用户操作</h2><p>需要移到mysql数据库</p>
+<table>
+<thead>
+<tr>
+<th>查询用户</th>
+<th>select* from user;</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>创建用户</td>
+<td>create user ‘用户名‘@’主机名’ identified by ‘密码’;</td>
+</tr>
+<tr>
+<td>修改用户密码</td>
+<td>alter user ‘用户名‘@’主机名’ identified mysql_native_password by ‘新密码’;</td>
+</tr>
+<tr>
+<td>删除用户</td>
+<td>drop user ‘用户名‘@’主机名’;</td>
+</tr>
+</tbody></table>
+<h2 id="2、权限操作"><a href="#2、权限操作" class="headerlink" title="2、权限操作"></a>2、权限操作</h2><table>
+<thead>
+<tr>
+<th>查询权限</th>
+<th>show grants for ‘用户名‘@’密码’;</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>授予权限</td>
+<td>grants 权限列表 on 数据库名.表名 to ‘用户名‘@’主机名；</td>
+</tr>
+<tr>
+<td>撤销权限</td>
+<td>remove 权限列表 on 数据库名.表名 form ‘用户名‘@’主机名’;</td>
+</tr>
+</tbody></table>
+<hr>
+<h1 id="五、函数"><a href="#五、函数" class="headerlink" title="五、函数"></a>五、函数</h1><h2 id="1、数值函数"><a href="#1、数值函数" class="headerlink" title="1、数值函数"></a>1、数值函数</h2><table>
+<thead>
+<tr>
+<th>ceil(x)</th>
+<th>向上取整</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>floor(x)</td>
+<td>向下取整</td>
+</tr>
+<tr>
+<td>mod(x,y)</td>
+<td>返回x/y的模 余数</td>
+</tr>
+<tr>
+<td>rand()</td>
+<td>返回0~1的随机数</td>
+</tr>
+<tr>
+<td>round(x,y)</td>
+<td>求参数四舍五入，保留y位小数</td>
+</tr>
+</tbody></table>
+<h2 id="2、字符串函数"><a href="#2、字符串函数" class="headerlink" title="2、字符串函数"></a>2、字符串函数</h2><table>
+<thead>
+<tr>
+<th>concat(s1,s2,s3…sn)</th>
+<th>字符串拼接，将s1,s2…拼成一个字符串</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>lower(str)</td>
+<td>全部转小写</td>
+</tr>
+<tr>
+<td>upper(str)</td>
+<td>全部转大写</td>
+</tr>
+<tr>
+<td>lpad(str,n,pad)</td>
+<td>用字符串pad对str左边进行填充，直到到达n个字符串长度</td>
+</tr>
+<tr>
+<td>rpad(str,n,pad)</td>
+<td>用字符串pad对str右边进行填充，直到到达n个字符串长度</td>
+</tr>
+<tr>
+<td>trim(str)</td>
+<td>去掉字符串头部和尾部的空格</td>
+</tr>
+<tr>
+<td>substring(str,start,len)</td>
+<td>返回字符串str从start开始len个长度的字符串</td>
+</tr>
+</tbody></table>
+<h2 id="3、日期函数"><a href="#3、日期函数" class="headerlink" title="3、日期函数"></a>3、日期函数</h2><table>
+<thead>
+<tr>
+<th>curdate()</th>
+<th>返回当前日期</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>certime()</td>
+<td>返回当前时间</td>
+</tr>
+<tr>
+<td>now()</td>
+<td>返回当前日期和时间</td>
+</tr>
+<tr>
+<td>year(date)</td>
+<td>获取指定date的年份</td>
+</tr>
+<tr>
+<td>month(date)</td>
+<td>获取指定date的月份</td>
+</tr>
+<tr>
+<td>day(date)</td>
+<td>获取指定date的日期</td>
+</tr>
+<tr>
+<td>date_add(date,interval expr type)</td>
+<td>返回一个(日期/时间值)加上一个时间间隔expr之后的时间值[^注释date_add]</td>
+</tr>
+<tr>
+<td>datediff(date1,date2)</td>
+<td>返回起始时间date1和结束时间date2之间的天数[^datediff]</td>
+</tr>
+</tbody></table>
+<p>[^注释date_add]: <em><strong>select date_add(now(),interval 70 day )  指当前时间往后推70天</strong></em><br>[^datediff]: <em><strong>差值是 date1 - date2</strong></em></p>
+<h2 id="4、流程控制"><a href="#4、流程控制" class="headerlink" title="4、流程控制"></a>4、流程控制</h2><h3 id="流程函数"><a href="#流程函数" class="headerlink" title="流程函数"></a>流程函数</h3><table>
+<thead>
+<tr>
+<th align="left">函数</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">if(value,t,f)</td>
+<td>如果value为true,则返回f,否则返回t</td>
+</tr>
+<tr>
+<td align="left">ifnull(value1,value2)</td>
+<td>如果value1不为空,返回value1,否则返回value2</td>
+</tr>
+<tr>
+<td align="left">case when [val1] then [res1]…else [default] end</td>
+<td>如果val1为true，返回res1,…否则返回default默认值</td>
+</tr>
+<tr>
+<td align="left">case [expr] when [val1] then [res1] …else [default] end</td>
+<td>如果expr的值等于val1,返回res1,…否则返回default默认值</td>
+</tr>
+</tbody></table>
+<h3 id="案例-1"><a href="#案例-1" class="headerlink" title="案例"></a>案例</h3><ul>
+<li>统计各个班各个学员的成绩，展示规则如下：</li>
+<li><ul>
+<li><code>&gt;=85</code>展示优秀</li>
+<li><code>&gt;=65</code>展示及格</li>
+<li>否则展示不及格</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>name</th>
+<th>math</th>
+<th>english</th>
+<th>chinese</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>TOM</td>
+<td>67</td>
+<td>88</td>
+<td>95</td>
+</tr>
+<tr>
+<td>2</td>
+<td>ROSE</td>
+<td>23</td>
+<td>66</td>
+<td>90</td>
+</tr>
+<tr>
+<td>3</td>
+<td>JACK</td>
+<td>56</td>
+<td>98</td>
+<td>76</td>
+</tr>
+</tbody></table>
+<pre><code class="MYSQL">SELECT id,name,
+(case when math &lt; 65 then &#39;不及格&#39; when math between 65 and 84 then &#39;及格&#39; else &#39;优秀&#39; end) as &#39;数学&#39;,
+(case when english &lt; 65 then &#39;不及格&#39; when english between 65 and 84 then &#39;及格&#39; else &#39;优秀&#39; end) as &#39;英语&#39;,
+(case when chinese &lt; 65 then &#39;不及格&#39; when chinese between 65 and 84 then &#39;及格&#39; else &#39;优秀&#39; end) as &#39;语文&#39;
+from score
+</code></pre>
+<hr>
+<h1 id="六、约束"><a href="#六、约束" class="headerlink" title="六、约束"></a>六、约束</h1><h2 id="1、概述"><a href="#1、概述" class="headerlink" title="1、概述"></a>1、概述</h2><ol>
+<li><p>概念：约束是作用在表中字段上的规则，用于限制存储在表中的数据</p>
+</li>
+<li><p>目的：保证数据库中数据的正确、有效和完整性</p>
+</li>
+<li><p>分类：</p>
+<table>
+<thead>
+<tr>
+<th>约束</th>
+<th>描述</th>
+<th>关键字</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>非空约束</td>
+<td>限制该字段的数据不能为null</td>
+<td>not null</td>
+</tr>
+<tr>
+<td>唯一约束</td>
+<td>保证该字段的所有数据都是唯一的、不重复的</td>
+<td>unique</td>
+</tr>
+<tr>
+<td>主键约束</td>
+<td>主键是一行数据的唯一标识，要求非空且唯一</td>
+<td>primary key</td>
+</tr>
+<tr>
+<td>默认约束</td>
+<td>保存数据时，如果未指定该字段的值，则为默认值</td>
+<td>default</td>
+</tr>
+<tr>
+<td>检查约束</td>
+<td>保证字段值满足某一个条件</td>
+<td>check</td>
+</tr>
+<tr>
+<td>外键约束</td>
+<td>用来让两张数据之间建立连接，保证数据的一致性和完整性</td>
+<td>foreign key</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<h2 id="2、约束演示"><a href="#2、约束演示" class="headerlink" title="2、约束演示"></a>2、约束演示</h2><h3 id="案例-2"><a href="#案例-2" class="headerlink" title="案例"></a>案例</h3><p>根据需求，完成表结构的创建</p>
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>字段含义</th>
+<th>字段类型</th>
+<th>约束条件</th>
+<th>约束关键字</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>id</td>
+<td>ID唯一标志</td>
+<td>int</td>
+<td>主键，并且自动增长</td>
+<td>primary key,auto_increment</td>
+</tr>
+<tr>
+<td>name</td>
+<td>姓名</td>
+<td>varchar(10)</td>
+<td>不为空且唯一</td>
+<td>not null,unique</td>
+</tr>
+<tr>
+<td>age</td>
+<td>年龄</td>
+<td>int</td>
+<td>大于0，并且小于等于120</td>
+<td>check</td>
+</tr>
+<tr>
+<td>status</td>
+<td>状态</td>
+<td>char(1)</td>
+<td>如果没有该值，默认为1</td>
+<td>default</td>
+</tr>
+<tr>
+<td>gender</td>
+<td>性别</td>
+<td>char(1)</td>
+<td>无</td>
+<td></td>
+</tr>
+</tbody></table>
+<p><em><strong>创建表</strong></em></p>
+<pre><code class="mysql">create table user(
+id int primary key auto_increment comment &#39;主键&#39;,
+name varchar(10) not null unique comment &#39;姓名&#39;,
+age int unsigned check ( age between 0 and 120) comment &#39;年龄&#39;,
+status char(1) default &#39;1&#39; comment &#39;状态&#39;,
+gender char(1) comment &#39;性别&#39;
+)comment &#39;用户表&#39;
+</code></pre>
+<hr>
+<p><em><strong>插入数据</strong></em></p>
+<pre><code class="mysql">insert into user(name,age,status,gender) values
+(&#39;TOM1&#39;,25,1,&#39;男&#39;),
+(&#39;TOM2&#39;,26,0,&#39;男&#39;)
+ insert into user(name,age,gender) values(&#39;TOM3&#39;,19,&#39;男&#39;)
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>name</th>
+<th>age</th>
+<th>status</th>
+<th>gender</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>TOM1</td>
+<td>25</td>
+<td>1</td>
+<td>男</td>
+</tr>
+<tr>
+<td>2</td>
+<td>TOM2</td>
+<td>26</td>
+<td>0</td>
+<td>男</td>
+</tr>
+<tr>
+<td>3</td>
+<td>TOM3</td>
+<td>19</td>
+<td>1</td>
+<td>男</td>
+</tr>
+</tbody></table>
+<h2 id="3、外键约束"><a href="#3、外键约束" class="headerlink" title="3、外键约束"></a>3、外键约束</h2><ul>
+<li>概念</li>
+<li><ul>
+<li>用来让两张表之间建立数据连接，从而保证数据的一致性和完整性</li>
+</ul>
+</li>
+<li>语法</li>
+<li><ul>
+<li>添加外键</li>
+</ul>
+</li>
+</ul>
+<pre><code class="mysql">create table 表名(
+        字段名 数据类型,
+        ...
+        [constraint][外键名称] foreign key(外键字段名) references 主表(主表列名)
+)
+</code></pre>
+<pre><code class="mysql">alter table 表名 add constraint 外键名称 foreign key(外键字段名) references 主表(主表列名) 
+
+alter table emp_ add constraint fk_emp_dept_id foreign key (dept_id) references dept(id)
+</code></pre>
+<ul>
+<li><ul>
+<li>删除外键</li>
+</ul>
+</li>
+</ul>
+<pre><code class="mysql">alter table 表名 drop foreign key 外键名称;
+
+alter table emp_ drop foreign key fk_emp_dept_id;
+</code></pre>
+<h3 id="删除-更新行为"><a href="#删除-更新行为" class="headerlink" title="删除/更新行为"></a>删除/更新行为</h3><table>
+<thead>
+<tr>
+<th>行为</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>no action</td>
+<td>当在父表中删除/更新对应记录时，首先检查该记录是否有对应外键，如果有则不允许删除/更新(与restrict一致)</td>
+</tr>
+<tr>
+<td>restrict</td>
+<td>当在父表中删除/更新对应记录时，首先检查该记录是否有对应外键，如果有则不允许删除/更新(与no action一致)</td>
+</tr>
+<tr>
+<td>cascade</td>
+<td>当在父表中删除/更新对应记录时，首先检查该记录是否有对应外键，如果有，则也删除/更新外键在子表中的记录</td>
+</tr>
+<tr>
+<td>set null</td>
+<td>当在父表中删除/更新对应记录时，首先检查该记录是否有对应外键，如果有则设置子表中该外键的值为null(这就要求该外键允许取null)</td>
+</tr>
+<tr>
+<td>set default</td>
+<td>父表有变更时，子健将外键列设置成一个默认的值(lnnodb不支持)</td>
+</tr>
+</tbody></table>
+<p><em><strong>set null/set null</strong></em></p>
+<pre><code class="mysql">alter table 表名 add constraint 外键名称 foreign key(外键字段) references 主表名(主表字段名)
+on update (cascade) on delete (cascade);
+</code></pre>
+<h1 id="七、多表查询"><a href="#七、多表查询" class="headerlink" title="七、多表查询"></a>七、多表查询</h1><h2 id="1、多表关系"><a href="#1、多表关系" class="headerlink" title="1、多表关系"></a>1、多表关系</h2><pre><code class="text">概述
+
+项目开发中，在进行数据库表结构设计时，会根据业务需求及业务模块之间的关系，分析并设计表结构，由于业务之间相互关联，所以各个表结构
+之间也存在着某种练习，基本上分为三种
+
+&gt;--一对多(多对一)
+&gt;--多对多
+&gt;--一对一
+</code></pre>
+<h3 id="案例-3"><a href="#案例-3" class="headerlink" title="案例"></a>案例</h3><h4 id="一对多"><a href="#一对多" class="headerlink" title="一对多"></a>一对多</h4><pre><code class="text">部门与员工的关系
+关系：一个部门对应多个员工，一个员工对应一个部门
+实现：再多的一方设立外键指向单一的一方
+</code></pre>
+<h4 id="多对多"><a href="#多对多" class="headerlink" title="多对多"></a>多对多</h4><pre><code class="text">案例：学生与课程之间的关系
+关系：一个学生可以选择多门课程，一门课程也可以供多个学生选择
+实现：建立第三张中间表，中间至少包含两个外键，分别关联两方主键
+</code></pre>
+<h4 id="一对一"><a href="#一对一" class="headerlink" title="一对一"></a>一对一</h4><pre><code class="text">案例：用户与用户详情的关系
+关系：一对一关系，多用于单表拆分，将一张基础字段放在一张表中，其他详情字段放在另一张表中，以提升操作效率
+实现：任意一方加入外键，关联另一方的主键，并设置外键是唯一的(unique)
+</code></pre>
+<h3 id="2、多表查询概述"><a href="#2、多表查询概述" class="headerlink" title="2、多表查询概述"></a>2、多表查询概述</h3><pre><code>概述：指从多张表中查询数据
+笛卡尔积：笛卡尔积是指在数学中，两个集合A集合和B集合的所有组合情况。(在多表查询时，需要消除无效的笛卡尔积)
+</code></pre>
+<pre><code class="mysql">select * from emp , dept where emp.dept_id = dept.id;(让他们之间的联系的两个键相等)
+</code></pre>
+<h4 id="多表查询分类"><a href="#多表查询分类" class="headerlink" title="多表查询分类"></a>多表查询分类</h4><ul>
+<li>多表查询分类<ul>
+<li>连接查询<ul>
+<li>内连接：相当于查询A、B交集部分</li>
+<li>外连接：<ul>
+<li>左外连接：查询左表所有数据，以及两张表交集部分数据</li>
+<li>右外连接：查询右表所有数据，以及两张表交集部分数据</li>
+</ul>
+</li>
+<li>自连接：当前表与自身的连接查询，自连接必须使用别名</li>
+</ul>
+</li>
+<li>子查询</li>
+</ul>
+</li>
+</ul>
+<h1 id="八、JDBC"><a href="#八、JDBC" class="headerlink" title="八、JDBC"></a>八、JDBC</h1><p>==JDBC就是使用Java语言操作关系型数据库的一套API==</p>
+<h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h2><p>概述</p>
+<ul>
+<li>JDBC就是使用Java语言操作关系型数据库的一套APl</li>
+<li>全称：（JavaDataBaseConnectivity）Java数据库连接</li>
+</ul>
+<p>JDBC本质：</p>
+<ul>
+<li>官方（sun公司）定义的一套操作所有关系型数据库的规则，即接口</li>
+<li>各个数据库厂商去实现这套接口，提供数据库驱动ar包</li>
+<li>我们可以使用这套接口（JDBC）编程，真正执行的代码是驱动jar包<br>中的实现类</li>
+</ul>
+<p>JDBC好处：</p>
+<ul>
+<li>各数据库厂商使用相同的接口，Java代码不需要针对不同数据库分别开发</li>
+<li>可随时替换底层数据库，访问数据库的Java代码基本不变</li>
+</ul>
+<h2 id="2-入门"><a href="#2-入门" class="headerlink" title="2.入门"></a>2.入门</h2><p>步骤</p>
+<ol>
+<li>创建工程，导入jar包</li>
+<li>注册驱动</li>
+<li>获取链接</li>
+<li>定义SQL语句</li>
+<li>获取SQL对象</li>
+<li>执行SQL</li>
+<li>处理返回结果</li>
+<li>释放资源</li>
+</ol>
+<pre><code class="java">import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+public class Demo &#123;
+    public static void main(String[] args) throws Exception &#123;
+        //1.注册驱动
+        Class.forName(&quot;com.mysql.cj.jdbc.Driver&quot;);//现在可以不写
+        //2.获取连接
+        String url = &quot;jdbc:mysql://127.0.0.1:3306/try&quot;;
+        String user= &quot;root&quot;;
+        String psd = &quot;123456&quot;;
+        Connection conn = DriverManager.getConnection(url,user,psd);
+        //3.定义sql语句
+        String sql = &quot;update emp set age = 20 where id = 000001&quot;;
+        //4.获取执行sql的对象
+        Statement sta = conn.createStatement();
+        //5.执行sql
+        int row = sta.executeUpdate(sql);
+        System.out.println(row);
+        //6.释放资源
+        sta.close();
+        conn.close();
+    &#125;
+&#125;
+</code></pre>
+<h2 id="3-API"><a href="#3-API" class="headerlink" title="3.API"></a>3.API</h2><h3 id="3-1-DriverManager"><a href="#3-1-DriverManager" class="headerlink" title="3.1 DriverManager"></a>3.1 DriverManager</h3><p>作用</p>
+<ol>
+<li><p>注册驱动</p>
+<p><code>Class.forName（com.mysqljdbc.Driver”</code></p>
+</li>
+<li><p>获取数据库连接</p>
+<pre><code class="java">static Connection  getconnection(string uxl，string user,stringpassword）；
+
+url：连接路径；
+语法：jdbc:mysql://p地址（域名）：端口号/数据库名称？参数键值对1&amp;参数键值对2.
+示例：jdbc:mysql//127.0.0.1：3306/db1
+细节：
+    如果连接的是本机mysql服务器，并目mysq服务默认端口是3306，则ur可以简写为：jdbcmysql//数据库名称？参数键值对
+    配置useSsL=false参数，禁用安全连接方式，解决警告提示
+                                 
+user：用户名
+password：密码
+</code></pre>
+</li>
+</ol>
+<h3 id="3-2-Connection"><a href="#3-2-Connection" class="headerlink" title="3.2 Connection"></a>3.2 Connection</h3><p>作用</p>
+<ul>
+<li><p>获取执行SOL的对象</p>
+<ol>
+<li><p>普通执行SQL对象</p>
+<p><code>StatementO createStatement()</code></p>
+</li>
+<li><p>预编译SQL的执行SQL对象：防止SQL注入</p>
+<p><code>PreparedStatement prepareStatement (sql）</code></p>
+</li>
+<li><p>执行存储过程的对缘</p>
+<p><code>CallableStatement prepareCall(sql）</code></p>
+</li>
+</ol>
+</li>
+<li><p>管理事务</p>
+<ol>
+<li><p>MySQL事务管理</p>
+<pre><code class="java">开启事务：BEGIN:/STARTTRANSACTION
+提交事务：COMMIT
+回滚事务：ROLLBACK
+    
+MYSQL默认自动提交事务
+</code></pre>
+</li>
+<li><p>JDBC事务管理：Connection接口中定义了3个对应的方法</p>
+<pre><code class="java">开启事务：setAutoCommitbooleanautoCommit：true为自动提交事务；false为手动提交事务，即为开启事务
+提交事务：commit（）
+回滚事务：rollback（）
+</code></pre>
+</li>
+</ol>
+<h3 id="3-3-Statement"><a href="#3-3-Statement" class="headerlink" title="3.3 Statement"></a>3.3 Statement</h3><p>作用</p>
+<ul>
+<li>执行SQL语句</li>
+</ul>
+<pre><code class="java’">int executeUpdate（sql）：执行DML、DDL语句
+返回值：（1）DML语句影响的行数（2）DDL渴句执行后，执行成功也可能返回0
+
+ResultSet executeQueny（sql）：执行DQL语句
+返回值：ResultSet结果集对象
+</code></pre>
+<h3 id="3-4-ResultSet"><a href="#3-4-ResultSet" class="headerlink" title="3.4 ResultSet"></a>3.4 ResultSet</h3><p>作用</p>
+<ol>
+<li><p>封装了DQL查询语句的结果</p>
+<p><code>ResultSetstmt.executeQueny（sql）：执行DQL语句，返回ResultSet对象</code></p>
+</li>
+<li><p>获取查询结果</p>
+<pre><code class="java">boolean next()：（1）将光标从当前位置向前移动一行（2）判断当前行是否为有效行
+返回值：
+    true：有效行，当前行有数据
+    false：无效行，当前行没有数据
+</code></pre>
+<pre><code class="java">XXX getXxx（参数）：获取数据
+Xxx：数据类型；如：intgetint参数）：StinggetString（参数）
+参数：
+    int：列的编号，从1开始
+    String：列的名称
+</code></pre>
+</li>
+</ol>
+<p>使用步骤</p>
+<ol>
+<li><p>游标向下移动一行，并判断该行否有数据：next()</p>
+</li>
+<li><p>获取数据：getXxx（参数）</p>
+<pre><code class="java">循环判断游标是否是最后一行未尾
+wnile(rs.next()&#123;
+//获取数据
+rs.getXxx（参数）；
+&#125;
+</code></pre>
+</li>
+</ol>
+</li>
+</ul>
+<pre><code class="java">import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Demo &#123;
+    public static void main(String[] args) throws Exception &#123;
+
+        String url = &quot;jdbc:mysql://127.0.0.1:3306/try&quot;;
+        String user= &quot;root&quot;;
+        String psd = &quot;123456&quot;;
+        String sql = &quot;select id,name,age from emp&quot;;
+        try(Connection conn = DriverManager.getConnection(url,user,psd);
+            Statement sta = conn.createStatement();) &#123;
+            ResultSet rs = sta.executeQuery(sql);
+            List&lt;Account&gt; list = new ArrayList&lt;&gt;();
+            while (rs.next())&#123;
+                int id = rs.getInt(&quot;id&quot;);
+                String name = rs.getString(&quot;name&quot;);
+                int age = rs.getInt(&quot;age&quot;);
+                list.add(new Account(id,name,age));
+            &#125;
+            System.out.println(list);
+        &#125; catch (Exception e) &#123;
+            e.printStackTrace();
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<h3 id="3-3Preparedstatement"><a href="#3-3Preparedstatement" class="headerlink" title="3.3Preparedstatement"></a>3.3Preparedstatement</h3><p>作用</p>
+<ul>
+<li>预编译SQL语句并执行：预防SQL注入问题</li>
+</ul>
+<p>SQL注入</p>
+<ul>
+<li>SQL注入是通过操作输入来修改事先定义好的SQL语句，用以达到执行代码对服务器进行攻击的方法</li>
+</ul>
+<h3 id="3-4-PreparedStatement"><a href="#3-4-PreparedStatement" class="headerlink" title="3.4 PreparedStatement"></a>3.4 PreparedStatement</h3><p>作用</p>
+<ul>
+<li>预编译SQL并执行SQL语句</li>
+</ul>
+<p>步骤</p>
+<ol>
+<li><p>获取PreparedStatement对象</p>
+<pre><code class="java">//SQL语句中的参数值，使用？占位符替代
+String sql = “select * from user where username = ? and password = ?；
+//通过Connection对象获取，并传入对应的sql语句
+PreparedStatement pstmt = conn.prepareStatement
+</code></pre>
+</li>
+<li><p>设置参数值</p>
+<pre><code class="java">PreparedStatement对象：setxxx（参数1，参数2）：给？赋值
+&gt;Xxx：数据类型；如setlnt（参数1，参数2）
+参数：
+口 参数1：？的位置编号，从1开始
+口 参数2：？的值
+</code></pre>
+</li>
+<li><p>执行SQL</p>
+<p><code>executeupdate0:/executeQuery0；：不需要再传递sq</code></p>
+</li>
+</ol>
+<p>好处</p>
+<ol>
+<li>预编译SQL，性能更高</li>
+<li>防止SQL注入：将敏感字符进行转义</li>
+</ol>
+<p>步骤</p>
+<ol>
+<li><p>Preparedstatement预编译功能开启：useServerPrepStmts = true</p>
+</li>
+<li><p>配置MySQL执行日志（重启mysql服务后生效）</p>
+<pre><code class="java">log-output=FILE
+general-log=1
+general_log_file=&quot;D:\mysql.log&quot;
+slow-query-log-1
+slow_query_log_file=&quot;D\mysql_slow.log&quot;
+long_query_time=2
+</code></pre>
+</li>
+</ol>
+<p>原理</p>
+<ol>
+<li>在获取Preparedstatement对象时，将sql语句发送给mysql服务器进行检查，编译（这些步骤很耗时）</li>
+<li>执行时就不用再进行这些步骤了，速度更快</li>
+<li>如果sqi模板一样，则只需要进行一次检查、编译</li>
+</ol>
+<h2 id="4-数据连接池"><a href="#4-数据连接池" class="headerlink" title="4.数据连接池"></a>4.数据连接池</h2><h3 id="4-1-简介"><a href="#4-1-简介" class="headerlink" title="4.1 简介"></a>4.1 简介</h3><ul>
+<li>数据库连接池是个容器，负责分配、管理数据库连接（Connection）</li>
+<li>它允许应用程序重复使用一个现有的数据库连接，而不是再重新建立一个；</li>
+<li>释放空闲时间超过最大空闲时间的数据库连接来避免因为没有释放数据库连接而引起的数据库连接遗漏</li>
+</ul>
+<p>好处</p>
+<ul>
+<li>资源重用</li>
+<li>提升系统响应速度</li>
+<li>避免数据库连接遗漏</li>
+</ul>
+<p>实现</p>
+<ul>
+<li><p>标准接口：DataSource</p>
+<ul>
+<li><p>官方（SUN）提供的数据库连接池标准接口，由第三方组织实现此接口。</p>
+</li>
+<li><p>功能：获取连接</p>
+<p>`标准接口：DataSource</p>
+<ul>
+<li><p>官方（SUN）提供的数据库连接池标准接口，由第三方组织实现此接口。</p>
+</li>
+<li><p>功能：获取连接</p>
+<p><code>Connection getConnection</code></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>常见的数据库连接池</p>
+<ul>
+<li>DBCP</li>
+<li>C3P0</li>
+<li>DRUID</li>
+</ul>
+<p>DRUID(德鲁伊)</p>
+<ul>
+<li>Druid连接池是阿里巴巴开源的数据库连接池项目</li>
+<li>功能强大，性能优秀，是Java语言最好的数据库连接池之一</li>
+</ul>
+<h3 id="4-2-案例"><a href="#4-2-案例" class="headerlink" title="4.2 案例"></a>4.2 案例</h3><pre><code class="java">import com.alibaba.druid.pool.DruidDataSourceFactory;
+import com.it.Demo;
+import lombok.SneakyThrows;
+import org.junit.Test;
+
+import javax.sql.DataSource;
+import java.io.FileInputStream;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
+
+public class BrandTest &#123;
+    /*
+    查询所有
+    1.SQL:select * from tb_brand
+    2.参数：不需要
+    3.结果：List&lt;Brand&gt;
+     */
+    @SneakyThrows
+    @Test
+    public void testSelectAll()&#123;
+        Properties pro = new Properties();
+        pro.load(new FileInputStream(&quot;src\\com\\it\\druid.properties&quot;));
+        DataSource dataSource = DruidDataSourceFactory.createDataSource(pro);
+        try (Connection conn = dataSource.getConnection())&#123;
+            String sql = &quot;select * from tb_brand&quot;;
+            try (PreparedStatement pre = conn.prepareStatement(sql);
+                 ResultSet res = pre.executeQuery()) &#123;
+                List&lt;Demo&gt; demo = new ArrayList&lt;&gt;();
+                Demo d = new Demo();
+                while (res.next()) &#123;
+                    int id = res.getInt(&quot;id&quot;);
+                    String brandName = res.getString(&quot;brand_name&quot;);
+                    String companyName = res.getString(&quot;company_name&quot;);
+                    int ordered = res.getInt(&quot;ordered&quot;);
+                    String description = res.getString(&quot;description&quot;);
+                    int status = res.getInt(&quot;STATUS&quot;);
+                    d.setId(id);
+                    d.setBrandName(brandName);
+                    d.setCompanyName(companyName);
+                    d.setOrdered(ordered);
+                    d.setDescription(description);
+                    d.setStatus(status);
+                    demo.add(d);
+                &#125;
+                System.out.println(demo);
+            &#125;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<h1 id="MAVEN"><a href="#MAVEN" class="headerlink" title="MAVEN"></a>MAVEN</h1><p>Maven是专门用于管理和构建」ava项目的工具，它的主要功能有：</p>
+<ul>
+<li>提供了一套标准化目结构</li>
+<li>提供了一套标准化的构建流程（编译，测试，打包，发布…）</li>
+<li>提供了一套依赖管理机制</li>
+</ul>
+<p>依赖管理</p>
+<ul>
+<li>依赖管理其实就是管理亻尔项目所依赖的第三方资源r包、插件….）</li>
+</ul>
+<h2 id="1-简介-1"><a href="#1-简介-1" class="headerlink" title="1.简介"></a>1.简介</h2><p>ApacheMaven是一个项目管理和构建T具，它基于项目对象模型<br>(POM)的概念，通过一小段描述信息来管理项目的构建、报告和文档<br>官网：<a href="http://maven.apache.org/">Maven官网</a></p>
+<p>仓库分类：</p>
+<ul>
+<li><p>本地仓库．自己计算机上的一个目录</p>
+</li>
+<li><p>中央仓库．由团队维护的全球唯一的仓库地址：<a href="https://rep01.maven.org/maven2/">仓库地址</a></p>
+<p>(远程仓库服）：一般由公司团队搭建的私有仓库</p>
+</li>
+</ul>
+<p>当项目中使用坐标引入对应依引包后，首先会查找本地仓库中是否有对应的jar包：</p>
+<ul>
+<li>如果有，则项目直接引用；</li>
+<li>如果没有，则去中央仓库中下载对应的jar包到本地仓库。</li>
+<li>还可以搭建远程仓库，将来ja泡的查找顺序<br>本地仓库-&gt;远程仓库-&gt;中央仓库</li>
+</ul>
+<h2 id="2-常用命令"><a href="#2-常用命令" class="headerlink" title="2.常用命令"></a>2.常用命令</h2><p>Maven常用命令</p>
+<ol>
+<li>compile·编译</li>
+<li>clean:清理</li>
+<li>test：测试</li>
+<li>package:打包</li>
+<li>install:安装</li>
+</ol>
+<p>Maven生命周期</p>
+<ul>
+<li>Maven构建项目生命周期描述的是一次构建过程经历经历了多少个事件</li>
+<li>Maven对项目构建的生命周期划分为3套<ol>
+<li>clean:清理工作</li>
+<li>default:核心工作，例如编译，测试，打包，安装等</li>
+<li>site:产生报告，发布站点等</li>
+<li>同一生命周期内，执行后边的命令，前边的所有命令会自动执行</li>
+</ol>
+</li>
+</ul>
+<h2 id="3-Maven坐标"><a href="#3-Maven坐标" class="headerlink" title="3.Maven坐标"></a>3.Maven坐标</h2><p>什么是坐标？</p>
+<ul>
+<li>Maven中的坐标是资源的唯一标识</li>
+<li>使用坐标来定义项目或引入项目中需要的依赖</li>
+</ul>
+<p>Maven坐标主要组成</p>
+<ul>
+<li>groupld:定义当前Maven项目隶属组织名称（通常是域名反写，例如：com.itheima)</li>
+<li>artifactld，定义当前Maven项目名称（通常是模块名称，例如order-service、goods-service)</li>
+<li>version:定义当前项目版本量</li>
+</ul>
+<p>创建Maven项目</p>
+<ol>
+<li>创建模块选择Maven,点击Next</li>
+<li>填写模块名称，坐标信息，点击finish,创建完成</li>
+<li>编写HelloWorId,并运行</li>
+</ol>
+<p>导入Maven项目</p>
+<ol>
+<li>选择右侧Maven面板，点击+号</li>
+<li>选中对应项目的四m，×m丨文件，双击即可</li>
+<li>如果没有Maven面板，选择    ViewAppearanceToolWindowBars</li>
+</ol>
+<h2 id="4-Maven依赖"><a href="#4-Maven依赖" class="headerlink" title="4.Maven依赖"></a>4.Maven依赖</h2><p>以来范围</p>
+<ul>
+<li>通过设置坐标的依赖范围(scope),可以设置对应jar包的作用范围：编译境、测试环境、运行环境</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>依赖范围</th>
+<th align="center">编译classpath</th>
+<th align="center">测试classpath</th>
+<th align="center">运行classpath</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>compile</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+<td>logback</td>
+</tr>
+<tr>
+<td>test</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+<td align="center">-</td>
+<td>Junit</td>
+</tr>
+<tr>
+<td>provided</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+<td align="center">-</td>
+<td>servlet-api</td>
+</tr>
+<tr>
+<td>runtime</td>
+<td align="center">-</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+<td>jdbc驱动</td>
+</tr>
+<tr>
+<td>system</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+<td align="center">-</td>
+<td>存储在本地的jar包</td>
+</tr>
+</tbody></table>
+<p>==import: 引入DependencyManagement==</p>
+<h1 id="MyBatis"><a href="#MyBatis" class="headerlink" title="MyBatis"></a>MyBatis</h1><p>什么EMyBatis?</p>
+<ul>
+<li>MyBatis是一款优秀的持久层框架，用于简化JDBC开发</li>
+<li>MyBatis本是Apache的一个开源项目iBatis,2010年这个项目由apachesoftware</li>
+<li>foundation迁移到了goog|ecode,并且改名为MyBatis。2013年11月迁移到Github</li>
+<li><a href="https://mybatis.org/mybatis-3/zh/index.html">官网</a></li>
+</ul>
+<p>持久层</p>
+<ul>
+<li>负责将数据到保存到数据库的那一层代码</li>
+<li>JavaEE三层架构：表现层、业务层、持久层</li>
+</ul>
+<p>框架</p>
+<ul>
+<li>框架就是一个半成品软件，是一套可重用的、通用的、软件基础代码模型</li>
+<li>在框架的基础之上构是簌件编写更加高效、规范、通用、可扩展</li>
+</ul>
+<p>JDBC缺点</p>
+<ol>
+<li>硬编码</li>
+<li>操作繁琐</li>
+</ol>
+<h2 id="1-入门"><a href="#1-入门" class="headerlink" title="1.入门"></a>1.入门</h2><pre><code class="java">import com.it.pojo.User;
+import lombok.SneakyThrows;
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
+
+/**
+ * @author Administrator
+ */
+public class MyBatisDemo &#123;
+    @SneakyThrows
+    public static void main(String[] args) &#123;
+        //1.加载mybatis的核心配置文件，获取sqlSessionFactory
+        String resource = &quot;mybatis-config.xml&quot;;
+        InputStream inputStream = Resources.getResourceAsStream(resource);
+        SqlSessionFactory sqlSessionFactory = new                                 SqlSessionFactoryBuilder().build(inputStream);
+
+        //2.获取sqlSession，执行sql
+        SqlSession session = sqlSessionFactory.openSession();
+        //3.执行sql
+        List&lt;User&gt; user = session.selectList(&quot;test.selectAll&quot;);
+        System.out.println(user);
+    &#125;
+&#125;
+</code></pre>
+<h2 id="2-Mapper代理"><a href="#2-Mapper代理" class="headerlink" title="2.Mapper代理"></a>2.Mapper代理</h2><p>目的</p>
+<ul>
+<li>解决原生方式中的硬编码</li>
+<li>简化后期执行SQL</li>
+</ul>
+<p>步骤</p>
+<ol>
+<li>定义SQL映射文件同名的Mapper借口，并将Mapper接口和SQL映射文件放置在同一目录下</li>
+<li>设置SQL映射文件的namespace属性为Mapper接口权限定名</li>
+<li>在Mapper接口中定义方法，方法名就是SQL映射文件中sq晤句的id，并保持参数类型和返回值类型一致</li>
+<li>编码<ul>
+<li>通过SqlSession的getMapper方氵去获取Mapper接口的代理对象</li>
+<li>调用对应方法完成sq]的执行</li>
+</ul>
+</li>
+</ol>
+<p>==细节：如果Mapper接口名称和SQL映射文件名称相同，并在同一目录下，则可以使用包扫描的方式简化SQL映射文件的加载==</p>
+<pre><code class="java">//3.执行UserMapper接口的代理对象
+UserMapper mapper = session.getMapper(UserMapper.class);
+List&lt;User&gt; users = mapper.selectAll();
+System.out.println(users);
+</code></pre>
+<h2 id="3核心配置文件"><a href="#3核心配置文件" class="headerlink" title="3核心配置文件"></a>3核心配置文件</h2><table>
+<thead>
+<tr>
+<th>代码</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>enenvironments</td>
+<td>配置数据库连接环境信息。可以配置多个environment,通过default属性切换不同的environment</td>
+</tr>
+<tr>
+<td>typeAliases</td>
+<td>设置别名</td>
+</tr>
+<tr>
+<td>mappers</td>
+<td>加载SQL映射文件</td>
+</tr>
+</tbody></table>
+<p>结构</p>
+<ul>
+<li><p>configuration（配首）</p>
+<ul>
+<li>properties（属性）</li>
+<li>settings（设置〕</li>
+<li>typeAliases（类型别名）</li>
+<li>typeHandlers（类型处理器〕</li>
+<li>objectFactory〔对象工厂）</li>
+<li>plugins插件</li>
+<li>environments（环境变量）<ul>
+<li>environment（环境变量）</li>
+<li>transactionManager（事务管理器）</li>
+<li>dataSource〔数啹源〕</li>
+</ul>
+</li>
+<li>databaseldProvider（数据库厂商标识）</li>
+<li>mappers（映射器）</li>
+</ul>
+</li>
+<li><p>类型别名</p>
+<pre><code class="xml">&lt;typeAIiases&gt;
+    &lt;packagename=&quot;com/itheima.pojo&quot;/&gt;
+&lt;/typeAIiases&gt;
+</code></pre>
+<p>==配置各个标签时，需要遵守前后顺序==</p>
+</li>
+</ul>
+<h2 id="4-配置文件完成增删改查"><a href="#4-配置文件完成增删改查" class="headerlink" title="4.配置文件完成增删改查"></a>4.配置文件完成增删改查</h2><h3 id="4-1查询"><a href="#4-1查询" class="headerlink" title="4.1查询"></a>4.1查询</h3><p>数据库表的字段名称和实体类的属性名称不一样，则不能自动封装数据</p>
+<ul>
+<li>起别名：对不一样的列名起别名，让别名和实体类的属性名一样<ul>
+<li>缺点：每次查询都要定义一次别名</li>
+</ul>
+</li>
+<li>sql片段<ul>
+<li>缺点：不灵活</li>
+</ul>
+</li>
+<li>resu1-tMap：<ol>
+<li>定义<resultMap>标签</resultMap></li>
+<li>在<select>标签中，使用resultMap属性替换resultType属性</select></li>
+</ol>
+</li>
+</ul>
+<pre><code class="xml">&lt;mapper namespace=&quot;com.it.mapper.BrandMapper&quot;&gt;
+    &lt;resultMap id=&quot;brandResultMap&quot; type=&quot;Brand&quot;&gt;
+        &lt;!--        id:唯一标识
+                    type：映射的类型，支持别名
+        --&gt;
+        &lt;result column=&quot;brand_name&quot; property=&quot;brandName&quot;/&gt;
+        &lt;result column=&quot;company_name&quot; property=&quot;companyName&quot;/&gt;
+        &lt;!--id：完成主键字段的映射 result：完成一般字段的映射
+            colum:列名 property：实体类的属性名
+            --&gt;
+    &lt;/resultMap&gt;
+    &lt;select id=&quot;selectAll&quot; resultMap=&quot;brandResultMap&quot;&gt;
+            select * from tb_brand;
+    &lt;/select&gt;
+    &lt;/select&gt;
+        &lt;!--
+        参数占位符
+           1. #&#123;&#125;：会将其替换为？为了防止sql注入
+           2. $&#123;&#125;:拼sql，会存在sql注入问题
+           3.使用时机：
+                参数传递时用#&#123;&#125;
+                表名或者列名不固定的情况下用$&#123;&#125;
+        参数类型：parameterType:可以省略
+        特殊字符处理：
+            1.转义字符
+            2.CDATA区：
+        --&gt;
+    &lt;select id=&quot;selectById&quot; resultMap=&quot;brandResultMap&quot;&gt;
+            select * from tb_brand where id= #&#123;id&#125;;
+    &lt;/select&gt;
+    &lt;select id=&quot;selectByCondition&quot; resultMap=&quot;brandResultMap&quot;&gt;
+        select * from tb_brand where status = #&#123;status&#125; 
+        and company_name     like #&#123;companyName&#125;
+        and brand_name like #&#123;brandName&#125;;
+    &lt;/select&gt;
+    &lt;select id=&quot;selectByCondition&quot; resultMap=&quot;brandResultMap&quot;&gt;
+        /*
+        动态条件查询
+        *if：条件判断
+            *test：逻辑表达式
+        *问题：第一个条件为空会报错
+            *恒等式，在where后面加上恒等式
+            **&lt;![CDATA[
+            &lt;where
+            ]]&gt;替换where关键字
+
+        */
+
+        select * from tb_brand
+        &lt;where&gt;
+              &lt;if test=&quot;status != null&quot;&gt;status = #&#123;status&#125;&lt;/if&gt;
+              &lt;if test=&quot;companyName !=null and companyName != &#39;&#39;&quot;&gt;and         company_name like #&#123;companyName&#125;&lt;/if&gt;
+              &lt;if test=&quot;brandName !=null and brandName != &#39;&#39;&quot;&gt;and             brand_name like #&#123;brandName&#125;&lt;/if&gt;
+        &lt;/where&gt;
+    &lt;/select&gt;
+    &lt;select id=&quot;selectConditionSingle&quot; resultMap=&quot;brandResultMap&quot;&gt;
+        select * from tb_brand
+        where
+        &lt;choose&gt;
+            &lt;when test=&quot;status != null&quot;&gt;status = #&#123;status&#125;&lt;/when&gt;
+            &lt;when test=&quot;companyName!=null&quot;&gt;company_name like #&#123;companyName&#125;&lt;/when&gt;
+            &lt;when test=&quot;brandName!=null&quot;&gt;brand_name like #&#123;brandName&#125;&lt;/when&gt;
+            &lt;otherwise&gt;1=1&lt;/otherwise&gt;
+        &lt;/choose&gt;
+    &lt;/select&gt;
+    &lt;insert id=&quot;add&quot;&gt;
+        insert into tb_brand (brand_name, company_name, ordered, description, status)
+        values (#&#123;brandName&#125;,#&#123;companyName&#125;,#&#123;ordered&#125;,#&#123;description&#125;,#&#123;status&#125;);
+    &lt;/insert&gt;
+    &lt;update id=&quot;update&quot;&gt;
+        update tb_brand
+        &lt;set&gt;
+            &lt;if test=&quot;brandName != null and brandName != &#39;&#39;&quot;&gt;brand_name = #&#123;brandName&#125;,&lt;/if&gt;
+            &lt;if test=&quot;companyName != null and companyName != &#39;&#39;&quot;&gt;company_name = #&#123;companyName&#125;,&lt;/if&gt;
+            &lt;if test=&quot;ordered != null and ordered != &#39;&#39;&quot;&gt;ordered = #&#123;ordered&#125;,&lt;/if&gt;
+            &lt;if test=&quot;description != null and description != &#39;&#39;&quot;&gt;description = #&#123;description&#125;,&lt;/if&gt;
+            &lt;if test=&quot;status != null and status != &#39;&#39;&quot;&gt;status = #&#123;status&#125;&lt;/if&gt;
+        &lt;/set&gt;
+        where id = #&#123;id&#125;;
+    &lt;/update&gt;
+    &lt;delete id=&quot;deleteById&quot;&gt;
+        delete from tb_brand where id = #&#123;id&#125;;
+    &lt;/delete&gt;
+    &lt;/delete&gt;
+    &lt;delete id=&quot;deleteByIds&quot;&gt;
+        /*
+         mybatis会将数组参数封装成一个map集合
+            *默认 :array=数组
+            *使用@paran注解改变map集合默认key的名称
+         */
+        delete from tb_brand where id
+        in
+            &lt;foreach collection=&quot;array&quot; item=&quot;id&quot; separator=&quot;,&quot; open=&quot;(&quot; close=&quot;)&quot;&gt;
+                #&#123;id&#125;
+            &lt;/foreach&gt;
+    &lt;/delete&gt;
+
+&lt;/mapper&gt;
+</code></pre>
+<pre><code class="java">import com.it.pojo.Brand;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+
+/**
+ * @author Brand接口
+ */
+public interface BrandMapper &#123;
+    /**
+     * 查询所有
+     * @return
+     * 返回一个Brand类列表
+     */
+    List&lt;Brand&gt; selectAll();
+    /**
+     * 查看详情，根据ID查询
+     * @return
+     * 返回一个Brand类
+     * @param id 要查询的id
+     */
+    Brand selectById(int id);
+    /**
+     * 条件查询
+     * *参数接收
+     *      1.散装参数：如果有多个参数需要使用@param(&quot;SQL参数占位符名称&quot;)
+     *      2.对象参数
+     *      3.map集合参数
+     * @param status 根据状态查询
+     * @param companyName 根据公司名字查询
+     * @param brandName 根据产品名字查询
+     * @return 返回Brand列表
+     */
+    List&lt;Brand&gt; selectByCondition(@Param(&quot;status&quot;) int status, @Param(&quot;companyName&quot;) String companyName, @Param(&quot;brandName&quot;) String brandName);
+&#125;
+    List&lt;Brand&gt; selectByCondition(Brand brand);
+    List&lt;Brand&gt; selectByCondition(Map&lt;Object,Object&gt; map);
+    /**
+     * 增加数据
+     * @param brand 需要添加的数据
+     */
+    void add(Brand brand);
+    /**
+     * 修改数据
+     * @param brand 需要修改的数据
+     */
+    void update(Brand brand);
+    /**
+     * 删除数据
+     * @param id 选择删除行的id
+     */
+    void deleteById(int id);
+    /**
+     * 批量删除
+     * @param ids 要删除的id组成的数组
+     */
+    void deleteByIds(int[] ids);    
+</code></pre>
+<p>动态查询</p>
+<ul>
+<li><p>SQL语句会随着用户的输入或夕卜部条件的变化而变化，我们称为动态SQL</p>
+</li>
+<li><p>MyBatis对动态SQL有很强大的支撑：</p>
+<ul>
+<li><p>if</p>
+<ul>
+<li>用于判断参数是否有值，使用test属性进行条件判断<ul>
+<li>存在的问题：第一个条亻牛不需要逻辑运算符</li>
+<li>解决方案<ol>
+<li>使用恒等式让所有条件格式都一</li>
+<li>标签替换where关键字</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>choose(when,otherwise)</p>
+<ul>
+<li>choose：相当于switch</li>
+<li>when：相当于case</li>
+<li>otherwise：相当于default</li>
+</ul>
+</li>
+<li><p>trim(where，set)</p>
+</li>
+<li><p>foreach</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-2添加"><a href="#4-2添加" class="headerlink" title="4.2添加"></a>4.2添加</h3><ol>
+<li><p>编写接口方法：Mapper接口</p>
+<ul>
+<li>参数：除了id之外的所有数据</li>
+<li>结果：void</li>
+</ul>
+</li>
+<li><p>编写SQL语句：SQL映射文件</p>
+</li>
+<li><p>执行方法，测试</p>
+<pre><code class="java">MyBatis事务：
+openSession()：默认开启事务，进行一增删改操榨后需要使用sqlSession.commit();手动提交事务
+openSession(true):可以设置为自动提交事务（关闭事务）
+</code></pre>
+</li>
+</ol>
+<p>在数据添加成功后，需要获取插入数据库数据的主键的值</p>
+<ul>
+<li><p>比如：添加订单和订单项</p>
+<ol>
+<li><p>添加订单</p>
+</li>
+<li><p>添加订单项，订单项中需要所属订单的id</p>
+<pre><code class="xml">&lt;insertid=&quot;addOrdet&#39;useGeneratedKeys=&quot;true&quot;keyProperty=&quot;id&quot;&gt;
+    insert intO tb_order(payment,payment_type,status)
+    values(#&#123;payment&#125;,#&#123;paymentType&#125;,#&#123;status&#125;)；
+&lt;/insert&gt;
+</code></pre>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="4-3修改"><a href="#4-3修改" class="headerlink" title="4.3修改"></a>4.3修改</h3><ol>
+<li>编写接口方法：Mapper接口<ul>
+<li>参数：所有数据</li>
+<li>结果，void</li>
+</ul>
+</li>
+<li>编写SQL语句：SQL映射文件</li>
+<li>执行方法，测试</li>
+</ol>
+<h3 id="4-4删除"><a href="#4-4删除" class="headerlink" title="4.4删除"></a>4.4删除</h3><ol>
+<li>编写接口方法：Mapper接口<ul>
+<li>参数：id</li>
+<li>结果：void</li>
+</ul>
+</li>
+<li>编写SQL语句：SQL映射文件</li>
+<li>执行方法，测试</li>
+</ol>
+<p>批量删除</p>
+<ol>
+<li>编写接口方法：Mapper接口<ul>
+<li>参数：id数组</li>
+<li>结果：void</li>
+</ul>
+</li>
+<li>编写SQL语句：SQL映射文件</li>
+<li>执行方法，测试</li>
+</ol>
+<h2 id="5-参数传递"><a href="#5-参数传递" class="headerlink" title="5.参数传递"></a>5.参数传递</h2><ul>
+<li>单个参数：<ol>
+<li>POJO类型：直接使用，属性名和参数占位符一致</li>
+<li>Map集合：键名和参数占位符一致</li>
+<li>ColIection:封装为Map集合,可以使用@param注解，    替换map集合中默认的arg键名<ol>
+<li>map.put(“arg0”,ColIection集合)</li>
+<li>map.put(“colIection”,colIection集合)</li>
+</ol>
+</li>
+<li>List：封装为Map集合,可以使用@param注解，    替换map集合中默认的arg键名<ol>
+<li>map.put(“arg0”,list集合)</li>
+<li>map.put(“colIection”,llist集合)</li>
+<li>map.put(“llist”,llist集合)</li>
+</ol>
+</li>
+<li>Array：封装为Map集合,可以使用@param注解，    替换map集合中默认的arg键名<ol>
+<li>map.put(“arg0”,数组)</li>
+<li>map.put(“array”,数组)</li>
+</ol>
+</li>
+<li>其他类型：直接使用</li>
+</ol>
+</li>
+<li>多个参数：,可以使用@param注解，    替换map集合中默认的arg键名<ol>
+<li>封装为map集合</li>
+<li>map put〔”arg0”，参数值1〕<br>map put〔”arg1”，参数值1）<br>map put〔”param1”，参数值1）<br>map put〔”param2”，参数值2)</li>
+</ol>
+</li>
+</ul>
+<p>==MyBatis提供了ParamNameResolver类来进行参数封装==</p>
+<p>==建议：将来都使用@Param注解来修改Map集合中默认的键名，并使用修改后的名称来获取值，这样可读性更高！==</p>
+<h2 id="6-注解完成增删改查"><a href="#6-注解完成增删改查" class="headerlink" title="6.注解完成增删改查"></a>6.注解完成增删改查</h2><p>使用注解开发会比配置文件开发更加方便</p>
+<ul>
+<li>注解完成简单功能</li>
+<li>配置文件完成复杂功能</li>
+</ul>
+<pre><code class="java">    /**
+     * 按id查询
+     * @param id 所需要查询的id
+     * @return 返回Brand对象
+     */
+    @Select(&quot;select * from tb_brand where id = #&#123;id&#125;&quot;)
+    Brand selectById(int id);
+</code></pre>
+<h1 id="HTML文档"><a href="#HTML文档" class="headerlink" title="HTML文档"></a>HTML文档</h1><p><a href="https://www.w3school.com.cn/tags/index.asp">文档</a></p>
+<h1 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h1><h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h2><ul>
+<li>HTML是一门语言，所有的网页都是用HTML这门语言编写出来的</li>
+<li>HTML(HyperTextMarkupLanguage):超文本标记语言<ul>
+<li>超文本：超越了文本的限制，比普通文本更强大。除了文字信息，还可以定义图片、音频、视频等内容</li>
+<li>标记语言，由标签构成的语言</li>
+</ul>
+</li>
+<li>HTML运行在浏览器上，HTML标签由浏览器来解析</li>
+<li>HTML标签都是预定义好的。例如：使用<img>展示图片</li>
+<li>W3C标准：网页主要由三部分组成<ul>
+<li>结构：HTML</li>
+<li>表现：CSS</li>
+<li>行为：JavaScript</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-入门-1"><a href="#2-入门-1" class="headerlink" title="2.入门"></a>2.入门</h2><ol>
+<li><p>新建文本文件，后缀名改为.html</p>
+</li>
+<li><p>编写TML结构标</p>
+</li>
+<li><p>在<body>中定义文字</body></p>
+<pre><code class="html">&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+</li>
+</ol>
+<h2 id="3-基础标签"><a href="#3-基础标签" class="headerlink" title="3.基础标签"></a>3.基础标签</h2><table>
+<thead>
+<tr>
+<th>标签</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><h1>~<h6></h6></h1></td>
+<td>定义标题，h1最大，h6最小</td>
+</tr>
+<tr>
+<td><font></font></td>
+<td>定义字体、字体尺寸、字体颜色</td>
+</tr>
+<tr>
+<td><b></b></td>
+<td>定义粗体文本</td>
+</tr>
+<tr>
+<td><i></i></td>
+<td>定义斜体文本</td>
+</tr>
+<tr>
+<td><u></u></td>
+<td>定义文本下划线</td>
+</tr>
+<tr>
+<td><center></center></td>
+<td>定义文本居中</td>
+</tr>
+<tr>
+<td><p></p></td>
+<td>定义段落</td>
+</tr>
+<tr>
+<td><br></td>
+<td>定义换行</td>
+</tr>
+<tr>
+<td><hr></td>
+<td>定义水平线</td>
+</tr>
+</tbody></table>
+<p><img src="/.com//%E6%A0%87%E7%AD%BE-164903510278441.png"></p>
+<pre><code class="html">&lt;!-- html5 标识 --&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;!-- 字符集 --&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;html入门&lt;/title&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;我是标题h1&lt;/h1&gt;
+    &lt;h2&gt;我是标题h2&lt;/h2&gt;
+    &lt;h3&gt;我是标题h3&lt;/h3&gt;
+    &lt;h4&gt;我是标题h4&lt;/h4&gt;
+    &lt;h5&gt;我是标题h5&lt;/h5&gt;
+    &lt;h6&gt;我是标题h6&lt;/h6&gt;
+    &lt;hr&gt;
+    &lt;!-- 
+        html 表示颜色：
+            1.英文单词:red,blue
+            2.rgb:(值1，值2，值3)，取值范围0~255
+            3.#值1值2值3：值得范围是00~FF
+     --&gt;
+    &lt;font color = #ff0000 face = &quot;楷体&quot; size = &quot;18&quot;&gt;你好吗&lt;/font&gt;
+    &lt;hr&gt;
+    &lt;p&gt;
+        MySQL.com 使用 Oracle SSO 进行身份验证。如果您已有 Oracle Web 帐户，请单击登录链接。
+    &lt;/p&gt;
+    &lt;p&gt;否则，您可以通过单击“注册”链接并按照说明注册一个免费帐户。&lt;/p&gt;
+    &lt;hr&gt;
+    &lt;b&gt;离离原上草&lt;/b&gt;&lt;br&gt;&lt;b&gt;一岁一枯荣&lt;/b&gt;
+    &lt;i&gt;斜体&lt;/i&gt;&lt;u&gt;下划线&lt;/u&gt;
+    &lt;hr&gt;
+    &lt;center&gt;居中显示&lt;/center&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 id="4-图片、音频、视频标签"><a href="#4-图片、音频、视频标签" class="headerlink" title="4.图片、音频、视频标签"></a>4.图片、音频、视频标签</h2><table>
+<thead>
+<tr>
+<th>标签</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img></td>
+<td>定义图片</td>
+</tr>
+<tr>
+<td><dudio></dudio></td>
+<td>定义音频</td>
+</tr>
+<tr>
+<td><video></video></td>
+<td>定义视频</td>
+</tr>
+</tbody></table>
+<ul>
+<li>img:定义图片<ol>
+<li>src:规定显示图像的URL（统一资源定位符）</li>
+<li>height：定义图像的高度</li>
+<li>width：定义图像的宽度</li>
+</ol>
+</li>
+<li>audio:定义音频。支持的音频格式：MP3、WAV、OGG<ul>
+<li>src:规走音频的URL</li>
+<li>controls:显示播放控件</li>
+</ul>
+</li>
+<li>video：定义视频。支持的音频格式：MP4,WebM、OGG<ul>
+<li>src:规定视频的URL</li>
+<li>controls:．显示播放控件</li>
+</ul>
+</li>
+</ul>
+<pre><code class="html">&lt;!-- html5 标识 --&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;!-- 字符集 --&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;html入门&lt;/title&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- 
+        资源路径：
+            1.绝对路径：完整路径
+            2.相对路径：相对位置关系
+                当前目录可以直接写图片名字
+                ../ 上一级目录
+                /   根目录
+        尺寸单位
+            1.px：像素
+            2.百分比
+     --&gt;
+    &lt;img src=&quot;乌鸦.jpg&quot; alt=&quot;加载中...&quot; width=&quot;400&quot;&gt;
+    &lt;audio src=&quot;音频16 读信.mp3&quot; controls=&quot;controls&quot;&gt;&lt;/audio&gt;
+    &lt;video src=&quot;1080p云使结尾视频.mp4&quot; controls=&quot;controls&quot; height=&quot;300&quot;&gt;&lt;/video&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 id="5-超链接标签"><a href="#5-超链接标签" class="headerlink" title="5.超链接标签"></a>5.超链接标签</h2><table>
+<thead>
+<tr>
+<th>标签</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a></a></td>
+<td>定义超链接，用于链接另一个资源</td>
+</tr>
+</tbody></table>
+<ul>
+<li>href：指定访问资源的URL</li>
+<li>target:指定打开资源方式<ul>
+<li>_self:默认值，在当前页面打开</li>
+<li>_blank：在空白页面打开</li>
+</ul>
+</li>
+</ul>
+<h2 id="6-列表标签"><a href="#6-列表标签" class="headerlink" title="6.列表标签"></a>6.列表标签</h2><ul>
+<li>有序列表</li>
+<li>无序列表</li>
+<li></li><li>设置列表项</li>
+<li>type 设置标识符</li>
+</ul>
+<pre><code class="html">&lt;!-- html5 标识 --&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;!-- 字符集 --&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;html入门&lt;/title&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- 有序列表 --&gt;
+    &lt;ol type=&quot;A&quot;&gt;
+        &lt;li&gt;咖啡&lt;/li&gt;
+        &lt;li&gt;茶&lt;/li&gt;
+        &lt;li&gt;牛奶&lt;/li&gt;
+    &lt;/ol&gt;
+    &lt;!-- 无序列表 --&gt;
+    &lt;ul&gt;
+        &lt;li&gt;咖啡&lt;/li&gt;
+        &lt;li&gt;茶&lt;/li&gt;
+        &lt;li&gt;牛奶&lt;/li&gt;       
+    &lt;/ul&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 id="7-表格标签"><a href="#7-表格标签" class="headerlink" title="7.表格标签"></a>7.表格标签</h2><table>
+<thead>
+<tr>
+<th>标签</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><table></table></td>
+<td>定义表格</td>
+</tr>
+<tr>
+<td></td></tr><tr>
+<td>定义行</td>
+</tr>
+<tr>
+<td></td><td></td>
+<td>定义单元格</td>
+</tr>
+<tr>
+<td><th></th></td>
+<td>定义表头单元格</td>
+</tr>
+</tbody></table>
+<p>table:定义表格</p>
+<ul>
+<li>border:规定表格边框的宽度</li>
+<li>width：规定表格的宽度</li>
+<li>cellspacing：规定单元格之间的空白</li>
+</ul>
+<p>tr:定义行</p>
+<ul>
+<li>align：定义表格行的内容对齐方式</li>
+</ul>
+<p>td：定义单元格</p>
+<ul>
+<li>rowspan．规定单元格可横跨的行数</li>
+<li>colspan．规定单元格可横跨的列数</li>
+</ul>
+<pre><code class="html">&lt;!-- html5 标识 --&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;!-- 字符集 --&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;html入门&lt;/title&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;table border=&quot;1&quot; cellspacing=&quot;0&quot; width=&quot;500&quot;&gt;
+        &lt;tr&gt;
+            &lt;th&gt;序号&lt;/th&gt;
+            &lt;th&gt;品牌Logo&lt;/th&gt;
+            &lt;th&gt;品牌名称&lt;/th&gt;
+            &lt;th&gt;企业名称&lt;/th&gt;
+        &lt;/tr&gt;
+        &lt;tr align=&quot;center&quot;&gt;
+            &lt;td&gt;010&lt;/td&gt;
+            &lt;td&gt;&lt;/td&gt;
+            &lt;td&gt;三只松鼠&lt;/td&gt;
+            &lt;td&gt;三只松鼠&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr align=&quot;center&quot;&gt;
+            &lt;td&gt;008&lt;/td&gt;
+            &lt;td&gt;&lt;/td&gt;
+            &lt;td&gt;优衣库&lt;/td&gt;
+            &lt;td&gt;优衣库&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr align=&quot;center&quot;&gt;
+            &lt;td&gt;008&lt;/td&gt;
+            &lt;td&gt;&lt;/td&gt;
+            &lt;td&gt;小米&lt;/td&gt;
+            &lt;td&gt;小米&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/table&gt;
+    &lt;hr&gt;
+    &lt;table border=&quot;1&quot; cellspacing=&quot;0&quot; width=&quot;500&quot;&gt;
+        &lt;tr&gt;
+            &lt;th colspan=&quot;2&quot;&gt;品牌Logo&lt;/th&gt;
+            &lt;th&gt;品牌名称&lt;/th&gt;
+            &lt;th&gt;企业名称&lt;/th&gt;
+        &lt;/tr&gt;
+        &lt;tr align=&quot;center&quot;&gt;
+            &lt;td&gt;010&lt;/td&gt;
+            &lt;td&gt;11111111111&lt;/td&gt;
+            &lt;td&gt;三只松鼠&lt;/td&gt;
+            &lt;td&gt;三只松鼠&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr align=&quot;center&quot;&gt;
+            &lt;td rowspan=&quot;2&quot;&gt;008&lt;/td&gt;
+            &lt;td&gt;11111111111&lt;/td&gt;
+            &lt;td&gt;优衣库&lt;/td&gt;
+            &lt;td&gt;优衣库&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr align=&quot;center&quot;&gt;
+            &lt;td&gt;11111111111&lt;/td&gt;
+            &lt;td&gt;小米&lt;/td&gt;
+            &lt;td&gt;小米&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 id="8-布局标签"><a href="#8-布局标签" class="headerlink" title="8.布局标签"></a>8.布局标签</h2><table>
+<thead>
+<tr>
+<th>标签</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><div></div></td>
+<td>定义HTML文档中的一个区域部分，经常与CSS一起使用，用来布局页面</td>
+</tr>
+<tr>
+<td><span></span></td>
+<td>用于组合行内元素</td>
+</tr>
+</tbody></table>
+<h2 id="9-表单标签"><a href="#9-表单标签" class="headerlink" title="9.表单标签"></a>9.表单标签</h2><ul>
+<li><p>表单：在网页中主要负责数据采集功能，使用<form>标签定义表单</form></p>
+</li>
+<li><p>表单项（元素）：不同类型的input元素、下拉列表、文本域等</p>
+<table>
+<thead>
+<tr>
+<th>标签</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><form></form></td>
+<td>定义表单</td>
+</tr>
+<tr>
+<td><input></td>
+<td>定义表单项，通过tepe属性控制输入形式</td>
+</tr>
+<tr>
+<td><label></label></td>
+<td>为表单定义标注</td>
+</tr>
+<tr>
+<td><select></select></td>
+<td>定义下拉列表</td>
+</tr>
+<tr>
+<td><option></option></td>
+<td>定义下拉列表自的列表项</td>
+</tr>
+<tr>
+<td><textarea></textarea></td>
+<td>定义文本域</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>form：定义表单</p>
+<ul>
+<li>action:规定当提交表单时向何处发送表单数据，URL</li>
+<li>method：规定用于发送表单数据的方式<ul>
+<li>get:浏览器会将数据直接附在表单的actionURL之后。大小有限制</li>
+<li>post:浏览器会将数据放到http请求消息体中。大小无限制</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>type取值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>text</td>
+<td>默认值，定义单行输入的字段</td>
+</tr>
+<tr>
+<td>password</td>
+<td>定义密码输入字段</td>
+</tr>
+<tr>
+<td>redio</td>
+<td>定义单选按钮</td>
+</tr>
+<tr>
+<td>checkbox</td>
+<td>定义复选框</td>
+</tr>
+<tr>
+<td>file</td>
+<td>定义文件上传按钮</td>
+</tr>
+<tr>
+<td>hidden</td>
+<td>定义隐藏的输入手段</td>
+</tr>
+<tr>
+<td>submit</td>
+<td>定义提交按钮，提交按钮会把表单数据发送到服务器</td>
+</tr>
+<tr>
+<td>reset</td>
+<td>定义重置按钮，重置按钮会清楚表单中的所有数据</td>
+</tr>
+<tr>
+<td>button</td>
+<td>定义可点击按钮</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<p><img src="/.com//%E8%A1%A8%E5%8D%95-164903495742140.png"></p>
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;练习页面&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- 
+        form:
+            action:指定表单提交的URL
+                *表单项数据要想被提交，则必须指定其name属性
+            method：指定表单提交的方式
+                1.get：默认值
+                    *请求参数会拼接在URL后边
+                    *url长度有限制  4KB
+                2.post：
+                    *请求参数会拼接在http请求协议的请求体中
+                    *请求参数无限制
+     --&gt;
+    &lt;form action=&quot;#&quot; method=&quot;post&quot;&gt;
+        &lt;input type=&quot;hidden&quot; name=&quot;id&quot; value=&quot;123&quot;&gt;
+        &lt;label for=&quot;username&quot;&gt;用户名:&lt;/label&gt;
+        &lt;input type=&quot;text&quot; name=&quot;username&quot; id=&quot;username&quot;&gt;&lt;br&gt; 
+        &lt;label for=&quot;psd&quot;&gt;密码：&lt;/label&gt;
+        &lt;input type=&quot;password&quot; name=&quot;psd&quot; id=&quot;psd&quot;&gt;&lt;br&gt;
+        &lt;br&gt;
+        性别：
+        &lt;input type=&quot;radio&quot; name=&quot;gender&quot; value=&quot;1&quot; id=&quot;man&quot;&gt;&lt;label for=&quot;man&quot;&gt;男&lt;/label&gt;
+        &lt;input type=&quot;radio&quot; name=&quot;gender&quot; value=&quot;0&quot; id=&quot;woman&quot;&gt;&lt;label for=&quot;woman&quot;&gt;女&lt;/label&gt;&lt;br&gt;
+        爱好：
+        &lt;input type=&quot;checkbox&quot; value=&quot;1&quot; id=&quot;ly&quot;&gt;&lt;label for=&quot;ly&quot;&gt;旅游&lt;/label&gt;
+        &lt;input type=&quot;checkbox&quot; value=&quot;2&quot; id=&quot;moving&quot;&gt;&lt;label for=&quot;moving&quot;&gt;电影&lt;/label&gt;
+        &lt;input type=&quot;checkbox&quot; value=&quot;3&quot; id=&quot;game&quot;&gt;&lt;label for=&quot;game&quot;&gt;游戏&lt;/label&gt;
+        &lt;br&gt;
+        &lt;select name=&quot;city&quot; id=&quot;city&quot;&gt;
+            &lt;option value=&quot;BeiJing&quot;&gt;北京&lt;/option&gt;
+            &lt;option value=&quot;ShangHai&quot;&gt;上海&lt;/option&gt;
+            &lt;option value=&quot;GuangZhou&quot;&gt;广州&lt;/option&gt;
+        &lt;/select&gt;
+        &lt;br&gt;
+        个&lt;label for=&quot;desc&quot;&gt;人描述&lt;/label&gt;
+        &lt;textarea name=&quot;desc&quot; id=&quot;desc&quot; cols=&quot;30&quot; rows=&quot;10&quot;&gt;&lt;/textarea&gt;
+        &lt;br&gt;
+        头像：
+        &lt;input type=&quot;file&quot;&gt;
+        &lt;br&gt;&lt;br&gt;
+        &lt;input type=&quot;submit&quot; value=&quot;免费注册&quot;&gt;
+        &lt;input type=&quot;reset&quot; value=&quot;重置&quot;&gt;
+        &lt;input type=&quot;button&quot; value=&quot;这是一个按钮&quot;&gt;
+        &lt;br&gt;
+
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h1 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h1><ul>
+<li>CSS是一门语言，用于控制网页表现<br>CSS(CascadingStyleSheet)：虐叠样式表</li>
+<li>W3C标准：网页主要由三部分组成<ul>
+<li>结构：HTML</li>
+<li>表现：CSS</li>
+<li>行为：JavaScript</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-css导入方式"><a href="#1-css导入方式" class="headerlink" title="1.css导入方式"></a>1.css导入方式</h2><ul>
+<li><p>CSS导入HTML有三种方式</p>
+<ol>
+<li><p>内联样式：在标签内部使用sty|e属性，属性值是css属性键值对</p>
+<p><code>&lt;div style=&quot;color:red&quot;&gt;Hello CSS~&lt;div&gt;</code></p>
+</li>
+<li><p>内部样式：定义<style>标签，在标签内部定义css样式</p>
+<pre><code class="css">&lt;style type=&quot;text/css&quot;&gt;
+    div&#123;
+        color:red;
+&#125;
+&lt;/style&gt;
+</code></pre>
+</li>
+<li><p>外部样式：定义link标签，引入外部的css文件</p>
+<p><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;demo.css&quot;&gt;</code></p>
+<p>==demo.scc==</p>
+<pre><code class="css">div&#123;
+    color:red;
+&#125;
+</code></pre>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="2-css选择器"><a href="#2-css选择器" class="headerlink" title="2.css选择器"></a>2.css选择器</h2><ul>
+<li><p>概念：选择器是选取需设置样式的元素（标签）</p>
+</li>
+<li><p>分类</p>
+<ol>
+<li><p>元素选择器</p>
+<p><code>元素名称&#123;color:red;&#125;</code></p>
+</li>
+<li><p>id选择器</p>
+<p><code>#id属性值&#123;color:red;&#125;</code></p>
+</li>
+<li><p>类选择器</p>
+<p><code>.class属性值&#123;color:red;&#125;</code></p>
+</li>
+</ol>
+</li>
+</ul>
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;css选择器&lt;/title&gt;
+    &lt;style&gt;
+        div&#123;
+            color: red;
+        &#125;
+        #name&#123;
+            color: blue;
+        &#125;
+        .name&#123;
+            color: pink;
+        &#125;
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class=&quot;name&quot;&gt;div1&lt;/div&gt;
+    &lt;div id=&quot;name&quot;&gt;div2&lt;/div&gt;
+    &lt;div&gt;div3&lt;/div&gt;
+    &lt;span class=&quot;name&quot;&gt;span&lt;/span&gt;
+&lt;/body&gt;
+&lt;/html&gt;    
+</code></pre>
+<h1 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h1><ul>
+<li>JavaScript是一门跨平台、向对象的脚本语言，来控制网页行为的，它能使网页可交互</li>
+<li>W3C标准：网页主要由三部分组成<br>结构：HTML<br>表现：CSS<br>行为：JavaScript</li>
+<li>JavaScript和Java是完全不同的语言，不论是概念还是设计。但是基础语法类似。</li>
+<li>JavaScript（简称：(S)在1995年由BrendanEich发明，并于1997年成为一部ECMA标准。</li>
+<li>ECMAScript6(ES6)是最新的JavaScript版本（发布于2015年）。</li>
+</ul>
+<h2 id="1-引入方式"><a href="#1-引入方式" class="headerlink" title="1.引入方式"></a>1.引入方式</h2><ol>
+<li><p>内部脚本：将jS代码定义在HTML页面中</p>
+<ul>
+<li>在HTML中，JavaScript代码必须位与<script>标签之间</script></li>
+<li>在HTML文档中可以在任意地方，放置任意数量的<script>。</li>
+<li>一般把脚本置于<bodY>元素的底部，可改善显示速度，因为脚本执行会拖慢显示</li>
+</ul>
+</li>
+<li><p>外部脚本：将jS代码定义在外部jS文件中，然后引入到HTML页面中</p>
+<ul>
+<li><p>外部文件：demo.js</p>
+</li>
+<li><p>引入外部js文件</p>
+</li>
+<li><p>外部脚本不能包含<script>标签</p>
+</li>
+<li><script>标签不能自闭合</li>
+</ul>
+</li>
+</ol>
+<h2 id="2-基础语法"><a href="#2-基础语法" class="headerlink" title="2.基础语法"></a>2.基础语法</h2><h3 id="2-1书写语法"><a href="#2-1书写语法" class="headerlink" title="2.1书写语法"></a>2.1书写语法</h3><ol>
+<li>区分大小写：与」一样，变量名、函数名以及其他一切东西都是区分大小写的</li>
+<li>每行结尾的分号可有可无</li>
+<li>注释：<ul>
+<li>单行注释：/／注释内容</li>
+<li>多行注释：/<strong>注释内容</strong>/</li>
+</ul>
+</li>
+<li>大括号表示代码块</li>
+</ol>
+<h3 id="2-2输出语句"><a href="#2-2输出语句" class="headerlink" title="2.2输出语句"></a>2.2输出语句</h3><ul>
+<li>使用window.alert()写入警告框</li>
+<li>使用document.write()写入HTML输出</li>
+<li>使用console.log()写入浏览器控制台</li>
+</ul>
+<h3 id="2-3变量"><a href="#2-3变量" class="headerlink" title="2.3变量"></a>2.3变量</h3><ul>
+<li><p>JavaScript中．用var关键字(varable的缩写）来声明变量</p>
+</li>
+<li><p>是一门弱类型语言，父里可以存放不同类型的值</p>
+</li>
+<li><p>变量名需要遵循如下规则</p>
+<ul>
+<li><p>组成字符可以是任何字母、数字、下划线（_）或美元符号</p>
+</li>
+<li><p>数字不能开头</p>
+</li>
+<li><p>建议使用驼峰命名</p>
+</li>
+</ul>
+</li>
+<li><p>ECMAScript6|新增了1et关键字来定义变量。它的用法类似于var但是所声<br>明的变量，只在let关键字所在的代码块内有效，且不允许重复声明</p>
+</li>
+<li><p>ECMAScript6新增了const关键字，用来声明一个只读的常量。一旦声明常量的值就不能改变。</p>
+</li>
+</ul>
+<h3 id="2-4-基础类型"><a href="#2-4-基础类型" class="headerlink" title="2.4.基础类型"></a>2.4.基础类型</h3><p>JavaScript中分为：原始类型和引用类型<br>5种原始类型：</p>
+<ol>
+<li>number:数字（整数、小数、NaN(NotaNumber))</li>
+<li>string．字符、字符串，单双引皆可</li>
+<li>blloean：布尔。true,false</li>
+<li>null:对象为空</li>
+<li>undefined：当声明的变量未初始化时，该变量的默认值是undefined</li>
+</ol>
+<p>==使用typeof运算符可以获取类型==</p>
+<h3 id="2-5-运算符"><a href="#2-5-运算符" class="headerlink" title="2.5.运算符"></a>2.5.运算符</h3><ul>
+<li>一元运算符：++ ，–</li>
+<li>算术运算符：+，-，*，/，%</li>
+<li>赋值运算符：=，+=，-=…</li>
+<li>关系运算符：&gt;，&lt;，&gt;=，&lt;=，！=，==，<code>===</code>…</li>
+<li>逻辑运算符：&amp;&amp;，||，！</li>
+<li>三元运算符：条件表达式？truevalue：falsevalue</li>
+</ul>
+<p>==在js中运算符会先进行类型转换，<code>===</code>会先判断类型，类型不一样直接报错==</p>
+<p>类型转换</p>
+<ul>
+<li>其他类型转number<ol>
+<li>string：按照字符串的字面值，如果字面值不是数字,则转为NaN。一般使用parseInt</li>
+<li>boolean:true转1，false转0</li>
+</ol>
+</li>
+<li>其他类型转boolean<ol>
+<li>number:0和NaN转false，其他转true</li>
+<li>string：空字符串转为false，其他转为true</li>
+<li>null：false</li>
+<li>undefined：false</li>
+</ol>
+</li>
+</ul>
+<h3 id="2-6-流程控制语句"><a href="#2-6-流程控制语句" class="headerlink" title="2.6.流程控制语句"></a>2.6.流程控制语句</h3><p>if，switch，for:，while:，do…while.</p>
+<h3 id="2-7-函数"><a href="#2-7-函数" class="headerlink" title="2.7.函数"></a>2.7.函数</h3><p>函数（方法）是被设计为执行特定任务的代码块<br>关键词进行定义，语法为：</p>
+<ul>
+<li><p>定义：JavaScript函数通过function关键词进行定义，语法为：</p>
+<pre><code class="javascript">function functionName(参数1，参数2...)&#123;
+    要执行的代码
+&#125;
+</code></pre>
+<ul>
+<li>形式参数不需要类型。因为Javascript是弱类型语言</li>
+<li>返回值也不需要定义类型，可以在函数内部直接使用return返回即可</li>
+</ul>
+</li>
+<li><p>调用：函数名称（实际参数列表）</p>
+</li>
+<li><p>定义方式二、</p>
+<pre><code class="javas">var functionName = function(形参列表)&#123;
+    要执行的代码
+&#125;
+</code></pre>
+</li>
+<li><p>调用：js中，调用函数可以传任意个数参数</p>
+</li>
+</ul>
+<h2 id="3-对象"><a href="#3-对象" class="headerlink" title="3.对象"></a>3.对象</h2><h3 id="3-1-Arrary"><a href="#3-1-Arrary" class="headerlink" title="3.1 Arrary"></a>3.1 Arrary</h3><p>JavaScript Array对象用于定义数组</p>
+<ul>
+<li><p>定义</p>
+<ol>
+<li><code>var 变量名 = new Array(元素列表)；//方式一</code></li>
+<li><code>var 变量名 = [元素列表]//方式二</code></li>
+</ol>
+</li>
+<li><p>访问</p>
+<p><code>arr[索引] = 值；</code></p>
+</li>
+<li><p>JavaScript类似Java中的集合，长度类型都可变</p>
+</li>
+</ul>
+<p>方法</p>
+<ol>
+<li>push：添加元素</li>
+<li>splice删除元素</li>
+</ol>
+<h3 id="3-2-History历史记录"><a href="#3-2-History历史记录" class="headerlink" title="3.2 History历史记录"></a>3.2 History历史记录</h3><p>获取：使用window.history获取，其中window.可以省略</p>
+<p>方法</p>
+<table>
+<thead>
+<tr>
+<th>back()</th>
+<th>加载history列表中的前一个URL</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>forword()</td>
+<td>加载history列表中的后一个URL</td>
+</tr>
+</tbody></table>
+<h3 id="3-3-Location地址栏对象"><a href="#3-3-Location地址栏对象" class="headerlink" title="3.3 Location地址栏对象"></a>3.3 Location地址栏对象</h3><p>获取：使用window.location获取，其中window.可以省略</p>
+<p>属性</p>
+<table>
+<thead>
+<tr>
+<th>href</th>
+<th>设置或返回完整的URL</th>
+</tr>
+</thead>
+</table>
+<h2 id="4-DOM"><a href="#4-DOM" class="headerlink" title="4.DOM"></a>4.DOM</h2><p>Document Object Model文档对象模型</p>
+<p>将标记语言的各个组成部分封装为对象</p>
+<ul>
+<li>Document:整个文档对象</li>
+<li>Element:元素对象</li>
+<li>Attribute:．属性对象．</li>
+<li>Text：文本对象</li>
+<li>omme：注释对象</li>
+</ul>
+<p>JavaScript通过DOM,就能够对HTML进行操作了</p>
+<ul>
+<li><p>改变HTML元素的内容</p>
+</li>
+<li><p>改变HTML元素的样式（css）</p>
+</li>
+<li><p>对事件作出反应</p>
+</li>
+<li><p>添加和删除HTML元素</p>
+</li>
+<li><p>DOM是W3C（万维网联盟）的标准</p>
+</li>
+<li><p>DOM定义了访问HTML和文档的标准：</p>
+</li>
+<li><p>W3cDOM标准被分为3个不同的部分：</p>
+<ol>
+<li>核心DOM：针对任何结构化文档的标准模型<ul>
+<li>Document.整个文档对象</li>
+<li>Element:元素对象</li>
+<li>Attribute：属性对象</li>
+<li>Text:文本对象</li>
+<li>comment:注释对象</li>
+</ul>
+</li>
+<li>XMLDOM.针对XML文档的标准模型</li>
+<li>HTMLDOM:针对HTML文档的标准模型<ul>
+<li>lmage：<img></li>
+<li>Button：&lt;inputtype=’button’&gt;</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="4-1-获取Element"><a href="#4-1-获取Element" class="headerlink" title="4.1 获取Element"></a>4.1 获取Element</h3><p>获取：使用对象的方法来获取</p>
+<ol>
+<li>getElementByl·根据id属性值获取，返回一个Element对象</li>
+<li>getElementsByTagName.根据标签名称获取，返回Element对象数组</li>
+<li>getElementsByName:根据name属性值获取，返回Element对象数组</li>
+<li>getElementsByClassName.根据class属性值获取，返回Element对象数组</li>
+</ol>
+<h3 id="4-2使用"><a href="#4-2使用" class="headerlink" title="4.2使用"></a>4.2使用</h3><p>常见时间</p>
+<table>
+<thead>
+<tr>
+<th>事件名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>onclick</td>
+<td>鼠标单机事件</td>
+</tr>
+<tr>
+<td>onblur</td>
+<td>元素失去焦点</td>
+</tr>
+<tr>
+<td>onfocus</td>
+<td>元素获得焦点</td>
+</tr>
+<tr>
+<td>onload</td>
+<td>当某个页面或图像被完全加载</td>
+</tr>
+<tr>
+<td>onsubmit</td>
+<td>当表单提交时触发该事件</td>
+</tr>
+<tr>
+<td>onkeydown</td>
+<td>某个键盘的键被按下</td>
+</tr>
+<tr>
+<td>onmouseover</td>
+<td>鼠标被移到某元素上</td>
+</tr>
+<tr>
+<td>ommouseout</td>
+<td>鼠标从某元素离开</td>
+</tr>
+</tbody></table>
+<p>==Event代表事件对象==</p>
+<h1 id="Web核心"><a href="#Web核心" class="headerlink" title="Web核心"></a>Web核心</h1><ul>
+<li>Web:全球广域网，也称为万维网（www),能够通过浏览器访问的网站</li>
+<li>JavaWeb：是用」ava技术来解决相关web互联网领域的技术栈</li>
+</ul>
+<p>B/S架构Browser/Server,浏览器/服务器架构模式，它的特点是，客户端只需要浏览器，应用程序的逻辑和数据都存储在服务器端。浏览器只需要请求服务器，获取Web资源，服务器把Web资源发送给浏览器即可</p>
+<ul>
+<li>静态资源：HTML、CSS、JavaScript、图片等。负责页面展现</li>
+<li>动态资源：Servlet、JSP等。负责逻辑处理</li>
+<li>数据库：负责存储居</li>
+</ul>
+<h2 id="1、HTTP"><a href="#1、HTTP" class="headerlink" title="1、HTTP"></a>1、HTTP</h2><ul>
+<li>概念：HyperTextTransferProtocol,超文本传输协议，规定了浏览器和服务器之间数据传输的规则</li>
+</ul>
+<p>HTTP协议特点：</p>
+<ol>
+<li>基于TCP协议：面向连接，安全</li>
+<li>基于请求一响应模型的．一次请求对应一次响应</li>
+<li>HTTP协议是无状态的协议：对于事务处理没有记忆能力。每次请求一响应都是独立的。<ul>
+<li>缺点：多次请求间不能共享数据。Java中使用会技术(Cookie、Session)来解决这个问题</li>
+<li>优点：速度快</li>
+</ul>
+</li>
+</ol>
+<h3 id="1-1-请求数据格式"><a href="#1-1-请求数据格式" class="headerlink" title="1.1 请求数据格式"></a>1.1 请求数据格式</h3><p>请求数据分为3部分：</p>
+<ol>
+<li>请求行：请求数据的第一行。其中GET表示请求方式，/<br>表示请求资源路径，HTTP/11表示协议版本</li>
+<li>请求头：第二行开始，格式为key，value形式。</li>
+<li>请求体：POST请求的最后一部分，存放请求参数</li>
+</ol>
+<p>常见的HTTP请求头：</p>
+<ul>
+<li>Host:表示请求的主机名</li>
+<li>User-Agent:浏览器版本，例如Chrome浏览器的标识类似Moa/5…Chrome/79,IE浏览器的标识类似Mozilla/5.0 (windowsNT…）likeGeck0,</li>
+<li>Accept：表示浏览器能接收的资源类型，如text/*，image/<em>或者</em>/*表示所有，</li>
+<li>Accept-Language:表示浏览器偏好的语言，服务器可以据此返回不同语言的网页；</li>
+<li>Accept-Encoding.表示浏览器可以支持的压缩类型，例如gzip,deflate等。</li>
+</ul>
+<p>GET请求和POST请求区别：</p>
+<ol>
+<li><ul>
+<li>GET请求请求参数在请求行中，没有请求体。</li>
+<li>POST请求请求乡数在请求体中</li>
+</ul>
+</li>
+<li>GET请求请求参数大小有限制，POST没有</li>
+</ol>
+<h3 id="1-2-相应数据格式"><a href="#1-2-相应数据格式" class="headerlink" title="1.2 相应数据格式"></a>1.2 相应数据格式</h3><p>响应数据分为3部分：</p>
+<ol>
+<li>响应行：响应数据的第一行。其中HTTP/I.1表示协议版本，200表示响应状态码，OK表示状态码描述</li>
+<li>响应头：第二行开始，格式为key，value形式</li>
+<li>响应体：最后一部分。存放响应数据</li>
+</ol>
+<h2 id="2-Web服务器"><a href="#2-Web服务器" class="headerlink" title="2.Web服务器"></a>2.Web服务器</h2><p>web服务器是一个应该程序（软件），对HTTP协议的操作进行封装，使得程序员不必直接对协议进行操作，让web开发更加便捷。主要功能是”提供网上信息浏览服务”</p>
+<h2 id="1-Tomcat"><a href="#1-Tomcat" class="headerlink" title="1. Tomcat"></a>1. Tomcat</h2><ul>
+<li>概念，Tomcat是Apache软件基金会一个核心项目，是一个开源免费的轻量级web服务器，支持Servlet/JSP少量JavaEE规范。</li>
+<li>JavaEE.JavaEnterpriseEdition,」ava企业版。指」ava企业级开发的技术规范总和。包含13项技术规范：JDBC、JNDlsEJB、RMIJSP、Servlet、XML、JMS、」avaIDL、JTS、JTA、JavaMailsJAF</li>
+<li>Tomcat也被称为Web容器、Servlet容器。Servlet需要依赖于Tomcat才能运行</li>
+<li><a href="https://tomcat.apache.org/">官网</a></li>
+</ul>
+<h2 id="2-Servlt"><a href="#2-Servlt" class="headerlink" title="2.Servlt"></a>2.Servlt</h2><h3 id="1-1-入门"><a href="#1-1-入门" class="headerlink" title="1.1 入门"></a>1.1 入门</h3><ol>
+<li><p>创建web项目，导入Servlet坐标</p>
+<pre><code class="xml">&lt;&lt;dependency&gt;
+    &lt;groupld&gt;javax.servlet&lt;/groupld&gt;
+    &lt;artifactld&gt;javax.servlet-api&lt;/artifactld&gt;
+    &lt;version&gt;3.1.0&lt;/version&gt;
+    &lt;scope&gt;provided&lt;/scope&gt;
+&lt;/dependency&gt;
+</code></pre>
+</li>
+<li><p>创建：定义一个类，实现Servlt接口，并重写接口中的所有方法，并在Servlt中输入一句话</p>
+<pre><code class="java">public class ServltDemo1 implements Servlt&#123;
+    public void service()&#123;&#125;
+&#125;
+</code></pre>
+</li>
+<li><p>配置：再类上使用@WebServelt注解，配置该Servlt的访问路径</p>
+<pre><code class="java">@WebServelt(&quot;/demo1&quot;)
+public class ServeltDemo1 implements Servelt&#123;&#125;
+</code></pre>
+</li>
+<li><p>访问：启动Tomcat,浏览器输入URL访问该Servelt</p>
+<p><code>http://localhost:8080/web-demo/demo1</code></p>
+</li>
+</ol>
+<h3 id="1-2-生命周期"><a href="#1-2-生命周期" class="headerlink" title="1.2 生命周期"></a>1.2 生命周期</h3><p>servlet运行在servlet容器()eb服务器）中，其生命周期由容器来管理，分为4个阶段：</p>
+<ol>
+<li>加载和实例化：默认情况下，当servlet第一次被访问时，由容器创建servlet对象</li>
+<li>初始化：在servlet实例化之后，容器将调用servlet的init()方法初始化这个对象，完成一些如加载配置文件、创建连接等初始化的工作。该方法只调用一次</li>
+<li>请求处理：每次请求servlet时，servlet容器都会调用servlet的service0方法对请求进行处理。</li>
+<li>服务终止：当需要释放内存或者容器关闭时，容器就会调用serv]et实例的destroy()方法完成资源的释放。在destroy()方法调用之后，容器会释这个servlet。t实例，该实例随后会被Java的垃圾收集器所回收</li>
+</ol>
+<h3 id="1-3-Servlet方法介绍"><a href="#1-3-Servlet方法介绍" class="headerlink" title="1.3 Servlet方法介绍"></a>1.3 Servlet方法介绍</h3><ol>
+<li>getServletInfo()<ul>
+<li>获取Servlet信息</li>
+</ul>
+</li>
+<li>getServletConfig()<ul>
+<li>获取ServIetConfig对象</li>
+</ul>
+</li>
+<li>void init(ServletConfig servletConfig)<ul>
+<li>初始化方法，在Servlet被创建时，只执行一次</li>
+</ul>
+</li>
+<li>void service(ServletRequest servletRequest, ServletResponse servletResponse)<ul>
+<li>提供服务方法，每次Servlet被访问，都会调用该方法</li>
+</ul>
+</li>
+<li>public void destroy()<ul>
+<li>销毁方法，当servlet被销毁时，调用该方法。在内存释放或服务器关闭时销毁servlet</li>
+</ul>
+</li>
+</ol>
+<h3 id="1-4Servlet体系结构"><a href="#1-4Servlet体系结构" class="headerlink" title="1.4Servlet体系结构"></a>1.4Servlet体系结构</h3><ul>
+<li>Servlet<ul>
+<li>Servlet体系根结构</li>
+</ul>
+</li>
+<li>GenericServlet<ul>
+<li>Servlet抽象实现类</li>
+</ul>
+</li>
+<li>HttpServlet<ul>
+<li>对HTTP协议封装的Servlet实现类</li>
+</ul>
+</li>
+</ul>
+<p>==我们将来开发B/S架构的web项目，都是针对HTTP协议，所以我们自定义Servlet，会继承HttpServlet==</p>
+<h3 id="1-5-Servlet-urlPaern配置"><a href="#1-5-Servlet-urlPaern配置" class="headerlink" title="1.5 Servlet urlPaern配置"></a>1.5 Servlet urlPaern配置</h3><ul>
+<li>Servlet要想被访问，必须配置其访问路径(urlPattern)</li>
+</ul>
+<ol>
+<li>一个Servlet,可以配置多个urlPattern<br>@WebServlet(urlPatterns={“/demo1”,”/demo2})</li>
+<li>urlPattern配置规则<ol>
+<li>精确匹配<ul>
+<li>配置路径和访问路径必须一样</li>
+</ul>
+</li>
+<li>目录匹配<ul>
+<li>配置路径带有通配符</li>
+</ul>
+</li>
+<li>扩展名匹配<ul>
+<li>配置路径的扩展名和访问路径的扩展名一样</li>
+</ul>
+</li>
+<li>任意匹配<ul>
+<li>配置路径写==/==     <code>或</code>     ==/*==，访问路径随便写都会访问到</li>
+</ul>
+</li>
+<li>/和/*区别：<ol>
+<li>当我们的项目中配置了“/*“，意味着匹配任意访问路径<ol>
+<li>当我们的项目中的Servlet配置了“/”，会覆盖掉tomcat中的DefaultServlet,当其他的u小pattern都匹配不上时都会走这个Servlet</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="1-6-Request-请求）和Response（响应）"><a href="#1-6-Request-请求）和Response（响应）" class="headerlink" title="1.6 Request(请求）和Response（响应）"></a>1.6 Request(请求）和Response（响应）</h3><ul>
+<li><strong>Request</strong>：获取请求数据</li>
+<li>Response：设置响应数据</li>
+</ul>
+<h4 id="1-6-1-Request"><a href="#1-6-1-Request" class="headerlink" title="1.6.1 Request"></a>1.6.1 Request</h4><h5 id="Request继承体系"><a href="#Request继承体系" class="headerlink" title="Request继承体系"></a>Request继承体系</h5><ul>
+<li>ServletRequest<ul>
+<li>Java提供的请求对象的根接口</li>
+</ul>
+</li>
+<li>HttpServletRequest<ul>
+<li>Java提供的对Http协议封装的请求对象接口</li>
+</ul>
+</li>
+<li>RequestFacade<ul>
+<li>Tomcat定义的实现类</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>Tomcat需要解析请求数据,封装为request对象,并目创建request对象传递到service方法中</li>
+<li>使用request对象，查阅JavaEEAPI文档的HttpServIetRequest接口</li>
+</ol>
+<h5 id="Request获取请求数据"><a href="#Request获取请求数据" class="headerlink" title="Request获取请求数据"></a>Request获取请求数据</h5><ul>
+<li>请求数据分为三部分<ol>
+<li>请求行<ul>
+<li><code>GET/request-demo/req1?username=zhangsan HTTP/1.1</code></li>
+<li>String geytMethod():获取请求方式：GET</li>
+<li>String getContextPath:获取虚拟目录（项目访问路径）：/request-demo</li>
+<li>StringBuffer getRequestURL()：获取URL（统一资源定位符）</li>
+<li>String getRequestURI():获取URL(统一资源标识符)：/request-demo/req1</li>
+<li>String geyQueryString():获取请求参数(GET方式)：username=zhangsan&amp;password=123</li>
+</ul>
+</li>
+<li>请求头<ul>
+<li>String getHeader(String name):根据请求头名称，获取值</li>
+</ul>
+</li>
+<li>请求体<ul>
+<li>ServletInputStream getInputStream():获取字节输入流</li>
+<li>BufferedReader getReader()：获取字符输入流</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h5 id="通用方式获取请求参数"><a href="#通用方式获取请求参数" class="headerlink" title="通用方式获取请求参数"></a>通用方式获取请求参数</h5><ul>
+<li><p>请求参数获取方式</p>
+<ul>
+<li>GET方式</li>
+</ul>
+<p><code>String get    QueryString()</code></p>
+<ul>
+<li><p>POST方式</p>
+<p><code>bufferedReader getReader()</code></p>
+</li>
+</ul>
+</li>
+<li><p>Map&lt;String,String[]&gt;getParameterMap():获取所有参数的Map集合</p>
+</li>
+<li><p>String getParameterValues(String name)根据名称获得参数值(数组)</p>
+</li>
+<li><p>String getParameter(String name):根据名称获得参数值(单个值)</p>
+</li>
+</ul>
+<h5 id="Request请求参数中文乱码处理"><a href="#Request请求参数中文乱码处理" class="headerlink" title="Request请求参数中文乱码处理"></a>Request请求参数中文乱码处理</h5><ul>
+<li><p>请求参数如果存在中文，则会乱码</p>
+</li>
+<li><p>解决方案</p>
+<ul>
+<li><p>post设置输入流的编码</p>
+<p><code>req.setCharacterEncoding(&quot;UTF-8&quot;)</code></p>
+</li>
+<li><p>通用方式（GET/POST)：先编码在解码</p>
+<p><code>new String(username.getBytes(&quot;ISO-8859-1&quot;),&quot;UTF-8);</code></p>
+</li>
+</ul>
+</li>
+</ul>
+<p>URL编码</p>
+<ol>
+<li>将每个字符按编码转为二进制</li>
+<li>每个字节按两个16进制数并在前面加上%</li>
+</ol>
+<p><strong>Tomcat8，0之后，已将GET请求乱码问题解决，设置默认的解码方式为UTF一8</strong></p>
+<h5 id="请求转发"><a href="#请求转发" class="headerlink" title="请求转发"></a>请求转发</h5><ul>
+<li><p>请求转发：一种在服务器内部的资源跳转方式</p>
+</li>
+<li><p>实现方式、</p>
+<p><code>req.getRequestDispatcher(&quot;资源B路径&quot;).forward(req,resp)</code></p>
+</li>
+<li><p>请求转发资源间共享数据．使用Request对象</p>
+<ul>
+<li>void setAttriÄYte(Stringname，Objecto):存储数据到request域中</li>
+<li>Objectget Attribute(Stringname):根据key，获取值</li>
+<li>void removeAttribute(Stringname):根据key，删除该键值对</li>
+</ul>
+</li>
+<li><p>请求转发特点：</p>
+<ol>
+<li>浏览器地址栏路径不发生变化</li>
+<li>只能转发到当前服务器的内部资源</li>
+<li>一次请求，可以在转发的资源间使用request共享数据</li>
+</ol>
+</li>
+</ul>
+<h4 id="1-6-2-Response"><a href="#1-6-2-Response" class="headerlink" title="1.6.2 Response"></a>1.6.2 Response</h4><h5 id="Response设置响应数据功能介绍"><a href="#Response设置响应数据功能介绍" class="headerlink" title="Response设置响应数据功能介绍"></a>Response设置响应数据功能介绍</h5><ul>
+<li>响应数据分三部分<ol>
+<li>响应行<ul>
+<li>void    setStatus(int sc):设置响应状态码</li>
+</ul>
+</li>
+<li>响应头<ul>
+<li>void    setHeader(String name,String value):设置响应头键值对</li>
+</ul>
+</li>
+<li>响应体<ul>
+<li>PringWriter getWriter():获取字符输出流</li>
+<li>ServletOutputStream getOutputStream():获取字节输出流</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h5 id="Response完成重定向"><a href="#Response完成重定向" class="headerlink" title="Response完成重定向"></a>Response完成重定向</h5><ul>
+<li><p>重定向：一种资源跳转方式</p>
+</li>
+<li><p>实现方式</p>
+<pre><code class="java">resp.setStatus(302);
+resp.setHeader(&quot;location&quot;,&quot;资源B的路径&quot;)；
+</code></pre>
+</li>
+<li><p>简化方式</p>
+<p><code>resp.sendRedirect(&quot;资源路径&quot;)</code></p>
+</li>
+</ul>
+<p>重定向特点：</p>
+<ol>
+<li>浏览器地址栏路径发生变化</li>
+<li>可以重定向到任意亻立置的资源（服务器内部、外部均可）</li>
+<li>两次请求，不能在多个资源使用request共享数据</li>
+</ol>
+<h5 id="路径问题"><a href="#路径问题" class="headerlink" title="路径问题"></a>路径问题</h5><p>明确路径谁使用？</p>
+<ul>
+<li>浏览器使用．需要加虚拟目录（项目访问路径）</li>
+<li>服务端使用．不需要加虚拟目录</li>
+</ul>
+<h5 id="Response响应字符数据"><a href="#Response响应字符数据" class="headerlink" title="Response响应字符数据"></a>Response响应字符数据</h5><ul>
+<li><p>使用</p>
+<ol>
+<li><p>通过Response对象获取字符输出流</p>
+<p><code>PringWriter writer = resp.getWriter();</code></p>
+</li>
+<li><p>写数据</p>
+<p><code>writer.write(&quot;aaa&quot;);</code></p>
+</li>
+<li><p>．注意：<br>该流不需要关闭，随着响应结束，response对象销毁，由服务器关闭<br>中文数据乱码：原因通过Response获取的字符输出流默认编码：ISO-8859-1<br><code>resp.setContentType(&quot;text/html;charset=utf-8&quot;);</code></p>
+</li>
+</ol>
+</li>
+</ul>
+<h5 id="Response响应字节数据"><a href="#Response响应字节数据" class="headerlink" title="Response响应字节数据"></a>Response响应字节数据</h5><ul>
+<li><p>使用</p>
+<ol>
+<li>通过Response对象获取字节输出流<br><code>ServletOutputStream outputStream=resp.getOutputStream();</code></li>
+<li>写数据<br><code>outputStream.write(字节数据）；</code></li>
+</ol>
+</li>
+<li><p>IOUtils工具类使用</p>
+<ol>
+<li><p>导入坐标</p>
+<pre><code class="xml">&lt;dependency&gt;
+    &lt;groupId&gt;commons-i0&lt;/groupId&gt;
+    &lt;artifactld&gt;commons-io&lt;/artifactld&gt;
+    &lt;version&gt;2.6&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+</li>
+<li><p>使用</p>
+<p><code>IOUtils.copy（输入流，输出流）；</code></p>
+</li>
+</ol>
+</li>
+</ul>
+<h1 id="JSP"><a href="#JSP" class="headerlink" title="JSP"></a>JSP</h1><ul>
+<li>概念：Java     Server    Pages,Java服务端页面</li>
+<li>一种动态的网页技术，其中既可以定义HTML、JS、CSS等静态内容，还可以定义Java代码的动态内容</li>
+<li>JSP=HTML+Java</li>
+<li>JSP的作用：简化开发，避免了在Servlet中直接输出HTML析筌</li>
+</ul>
+<h2 id="1-入门-1"><a href="#1-入门-1" class="headerlink" title="1.入门"></a>1.入门</h2><ol>
+<li><p>导入JSP坐标</p>
+<pre><code class="xml">&lt;dependency&gt;
+    &lt;groupId&gt;javax.servlet.jsp&lt;/groupld&gt;
+    &lt;artifactId&gt;jsp-api&lt;/artifactld&gt;
+    &lt;version&gt;2.2&lt;/version&gt;
+    &lt;scope&gt;provided&lt;/scope&gt;
+&lt;/dependency&gt;
+</code></pre>
+</li>
+<li><p>创建JSP文件</p>
+</li>
+<li><p>编写HTML标签和Java代码</p>
+<pre><code class="xml">&lt;body&gt;
+    &lt;h1&gt;hello jsp~&lt;/h1&gt;
+    &lt;% System.out.printf(&quot;jsp hello~&quot;);%&gt;
+        &lt;/%&gt;
+&lt;/body&gt;
+</code></pre>
+</li>
+</ol>
+<h2 id="2-JSP脚本"><a href="#2-JSP脚本" class="headerlink" title="2.JSP脚本"></a>2.JSP脚本</h2><ul>
+<li><p>JSP脚本用于在JSP页面内定义Java代码</p>
+</li>
+<li><p>JSP脚本分类</p>
+<ol>
+<li>&lt;％…％&gt;：内容会直接放到jspServie()方法之中</li>
+<li>&lt;％=…％&gt;：内容会放到out.print()中，作为out.print()的参数</li>
+<li>&lt;％!…％&gt;：内容会放到jspService()方法之外，被类直接包含</li>
+</ol>
+</li>
+<li><p>由于JSP页面内，既可以定义HTML标签，又可以定义Java代码，造成了以下问题：</p>
+<ol>
+<li>书写麻烦：特别是复杂的页面</li>
+<li>阅读麻烦</li>
+<li>复杂度高：运行需要依赖于各种环境，JRE,JSP容器，JavaEE..</li>
+<li>占内存和磁盘，JSP会自动生成.java和，class文件占磁盘，运行的是．class文件占内存</li>
+<li>调试困难：出错后，需要找到自动生成的.java文件进行调试</li>
+<li>不利于团队协作：前端人员不会Java,后端人员不精HTML</li>
+</ol>
+</li>
+</ul>
+<h2 id="3-EL表达式"><a href="#3-EL表达式" class="headerlink" title="3.EL表达式"></a>3.EL表达式</h2><ul>
+<li><p>ExpressionLanguage表达式语言，用于简化JSP页面内的Java代码</p>
+</li>
+<li><p>主要功能：获取娄划居</p>
+</li>
+<li><p>语法：${expression}</p>
+<p><code>$&#123;brands&#125;</code>:获取域中存储的key为brands的数据</p>
+</li>
+</ul>
+<p>Javaweb中的四大域对象：</p>
+<ol>
+<li>page:当前页面有效</li>
+<li>request:当前请求有效</li>
+<li>session，当前会话有效</li>
+<li>application:当前应用有效</li>
+</ol>
+<p>==el表达式获取数据，会依次从这4个域中寻找，直到找到为止==</p>
+<h2 id="4-JSTL标签"><a href="#4-JSTL标签" class="headerlink" title="4.JSTL标签"></a>4.JSTL标签</h2><ul>
+<li><p>JSP标准标签库（Jsp    Standarded    Tag    Library)，使用标签取代SP页面上的Java代码</p>
+</li>
+<li><p>入门</p>
+<ol>
+<li><p>导入坐标</p>
+<pre><code class="xml">&lt;dependency&gt;
+    &lt;groupId&gt;jstl&lt;/groupId&gt;
+    &lt;artifactId&gt;jstl&lt;/artifactId&gt;
+    &lt;version&gt;l.2&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;taglibs&lt;/groupId&gt;
+    &lt;artifactId&gt;standard&lt;/artifactId&gt;
+    &lt;version&gt;l.1.2&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+</li>
+<li><p>在JSP页面上引入JSTL标签库</p>
+<p><code>&lt;％@taglib prefix=&quot;c&quot;uri=&quot;http://java.sun.com/jsp/jstl/core&quot;％&gt;</code></p>
+</li>
+<li><p>使用</p>
+<ul>
+<li>&lt;C:IF&gt;</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>&lt;c:forEach&gt;:相当于for循环</p>
+<ul>
+<li>items:被遍历的容器</li>
+<li>var:遍历产生的临时变量</li>
+<li>varStatus:遍历状态对象<ul>
+<li>index:从0开始</li>
+<li>count:从1开始</li>
+</ul>
+</li>
+<li>begin:开始数</li>
+<li>end:结束数</li>
+<li>step:步长</li>
+</ul>
+</li>
+</ul>
+<h1 id="MVC模式"><a href="#MVC模式" class="headerlink" title="MVC模式"></a>MVC模式</h1><ul>
+<li>MVC是一种分层开发的模式，其中<ul>
+<li>M：Model，业务模型，处理业务</li>
+<li>V：View：视图，界面展示</li>
+<li>C：Controller，控制器，处理请求，调用模型和视图</li>
+</ul>
+</li>
+<li>MVC好处<ul>
+<li>职责单一，互不影响</li>
+<li>有利于分工协作</li>
+<li>有利于组件重用</li>
+</ul>
+</li>
+</ul>
+<h1 id="三层架构"><a href="#三层架构" class="headerlink" title="三层架构"></a>三层架构</h1><ul>
+<li>表现层<ul>
+<li>接收请求，封装数据，调用业务逻辑层，响应数据</li>
+</ul>
+</li>
+<li>业务逻辑层<ul>
+<li>对业务逻辑进行封装，组合数据访问层层中基本功能，形成复杂的业务逻辑业务</li>
+</ul>
+</li>
+<li>数据访问层<ul>
+<li>对数据库的CRUD基本操作</li>
+</ul>
+</li>
+</ul>
+<h1 id="会话跟踪技术"><a href="#会话跟踪技术" class="headerlink" title="会话跟踪技术"></a>会话跟踪技术</h1><ul>
+<li>会话：用户打开浏览器，访问web服务器的资源，会话建立，直到有一方断开连接，会话结束。在一次会话中<br>可以包含多次请求和响应</li>
+<li>会话跟踪：一种维护浏览器状态的方法，服务器需要识别多次请求是否来自于同一浏览器，以便在同一次会话<br>的多次请求间共享数据</li>
+<li>HTTP协议是无状态的，每次浏览器向务器请求时，服务器都会将该请求视为新的请求，因此我们需要会话跟<br>斜支术来实现会话内数据共享</li>
+<li>实现方式：<ol>
+<li>客尸端会话跟踪技术：Cookie</li>
+<li>服务端会话跟踪技术：Session</li>
+</ol>
+</li>
+</ul>
+<h2 id="1-Cookie"><a href="#1-Cookie" class="headerlink" title="1.Cookie"></a>1.Cookie</h2><h3 id="1-1基本使用"><a href="#1-1基本使用" class="headerlink" title="1.1基本使用"></a>1.1基本使用</h3><ul>
+<li><p>Cookie:客户端会话技术，将数据保存到客户端，以后每次请求都携带Cookie数据进行访问</p>
+</li>
+<li><p>使用</p>
+<ol>
+<li><p>创建Cookie对象，设置数据</p>
+<p><code>Cookie cookie  = new Cookie(&quot;key&quot;,&quot;value)</code></p>
+</li>
+<li><p>发送Cookie到客户端，使用response对象</p>
+<p><code>response.addCookie(cookie);</code></p>
+</li>
+</ol>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>获取Cookie</p>
+<ol>
+<li><p>获取客户端携带的所有Cookie，使用request对象</p>
+<p><code>Cookie[] cookies = request.getCookies();</code></p>
+</li>
+<li><p>遍历数组，获取每一个Cookie对象</p>
+</li>
+<li><p>使用Cookie对象方法获取数据</p>
+<p><code>cookie.getName()</code></p>
+<p><code>cookie.getValues()</code></p>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="1-2原理"><a href="#1-2原理" class="headerlink" title="1.2原理"></a>1.2原理</h3><ul>
+<li>Cookie的实现是基于HTTP协议的<ul>
+<li>响应头：set-cookie</li>
+<li>请求头：cookie</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-3使用细节"><a href="#1-3使用细节" class="headerlink" title="1.3使用细节"></a>1.3使用细节</h3><ul>
+<li>存活时间<ul>
+<li>默认情况下，Cookie存储在浏览器内存中，当浏览器关闭，内存释放，则Cookie被销毁</li>
+<li>setMaxAge(intteconds)：设置C00kie存活时间<ol>
+<li>正数：将Cookie写入浏览器所在电脑的硬盘，持久化存储。到时间自动删除</li>
+<li>负数：默认值，Cookie在当前浏览器内存中，当浏览器关闭，则Cookie被销毁</li>
+<li>零：删除对应Cookie</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>存储中文<ul>
+<li>Cookie不能直接存中文</li>
+<li>如需要存储，则需要进行转码：URL编码</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-Session"><a href="#2-Session" class="headerlink" title="2.Session"></a>2.Session</h2><h3 id="2-1使用"><a href="#2-1使用" class="headerlink" title="2.1使用"></a>2.1使用</h3><ul>
+<li><p>服务端会话跟斜支术：将数据保存到服务端</p>
+</li>
+<li><p>JavaEE提供HttpSession接口，来实现一次会话的多次请求间数据共享功能</p>
+</li>
+<li><p>使用</p>
+<ol>
+<li><p>获取Session对象</p>
+<p><code>HttpSession session = request.getSession();</code></p>
+</li>
+<li><p>Session对象功能：</p>
+<ol>
+<li>void setAttribute(String name,Object o):存储数据到Session域中 </li>
+<li>Object getAttribute(String name):根据key，获取值</li>
+<li>void removeAttribute(String name):根据key,删除该键值对</li>
+</ol>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="2-2原理"><a href="#2-2原理" class="headerlink" title="2.2原理"></a>2.2原理</h2><ul>
+<li>Session是基于Cookie实现的</li>
+</ul>
+<h3 id="2-3使用细节"><a href="#2-3使用细节" class="headerlink" title="2.3使用细节"></a>2.3使用细节</h3><ul>
+<li><p>Session钝化、活化：</p>
+<ul>
+<li>服务器重启后，Session中的数据是否还在？</li>
+<li>钝化：在服器正常关闭后，Tomcat会自动将Session数据写入硬盘的文件中</li>
+<li>活化：再次启动服务器后，从文件中加载数据到Session中</li>
+</ul>
+</li>
+<li><p>Seesion销毁：</p>
+<ul>
+<li><p>默认情况下，无操作，30min自动销毁</p>
+<pre><code class="xml">&lt;session-config&gt;
+    &lt;session-timeout&gt;30&lt;/session-timeout&gt;
+&lt;/session-config&gt;
+</code></pre>
+</li>
+<li><p>调用Session对象的invalidate()方法</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-4-小结"><a href="#2-4-小结" class="headerlink" title="2.4 小结"></a>2.4 小结</h3><ul>
+<li>Cookie和Session都是来完成一次会话内多次请求间数据共享的<ul>
+<li>区别：<ul>
+<li>存储位置：Cookie是将数据存储在客户端，Session将数据存储在服务端</li>
+<li>安全性：Cookie不安全，Session安全</li>
+<li>数据大小：Cookie最大3KB，Session无大小限制</li>
+<li>存储时间：Cookie可以长期存储，Session默认30分钟</li>
+<li>服务器性能：Cookie不占服务器资源，Sessipn占用服务器资源</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="Filter"><a href="#Filter" class="headerlink" title="Filter"></a>Filter</h1><ul>
+<li>概念，Filter表示过滤器，是JavaWeb三大组亻牛(ServletFilter、Listener)之一</li>
+<li>过滤器可以把对资源的请求拦截下来，从而实现一些特殊的功能。</li>
+<li>过滤器一般完成一些通用的操作，比如：权限控制、统一编码处理、敏感字符处理等等，</li>
+</ul>
+<h2 id="1-入门-2"><a href="#1-入门-2" class="headerlink" title="1.入门"></a>1.入门</h2><ol>
+<li><p>定义类，实现Filter接口，并重写所有方法</p>
+<pre><code class="java">public class FilterDemo implements Filter&#123;
+    public void inti (FilterConfig FilterConfig)
+    public void doFilter(ServletRequest request
+    public void destory()&#123;&#125;
+&#125;
+</code></pre>
+</li>
+<li><p>配置Filter拦截资源的路径：在类上定义@WebFilter注解</p>
+<pre><code class="java">@WebFilter(&quot;/*&quot;)
+public class FilterDemo implements Filter&#123;
+</code></pre>
+</li>
+<li><p>在doFilter方法中输出一句话，并放行</p>
+<pre><code class="java">public void doFilter(ServletRequest request,ser
+                     System.out.println(&quot;filter 被指行了...&quot;)
+                     chain.doFilter(request,response);
+                     &#125;
+</code></pre>
+</li>
+</ol>
+<h2 id="2-执行流程"><a href="#2-执行流程" class="headerlink" title="2.执行流程"></a>2.执行流程</h2><ul>
+<li>放行后访问对应资源，资源访问元成后，还会回到Fi|ter中吗？会</li>
+<li>如果回到Filter中，是重头执行还是执行放行后的逻辑呢？</li>
+<li>执行放行前逻辑==》放行–&gt;访问资源–&gt;执行放行后逻辑</li>
+</ul>
+<h2 id="3-使用细节"><a href="#3-使用细节" class="headerlink" title="3.使用细节"></a>3.使用细节</h2><ul>
+<li>Filter可以根据需求，配置不同的拦截资源路径<br>@WebFiIte1(“/<code>*</code>”)<br>pubIic class FiIterDemo<ul>
+<li>拦截具体源：/index.jsp:只有访问index.jsp时才会被拦截。</li>
+<li>目录拦截：/user/<code>*</code>:访问/user下的所有资源，都会被拦截</li>
+<li>后缀名拦截：<code>*</code>.jsp:访问后缀名为jsp的资源，都会被拦截</li>
+<li>拦截所有：/<code>*</code>：访问所有资源，都会被拦截</li>
+</ul>
+</li>
+<li>过滤器链<ul>
+<li>一个web应用，可以配置多个过滤器，这多个过滤器称为过滤器链</li>
+<li>注解配置的Filter,优先级按照过些器类名（字符串）的自然排序</li>
+</ul>
+</li>
+</ul>
+<h1 id="Listener"><a href="#Listener" class="headerlink" title="Listener"></a>Listener</h1><ul>
+<li><p>概念Listener表示监听器，是JavaWeb三大组件(Servlet、Filter、Listener)之一</p>
+</li>
+<li><p>监听器可以监听就是在application,session,request三个对象创建、销毁或者往其中添加修改删除<br>属性时自动执行代码的功能组件</p>
+</li>
+<li><p>Listener分类：JavaWeb中提供了8个监听器</p>
+<table>
+<thead>
+<tr>
+<th>监听器的分类</th>
+<th>监听器的名称</th>
+<th>使用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ServletContext监听</td>
+<td>ServletContextListener</td>
+<td>用于对ServIetContext对象进行监听（创建、悄毁）</td>
+</tr>
+<tr>
+<td></td>
+<td>ServletContextAttributeListener</td>
+<td>对ServletContext对像中属性的监听（增删改属性）</td>
+</tr>
+<tr>
+<td>session监听</td>
+<td>HttpSessionListener</td>
+<td>对Session对象的整体状态的监听（创建、销毁）</td>
+</tr>
+<tr>
+<td></td>
+<td>HttpSessionAttributeListener</td>
+<td>对Session对像中的属性监听（增删改属性）</td>
+</tr>
+<tr>
+<td></td>
+<td>HttpSessionBindingListener</td>
+<td>监听对象于session的绑定和解除</td>
+</tr>
+<tr>
+<td></td>
+<td>HttpSessionActivationListener</td>
+<td>对Session数据的钝化活化的监听</td>
+</tr>
+<tr>
+<td>Request监听</td>
+<td>rvletReuestListener</td>
+<td>对Request对象进行监听（创建、销毁）</td>
+</tr>
+<tr>
+<td></td>
+<td>ServletRequestAttributeListener</td>
+<td>对Request对象中属性的监听（增删改属性）</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h1 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h1><ul>
+<li>概念：AJAX(AsynchronousJavaScriptAndXML):异步的JavaScript和XML</li>
+<li>作用：<ol>
+<li>与服务器进行数据交换：通过AJAx可以给服务器发送请求，并获取服务器响应的数据<ul>
+<li>使用了AJAx和服务器进行通信，就可以使用HTML+AJAx来替换JSP页面了</li>
+</ul>
+</li>
+<li>异步交互：可以在不重新加载整个页面的情况下，与服务器交换数据并更新部分网页的技术，如：搜索联想、用<br>户名是否可用校验，等等，</li>
+</ol>
+</li>
+</ul>
+<h2 id="1-入门-3"><a href="#1-入门-3" class="headerlink" title="1.入门"></a>1.入门</h2><ol>
+<li><p>编写AjaxServlet,并使用response输出字符串</p>
+</li>
+<li><p>创建XMLHttpRequest对象：用于和服务器交换数据</p>
+<pre><code class="javascript">var xmlhttp
+if(window XMLHttpRequest)&#123;
+//code for IE7+,Firefox,Chorme,Opera,Safari
+xmlhttp = new XMLHttpRequest();
+&#125;else&#123;
+//code for IE6,IE5
+xmlhttp = new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;)
+&#125;
+</code></pre>
+</li>
+<li><p>向服务器发送请求</p>
+<pre><code class="javascript">xmlhttp.open(&quot;GET&quot;,&quot;url&quot;);
+xml.send();//发送请求
+</code></pre>
+</li>
+<li><p>获取服务器响应数据</p>
+<pre><code class="javascript">xmlhttp.onreadystatechange=function()&#123;
+    if(xmlhttp.readyState==4&amp;&amp;xmlhttp.status==200)&#123;
+        alert(xmlhttp.responseText);
+    &#125;
+&#125;
+</code></pre>
+</li>
+</ol>
+<h2 id="2-Axios异步框架"><a href="#2-Axios异步框架" class="headerlink" title="2.Axios异步框架"></a>2.Axios异步框架</h2><ul>
+<li>对原生的AJAX进行封装，简化书写</li>
+<li><a href="http://www,axios-http.cn/">官网</a></li>
+</ul>
+<ol>
+<li><p>引入axios的js文件</p>
+<p><code>&lt;script src = &quot;js/axios-0.18.0.js&quot;&gt;&lt;/script&gt;</code></p>
+</li>
+<li><p>使用axios发送请求，并获取响应结果</p>
+<pre><code class="javascript">axios(&#123;
+    method:&quot;get&quot;,
+    url:&quot;http://localhost:8080/ajax-demo1/aJAXDemo1?username=zhangsan&quot;
+&#125;).then(function(resp)&#123;
+    alert(resp.data);
+&#125;)
+
+axios(&#123;
+    method:&quot;post&quot;,
+    url:&quot;http://localhost:8080/ajax-demo1/aJAXDemo1?username=zhangsan&quot;
+    data:&quot;uaername=zhangsan&quot;
+&#125;).then(function(resp)&#123;
+    alert(resp.data);
+&#125;)
+</code></pre>
+<p>请求方式别名</p>
+<ul>
+<li>为了方便起见，Axios已经为所有支持的请求方法提供了别名。</li>
+</ul>
+<ol>
+<li><table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>get(url)</td>
+<td>发起GET请求</td>
+</tr>
+<tr>
+<td>post(url,请求参数)</td>
+<td>发起POST请求</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+</li>
+</ol>
+<h1 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h1><h2 id="1-基础语法"><a href="#1-基础语法" class="headerlink" title="1.基础语法"></a>1.基础语法</h2><ul>
+<li><p>定义</p>
+<pre><code class="javascript">var 变量名 = &#123;
+    &quot;key1&quot;:value1,
+    &quot;key2&quot;:value2,
+    ...
+&#125;;
+</code></pre>
+</li>
+<li><p>获取数据</p>
+<p><code>变量名.key</code></p>
+</li>
+</ul>
+<h2 id="2-JSON和Java对象转换"><a href="#2-JSON和Java对象转换" class="headerlink" title="2.JSON和Java对象转换"></a>2.JSON和Java对象转换</h2><ul>
+<li><p>请求数据：JSON字符串转换为Java对象</p>
+</li>
+<li><p>响应数据：Java对象转换为JSON字符串</p>
+</li>
+<li><p>Fstjson是阿里巴巴提供的一个Java语言编写的高性能功能完善的」SON库，是目前Java语言中最决的JSON<br>库，可以实ava对象和JSON字符串的相互转换。</p>
+</li>
+<li><p>使用</p>
+<ol>
+<li><p>导入坐标</p>
+<pre><code class="xml">&lt;dependency&gt;
+    &lt;groupId&gt;com.alibaba&lt;/groupId&gt;
+    &lt;artifactld&gt;fastjson&lt;/artifactld&gt;
+    &lt;version&gt;1.2.62&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+</li>
+<li><p>Java对象转JSON</p>
+<p><code>String jsonStr = JSON.toJSONString(obj);</code></p>
+</li>
+<li><p>JSON字符串转Java对象</p>
+<p><code>User user = JSON.parseObject(jsonStr,Uesr.class);</code></p>
+</li>
+</ol>
+</li>
+</ul>
+<h1 id="Vue"><a href="#Vue" class="headerlink" title="Vue"></a>Vue</h1><ul>
+<li>Vue是一套前端免除原生JavaScript中的DOM操作，简化书写</li>
+<li>基于MVVM(Model-View-ViewModel)思想，实现数据的双向绑定，将编程氵主点放在数据上</li>
+<li><a href="https://cn.vuejs.org/">官网</a></li>
+</ul>
+<p>==MVC：只能实现模型到视图的单向展示==</p>
+<p>==MVVM：可以实现数据的双向绑定==</p>
+<h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><ol>
+<li><p>新建HTML页面，引入Vue.js文件</p>
+<p><code>&lt;script src=&quot;js/vue.js&quot;&gt;&lt;/script&gt;</code></p>
+</li>
+<li><p>在JS代码区域，创建Vue核心对象，进行数据绑定</p>
+<pre><code class="javascript">new Vue(&#123;
+    el:&quot;#app&quot;,
+    data()&#123;
+        return&#123;
+            username:&quot;&quot;
+        &#125;
+    &#125;
+&#125;);
+</code></pre>
+</li>
+<li><p>编写视图</p>
+<pre><code class="html">&lt;div id=&quot;app&quot;&gt;
+    &lt;input name=&quot;username&quot; v-model=&quot;username&quot;&gt;
+    &#123;&#123;u&#125;&#125;
+&lt;/div&gt;
+</code></pre>
+<h2 id="1-Vue常用命令"><a href="#1-Vue常用命令" class="headerlink" title="1.Vue常用命令"></a>1.Vue常用命令</h2><ul>
+<li><p>指令：HTML标签上带有v-前缀的特殊属性，不同指令具有不同含义。例如：v-if,v-for..</p>
+</li>
+<li><p>常用指令</p>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>v-bind</td>
+<td>为HTML标签绑定属性值，如设置href,css样式等</td>
+</tr>
+<tr>
+<td>v-model</td>
+<td>在表单元素上创建双向数据绑定</td>
+</tr>
+<tr>
+<td>v-on</td>
+<td>为HTML标签绑定事件</td>
+</tr>
+<tr>
+<td>v-if</td>
+<td>条件性的渲染某元素，判定为true是渲染，否则不渲染</td>
+</tr>
+<tr>
+<td>v-else</td>
+<td>条件性的渲染某元素，判定为true是渲染，否则不渲染</td>
+</tr>
+<tr>
+<td>v-else-if</td>
+<td>条件性的渲染某元素，判定为true是渲染，否则不渲染</td>
+</tr>
+<tr>
+<td>v-show</td>
+<td>根据条件展示某元素，区别在于切换的事display属性的值</td>
+</tr>
+<tr>
+<td>v-for</td>
+<td>列表渲染，遍历容器的元素或者对象的属性</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="2-生命周期"><a href="#2-生命周期" class="headerlink" title="2.生命周期"></a>2.生命周期</h2><ul>
+<li><p>生命周期的八个阶段：每触发一个生命周期事件，会自动执行一个生命周期方法（钩子）</p>
+<table>
+<thead>
+<tr>
+<th>状态</th>
+<th>阶段周期</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>beforeCreate</td>
+<td>创建前</td>
+</tr>
+<tr>
+<td>created</td>
+<td>创建后</td>
+</tr>
+<tr>
+<td>beforeMount</td>
+<td>载入前</td>
+</tr>
+<tr>
+<td>Mount</td>
+<td>挂载完成</td>
+</tr>
+<tr>
+<td>beforeUpdate</td>
+<td>更新前</td>
+</tr>
+<tr>
+<td>update</td>
+<td>更新后</td>
+</tr>
+<tr>
+<td>beforeDestroy</td>
+<td>销毁前</td>
+</tr>
+<tr>
+<td>destroy</td>
+<td>销毁后</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>mounted：挂载完成，Vue初始化成功，HTML页面渲染成功</p>
+<ul>
+<li><p>发送异步请求，加载数据</p>
+</li>
+<li><p>示例</p>
+<pre><code class="javascript">new vue(&#123;
+    el:&quot;#app&quot;
+    mounted()&#123;
+    alert(&quot;vue挂载完成，发送异步请求&quot;)
+&#125;
+&#125;)
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</style></p></li></ol></li></ul>]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>javaWeb 笔记</tag>
       </tags>
   </entry>
 </search>
