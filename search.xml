@@ -1,65 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>血染钟楼规则</title>
-    <url>/%E6%A1%8C%E6%B8%B8/%E8%A1%80%E6%9F%93%E9%92%9F%E6%A5%BC/%E8%A1%80%E6%9F%93%E9%92%9F%E6%A5%BC/</url>
-    <content><![CDATA[<h1 id="游戏流程"><a href="#游戏流程" class="headerlink" title="游戏流程"></a><font size="8">游戏流程</font></h1><h2 id="第一个夜晚"><a href="#第一个夜晚" class="headerlink" title="第一个夜晚"></a><font color="#00ae9d" size="6"><strong>第一个夜晚</strong></font></h2><p><font size="5" color="#102b6a">&emsp;&emsp;
-1. 说书人唤醒恶魔，告知恶魔三个不在场玩家的善良身份(建议7/10/13人局三村民，其它人数配置两村民一外来)，并告知他爪牙是谁<br>&emsp;&emsp;
-2. 说书人唤醒所有爪牙，并告知他们恶魔是谁(ps：<font size="4" color="#d3c6a6">线下说书人可以同时唤醒爪牙和恶魔，但不能交流)</font><br>&emsp;&emsp;
-3. 说书人按照不同角色技能发动顺序唤醒在第一个晚上拥有技能的玩家并配合他们使用自己的技能
-</font></p>
-
-<hr>
-<h2 id="第一个白天"><a href="#第一个白天" class="headerlink" title="第一个白天"></a><font color="#00ae9d" size="6"><strong>第一个白天</strong></font></h2><p><font size="5" color="#102b6a">&emsp;&emsp;
-1. 每个白天黎明之时，说书人将宣布有关上一个夜晚的死亡信息，之后玩家自由发言并且可以随意私聊，直到说书人宣布进入<font color="#d71345"><b>提名阶段</b></font>。
-<br>&emsp;&emsp;
-2. <font color="#d71345"><b>提名阶段</b></font>所有玩家保持安静每个人都可以提名自己认为可疑的玩家来听听他们的辩护或者提名自己来讲两句。
-<br>&emsp;&emsp;
-被提名玩家在30秒的辩护后（<font size="4" color="#d3c6a6">可适当延长</font>）进入<font color="#d71345"><b>投票环节</b></font>，从被提名玩家的上一位玩家开始顺时针投票，并在计票后进行发起下一次提名，直到说书人认为当天的<font color="#d71345"><b>提名阶段</b></font>可以结束了·
-<br>&emsp;&emsp;
-所有玩家都可以在白天的每一个投票环节中投票，但是死去的玩家只剩下最后一票，也就是他们的遗书。不过死人可以继续参与游戏，并且正常发言。
-<br>&emsp;&emsp;
-如果被提名玩家得票数达到场上存活人数的一半且在所有被提名者中得票最多，他被处决,如果当天得票最多的被提名者平票，没有人被处决,死人不能提名，但是可以被提名
-<br>&emsp;&emsp;
-每名玩家在每个白天只能提名一次也只能被提名一次。在处决完成后，白天结束。
-
-<p></p></font></p><p></p>
-<p>
-
-<hr>
-</p><h2 id="黄昏降临"><a href="#黄昏降临" class="headerlink" title="黄昏降临"></a><font color="#00ae9d" size="6"><strong>黄昏降临</strong></font></h2><p><font size="5" color="#102b6a">&emsp;&emsp;、
-有些效果会在这个阶段发动。一些状态被在这个阶段改变·说书人则在这个阶段通过调整魔典上的标记来提醒自己需要注意的事情。
-</font></p>
-
-<hr>
-<h2 id="其他夜晚"><a href="#其他夜晚" class="headerlink" title="其他夜晚"></a><font color="#00ae9d" size="6"><strong>其他夜晚</strong></font></h2><p><font size="5" color="#102b6a">&emsp;&emsp;
-说书人按照不同角色的技能发动顺序唤醒在其他夜晚拥有技能的玩家并配合他们使用自己的技能
-</font></p>
-
-<hr>
-<h2 id="游戏进行"><a href="#游戏进行" class="headerlink" title="游戏进行"></a><font color="#00ae9d" size="6"><strong>游戏进行</strong></font></h2><p><font size="5" color="#102b6a">&emsp;&emsp;重复234阶段直到游戏结束条件达成
-</font></p>
-
-<hr>
-<h2 id="游戏结束"><a href="#游戏结束" class="headerlink" title="游戏结束"></a><font color="#00ae9d" size="6"><strong>游戏结束</strong></font></h2><p><font size="5" color="#102b6a">&emsp;&emsp;当场上的恶魔死亡时，善良阵营获胜，当场上的存活玩家为2时（不计算旅行者和传奇身份),邪恶阵营获胜·如果两个阵营同时获胜，则改为善良阵营朕胜
-<p><font size="5" color="#102b6a">&emsp;&emsp;
-部分角色的技能可能会改变游戏的胜利条件，请按照角色技能结算特殊胜利和特殊落败。
-</font></p>
-<p><font size="5" color="#102b6a">&emsp;&emsp;
-部分角色的效果可能与说明书冲突，冲突处以角色技能优先，
-</font></p></font>
-</p>]]></content>
-      <categories>
-        <category>桌游</category>
-        <category>血染钟楼</category>
-      </categories>
-      <tags>
-        <tag>血染钟楼</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>javaWeb</title>
-    <url>/java/javaWeb/</url>
+    <url>/java/javaweb/</url>
     <content><![CDATA[<h1 id="一、数据类型"><a href="#一、数据类型" class="headerlink" title="一、数据类型"></a>一、数据类型</h1><h2 id="1、数值类型"><a href="#1、数值类型" class="headerlink" title="1、数值类型"></a>1、数值类型</h2><table>
 <thead>
 <tr>
@@ -3559,7 +3502,7 @@ axios(&#123;
   </entry>
   <entry>
     <title>java基础</title>
-    <url>/java/javaSe/</url>
+    <url>/java/javase/</url>
     <content><![CDATA[<p>方法名</p>
 <h1 id="java-基本语法"><a href="#java-基本语法" class="headerlink" title="java 基本语法"></a>java 基本语法</h1><h2 id="1、注释"><a href="#1、注释" class="headerlink" title="1、注释"></a>1、注释</h2><ul>
 <li><p><strong>什么事注释</strong></p>
@@ -9318,6 +9261,596 @@ encoding：本XML文件的编码
       </tags>
   </entry>
   <entry>
+    <title>血染钟楼规则</title>
+    <url>/zhuoyou/xieranzhonglou/xieranzhonglou/</url>
+    <content><![CDATA[<h1 id="游戏流程"><a href="#游戏流程" class="headerlink" title="游戏流程"></a><font size="8">游戏流程</font></h1><h2 id="第一个夜晚"><a href="#第一个夜晚" class="headerlink" title="第一个夜晚"></a><font color="#00ae9d" size="6"><strong>第一个夜晚</strong></font></h2><p><font size="5" color="#102b6a">&emsp;&emsp;
+1. 说书人唤醒恶魔，告知恶魔三个不在场玩家的善良身份(建议7/10/13人局三村民，其它人数配置两村民一外来)，并告知他爪牙是谁<br>&emsp;&emsp;
+2. 说书人唤醒所有爪牙，并告知他们恶魔是谁(ps：<font size="4" color="#d3c6a6">线下说书人可以同时唤醒爪牙和恶魔，但不能交流)</font><br>&emsp;&emsp;
+3. 说书人按照不同角色技能发动顺序唤醒在第一个晚上拥有技能的玩家并配合他们使用自己的技能
+</font></p>
+
+<hr>
+<h2 id="第一个白天"><a href="#第一个白天" class="headerlink" title="第一个白天"></a><font color="#00ae9d" size="6"><strong>第一个白天</strong></font></h2><p><font size="5" color="#102b6a">&emsp;&emsp;
+1. 每个白天黎明之时，说书人将宣布有关上一个夜晚的死亡信息，之后玩家自由发言并且可以随意私聊，直到说书人宣布进入<font color="#d71345"><b>提名阶段</b></font>。
+<br>&emsp;&emsp;
+2. <font color="#d71345"><b>提名阶段</b></font>所有玩家保持安静每个人都可以提名自己认为可疑的玩家来听听他们的辩护或者提名自己来讲两句。
+<br>&emsp;&emsp;
+被提名玩家在30秒的辩护后（<font size="4" color="#d3c6a6">可适当延长</font>）进入<font color="#d71345"><b>投票环节</b></font>，从被提名玩家的上一位玩家开始顺时针投票，并在计票后进行发起下一次提名，直到说书人认为当天的<font color="#d71345"><b>提名阶段</b></font>可以结束了·
+<br>&emsp;&emsp;
+所有玩家都可以在白天的每一个投票环节中投票，但是死去的玩家只剩下最后一票，也就是他们的遗书。不过死人可以继续参与游戏，并且正常发言。
+<br>&emsp;&emsp;
+如果被提名玩家得票数达到场上存活人数的一半且在所有被提名者中得票最多，他被处决,如果当天得票最多的被提名者平票，没有人被处决,死人不能提名，但是可以被提名
+<br>&emsp;&emsp;
+每名玩家在每个白天只能提名一次也只能被提名一次。在处决完成后，白天结束。
+
+<p></p></font></p><p></p>
+<p>
+
+<hr>
+</p><h2 id="黄昏降临"><a href="#黄昏降临" class="headerlink" title="黄昏降临"></a><font color="#00ae9d" size="6"><strong>黄昏降临</strong></font></h2><p><font size="5" color="#102b6a">&emsp;&emsp;、
+有些效果会在这个阶段发动。一些状态被在这个阶段改变·说书人则在这个阶段通过调整魔典上的标记来提醒自己需要注意的事情。
+</font></p>
+
+<hr>
+<h2 id="其他夜晚"><a href="#其他夜晚" class="headerlink" title="其他夜晚"></a><font color="#00ae9d" size="6"><strong>其他夜晚</strong></font></h2><p><font size="5" color="#102b6a">&emsp;&emsp;
+说书人按照不同角色的技能发动顺序唤醒在其他夜晚拥有技能的玩家并配合他们使用自己的技能
+</font></p>
+
+<hr>
+<h2 id="游戏进行"><a href="#游戏进行" class="headerlink" title="游戏进行"></a><font color="#00ae9d" size="6"><strong>游戏进行</strong></font></h2><p><font size="5" color="#102b6a">&emsp;&emsp;重复234阶段直到游戏结束条件达成
+</font></p>
+
+<hr>
+<h2 id="游戏结束"><a href="#游戏结束" class="headerlink" title="游戏结束"></a><font color="#00ae9d" size="6"><strong>游戏结束</strong></font></h2><p><font size="5" color="#102b6a">&emsp;&emsp;当场上的恶魔死亡时，善良阵营获胜，当场上的存活玩家为2时（不计算旅行者和传奇身份),邪恶阵营获胜·如果两个阵营同时获胜，则改为善良阵营朕胜
+<p><font size="5" color="#102b6a">&emsp;&emsp;
+部分角色的技能可能会改变游戏的胜利条件，请按照角色技能结算特殊胜利和特殊落败。
+</font></p>
+<p><font size="5" color="#102b6a">&emsp;&emsp;
+部分角色的效果可能与说明书冲突，冲突处以角色技能优先，
+</font></p></font>
+</p>]]></content>
+      <categories>
+        <category>桌游</category>
+        <category>血染钟楼</category>
+      </categories>
+      <tags>
+        <tag>血染钟楼</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>血染钟楼教派与紫罗兰技能</title>
+    <url>/zhuoyou/xieranzhonglou/xieranzhongloujiaopaiyuziluolanjineng/</url>
+    <content><![CDATA[<div style="background-color:#afb4db color:" black"">
+<div style="background-color:black">
+红色字体角色表名该角色技能第一晚不能使用<br>
+绿色字体角色名表示该角色技能整局游戏只能生效一次
+</div>
+
+<hr>
+<style>
+    h4 {
+        display: flex;
+        flex-direction: row;
+    }
+            
+    h4:before,
+    h4:after {
+        content: "";
+        flex: 1 1;
+        border-bottom: 2px solid #000;
+        margin: auto;
+    }        
+    table{
+        font-size: 18px;
+        background: #78cdd1;
+        color: #000000;
+        margin: 0 10px;
+        border-collapse: separate;
+        font-family:"Times New Roman", Times, serif;
+        overflow-x: hidden;
+    }
+    .one{
+        color: red;
+        font-weight: bold;
+        text-align: center;
+        width: 100px;
+    }
+    .ef{
+        color: green;
+        font-weight: bold;
+        text-align: center;
+        width: 100px;
+    }    
+    .none{
+       text-align: center; 
+    }
+</style>
+
+
+<hr>
+<h4>村民</h4>
+
+<table border="0">
+    <tr>
+        <td class="ef">钟&ensp;表&ensp;匠</td>
+        <td>游戏开始时，你得知恶魔与距他最近的爪牙之间的距离</td>
+    </tr>
+    <tr>
+        <td class="none">入梦人</td>
+        <td>每个夜晚，选择一名其他玩家，你得知一个善良身份和一个邪恶身份，其中一个是他的身份</td>
+    </tr>
+    <tr>
+        <td class="none">耍&ensp;蛇&ensp;人</td>
+        <td>每个夜晚，选择一名存活玩家，当你选中一名恶魔时，交换你和他的身份以及阵营，然后，他中毒</td>
+    </tr>
+    <tr>
+        <td class="none">数&ensp;学&ensp;家</td>
+        <td>每个夜晚，你得知有多少玩家的技能因为其他玩家的技能未正常生效。(从拂晓开始算起)</td>
+    </tr>
+    <tr>
+        <td class="one">花&ensp;艺&ensp;师</td>
+        <td>每个夜晚，你得知恶魔在白天是否进行了投票</td>
+    </tr>
+    <tr>
+        <td class="one">传&ensp;令&ensp;员</td>
+        <td>每个夜晚，你得知爪牙在白天是否发起了提名</td>
+    </tr>
+    <tr>
+        <td class="one">祭&emsp;&emsp;司</td>
+        <td>每个夜晚，你得知死去的玩家有多少名属于邪恶阵营</td>
+    </tr>
+    <tr>
+        <td class="none">学&emsp;&emsp;者</td>
+        <td>每个白天，拜访说书人并获得两条信息，其中一条是正确的，一条是错误的</td>
+    </tr>
+    <tr>
+        <td class="ef">裁&emsp;&emsp;缝</td>
+        <td>整局游戏限一次，夜晚，选择两名其他玩家，得知他们是否属于同一阵营</td>
+    </tr>
+    <tr>
+        <td class="ef">哲&ensp;学&ensp;家</td>
+        <td>整局游戏限一次，夜晚，选择一个善良身份，获得他的技能，如果有玩家为该身份，他醉酒</td>
+    </tr>
+    <tr>
+        <td class="ef">艺&ensp;术&ensp;家</td>
+        <td>整局游戏限一次，白天，私下询问说书人一个"是/否"的问题</td>
+    </tr>
+        <tr>
+        <td class="none">贤&emsp;&emsp;者</td>
+        <td>当恶魔杀害你时，你得知两名玩家，其中一名是恶魔</td>
+    </tr>
+    <tr>
+        <td class="none">杂技演员</td>
+        <td>你的第一天白天，公开猜测之多5名玩家的身份，当晚，你将会得知猜对了多少个</td>
+    </tr>
+</table>
+
+<hr>
+<h4>外来者</h4>
+<table>
+    <tr>
+        <td class="none">变种人</td>
+        <td>当你对“我是外来者”疯狂时，你可能会被处决</td>
+    </tr>
+    <tr>
+        <td class="ef">意中人</td>
+        <td>当你死亡时，一名玩家醉酒</td>
+    </tr>
+    <tr>
+        <td class="ef">理发师</td>
+        <td>如果你死亡，恶魔在当晚可以选择两名玩家交换身份。（不可以交换自己外的其他恶魔）</td>
+    </tr>
+    <tr>
+        <td class="ef">笨&emsp;蛋</td>
+        <td>当你得知你死亡时，公开选择一名活着的玩家，如果他属于邪恶阵营，你的阵营落败</td>
+    </tr>
+</table>
+
+<hr>
+<h4>爪牙</h4>
+
+<table>
+    <tr>
+        <td class="one">女&emsp;&emsp;巫</td>
+        <td>每个夜晚选择一名玩家，如果他在明天发起了提名，他死亡。场上剩下三名玩家存活时，你失去该技能</td>
+    </tr>
+    <tr>
+        <td class="one">炼&ensp;药&ensp;师</td>
+        <td>每个夜晚，选择一名玩家和一个身份，他变为该身份(如不存在)。如果你创造了一个恶魔，当晚所有恶魔将随机行动</td>
+    </tr>
+    <tr>
+        <td class="ef">黑白双子</td>
+        <td>你与一名对立阵营的玩家互知。如果其中的善良玩家被处决，邪恶阵营获胜。当两个双子均存活时善良阵营不能获胜</td>
+    </tr>
+    <tr>
+        <td class="none">洗&ensp;脑&ensp;师</td>
+        <td>每个夜晚，选择一名玩家和一个善良身份，明天他需要对“他是这个身份”疯狂，否则他可能会被处决</td>
+    </tr>
+</table>
+
+<hr>
+<h4>恶魔</h4>
+
+<table>
+    <tr>
+        <td class="one">染&emsp;魂</td>
+        <td>每个夜晚选择一名玩家，如果他在明天发起了提名，他死亡。场上剩下三名玩家存活时，你失去该技能</td>
+    </tr>
+    <tr>
+        <td class="one">巫&emsp;妖</td>
+        <td>每个夜晚，选择一名玩家和一个身份，他变为该身份(如不存在)。如果你创造了一个恶魔，当晚所有恶魔将随机行动</td>
+    </tr>
+    <tr>
+        <td class="one">混&emsp;沌</td>
+        <td>你与一名对立阵营的玩家互知。如果其中的善良玩家被处决，邪恶阵营获胜。当两个双子均存活时善良阵营不能获胜</td>
+    </tr>
+    <tr>
+        <td class="one">蚀魂魔</td>
+        <td>每个夜晚，选择一名玩家和一个善良身份，明天他需要对“他是这个身份”疯狂，否则他可能会被处决</td>
+    </tr>
+</table>
+
+
+
+</div>]]></content>
+      <categories>
+        <category>桌游</category>
+        <category>血染钟楼</category>
+      </categories>
+      <tags>
+        <tag>血染钟楼 桌游</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>血染钟楼暗流涌动技能</title>
+    <url>/zhuoyou/xieranzhonglou/xieranzhonglouanliuyongdong/</url>
+    <content><![CDATA[<div style="background-color:#afb4db color:" black"">
+<div style="background-color:black">
+红色字体角色表名该角色技能第一晚不能使用<br>
+绿色字体角色名表示该角色技能整局游戏只能生效一次
+</div>
+
+<style>
+    h4 {
+        display: flex;
+        flex-direction: row;
+    }
+            
+    h4:before,
+    h4:after {
+        content: "";
+        flex: 1 1;
+        border-bottom: 2px solid #000;
+        margin: auto;
+    }    
+    table{
+        font-size: 18px;
+        background: #78cdd1;
+        color: #000000;
+        margin: 0 10px;
+        border-collapse: separate;
+        font-family:"Times New Roman", Times, serif;
+        overflow-x: hidden;
+    }
+    .one{
+        color: red;
+        font-weight: bold;
+        text-align: center;
+    }
+    .ef{
+        color: green;
+        font-weight: bold;
+        text-align: center;
+        width: 100px;
+    }    
+    .none{
+       text-align: center; 
+    }
+</style>
+
+
+<hr>
+<h4>村民</h4>
+
+<table border="0">
+    <tr>
+        <td class="ef">洗&ensp;衣&ensp;妇</td>
+        <td>游戏开始时，你得知两名玩家其中一名的村民身份。</td>
+    </tr>
+    <tr>
+        <td class="ef">图书馆员</td>
+        <td>游戏开始时，你得知两名玩家其中一名的外来者身份，或得知本局没有外来者</td>
+    </tr>
+    <tr>
+        <td class="ef">调&ensp;查&ensp;员</td>
+        <td>游戏开始时，你得知两名玩家其中一名的爪牙身份</td>
+    </tr>
+    <tr>
+        <td class="ef">厨&emsp;&emsp;师</td>
+        <td>游戏开始时，你得知有多少对邪恶玩家为邻座</td>
+    </tr>
+    <tr>
+        <td class="none">神&emsp;&emsp;使</td>
+        <td>每个夜晚，你得知与你相邻的存活玩家中有多少名属于邪恶阵营</td>
+    </tr>
+    <tr>
+        <td class="none">预&ensp;言&ensp;家</td>
+        <td>每个夜晚，你选择两名玩家，得短他们两人中是否有恶魔。有一名善良玩家，你的技能始终会把他误认为恶魔</td>
+    </tr>
+    <tr>
+        <td class="one">送&ensp;葬&ensp;者</td>
+        <td>每个夜晚，你得知今天被处决的玩家的身份</td>
+    </tr>
+    <tr>
+        <td class="one">僧&emsp;&emsp;侣</td>
+        <td>每个夜晚，你选择一名其他玩家，他在今晚免受恶魔侵害</td>
+    </tr>
+    <tr>
+        <td class="ef">养&ensp;鸦&ensp;人</td>
+        <td>当你在夜晚死亡时，你选择一名玩家，得短他的身份</td>
+    </tr>
+    <tr>
+        <td class="ef">处&emsp;&emsp;女</td>
+        <td>整局游戏限一次，白天，你可以公开选择一名玩家，如果他是恶魔，他死亡</td>
+    </tr>
+    <tr>
+        <td class="ef">杀&emsp;&emsp;手</td>
+        <td>整局游戏限一次，白天，你可以公开选择一名玩家，如果他是恶魔，他死亡</td>
+    </tr>
+        <tr>
+        <td class="none">军&emsp;&emsp;人</td>
+        <td>你免受恶魔侵害</td>
+    </tr>
+    <tr>
+        <td class="none">镇&emsp;&emsp;长</td>
+        <td>当剩下三名玩家存活，且当天没有玩家被处决时，你的阵营获胜,当你在夜晚死亡时，可能有其他玩家代替你死亡</td>
+    </tr>
+</table>
+
+<hr>
+<h4>外来者</h4>
+<table>
+    <tr>
+        <td class="none">家仆</td>
+        <td>每个夜晚，你选择一名其他玩家，明天当他投票时，你才能投票</td>
+    </tr>
+    <tr>
+        <td class="none">酒鬼</td>
+        <td>你不知道你是酒鬼，你以为你是一个村民角色，但其实你不是</td>
+    </tr>
+    <tr>
+        <td class="ef">圣徒</td>
+        <td>当你被处决时，你的阵营落败</td>
+    </tr>
+    <tr>
+        <td class="none">隐士</td>
+        <td>你可能被视为一名邪恶的爪牙或恶魔，即使你已经死亡</td>
+    </tr>
+</table>
+
+<hr>
+<h4>爪牙</h4>
+
+<table>
+    <tr>
+        <td class="none">毒师</td>
+        <td>每个夜晚，选择一名其他玩家，他中毒，直到下个黄昏</td>
+    </tr>
+    <tr>
+        <td class="none">间谍</td>
+        <td>每个夜晚，你查看魔典。你可能被视为一名善良的村民或外来者，即使你已经死亡。</td>
+    </tr>
+    <tr>
+        <td class="ef">荡妇</td>
+        <td>当存活玩家大于等于5人且恶魔死亡时（不包括旅行者），你成为新的恶魔。</td>
+    </tr>
+    <tr>
+        <td class="none">男爵</td>
+        <td>本局游戏存在額外的外来者。[+2外来者]</td>
+    </tr>
+</table>
+
+<hr>
+<h4>恶魔</h4>
+
+<table>
+    <tr>
+        <td class="one">小恶魔</td>
+        <td>每个夜晚，选择一名玩家，将他杀害。当你杀害自己时，一名爪牙变为新的小恶魔。</td>
+    </tr>
+
+</table></div>]]></content>
+      <categories>
+        <category>桌游</category>
+        <category>血染钟楼</category>
+      </categories>
+      <tags>
+        <tag>桌游 血染钟楼</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>血染钟楼血月升起</title>
+    <url>/zhuoyou/xieranzhonglou/xieranzhonglouxieyueshengqi/</url>
+    <content><![CDATA[<div style="background-color:#afb4db color:" black"">
+<div style="background-color:black">
+红色字体角色表名该角色技能第一晚不能使用<br>
+绿色字体角色名表示该角色技能整局游戏只能生效一次
+</div>
+
+<hr>
+<style>
+    h4 {
+        display: flex;
+        flex-direction: row;
+    }
+            
+    h4:before,
+    h4:after {
+        content: "";
+        flex: 1 1;
+        border-bottom: 2px solid #000;
+        margin: auto;
+    }        
+    table{
+        font-size: 18px;
+        background: #78cdd1;
+        color: #000000;
+        margin: 0 10px;
+        border-collapse: separate;
+        font-family:"Times New Roman", Times, serif;
+        overflow-x: hidden;
+    }
+    .one{
+        color: red;
+        font-weight: bold;
+        text-align: center;
+        width: 100px;
+    }
+    .ef{
+        color: green;
+        font-weight: bold;
+        text-align: center;
+        width: 100px;
+    }    
+    .none{
+       text-align: center; 
+    }
+</style>
+
+
+<hr>
+<h4>村民</h4>
+
+<table border="0">
+    <tr>
+        <td class="one">祖&emsp;&emsp;母</td>
+        <td>游戏开始时，你得知一名善良玩家与他的身份，当恶魔杀害他时，你死亡。
+</td>
+    </tr>
+    <tr>
+        <td class="none">水&emsp;&emsp;手</td>
+        <td>你不会死亡·每个夜晚，选择一名存活玩家，你和他其中一名醉酒，直到下个黄昏。
+</td>
+    </tr>
+    <tr>
+        <td class="none">女&emsp;&emsp;佣</td>
+        <td>每个夜晚，选择两名其他存活玩家，你得知今晚他们当中有多少名由于自身的技能被唤醒</td>
+    </tr>
+    <tr>
+        <td class="one">驱&ensp;魔&ensp;师</td>
+        <td>每个夜，选择一名玩家（需与上一夜不同）如果你选中了魔，他在今晚不会被喚醒，并得知你是谁。</td>
+    </tr>
+    <tr>
+        <td class="one">旅店老板</td>
+        <td>每个夜晚气选择两名玩家，他们在今晚不会死亡，但其中一名会醉酒，到下个黄昏</td>
+    </tr>
+    <tr>
+        <td class="one">赌&emsp;&emsp;徒</td>
+        <td>每个夜晚选择名玩家并猜测他的身份，当你猜测错误时，你死亡</td>
+    </tr>
+    <tr>
+        <td class="none">散&ensp;谣&ensp;者</td>
+        <td>每个白天，可以做出一项公开声明。如果声明正确。名玩家在今晚死亡</td>
+    </tr>
+    <tr>
+        <td class="ef">侍&emsp;&emsp;臣</td>
+        <td>整局游戏限一次，夜晚，选择一个身份，如果该身份在场，对应的玩家醉酒三天三</td>
+    </tr>
+    <tr>
+        <td class="one">教&emsp;&emsp;授</td>
+        <td>整局游戏限一次，夜选择一名死亡玩家，如果他是村民，将他复活</td>
+    </tr>
+    <tr>
+        <td class="none">吟游诗人</td>
+        <td>当爪牙被处决时，除旅行者外的有玩家醉酒，直到明天的黄昏</td>
+    </tr>
+    <tr>
+        <td class="none">茶&emsp;&emsp;女</td>
+        <td>如与你相邻的存活玩家属于善良阵营，他们不会死亡</td>
+    </tr>
+        <tr>
+        <td class="none">调&ensp;停&ensp;者</td>
+        <td>当善良玩家被处决时，他可能不会死亡</td>
+    </tr>
+    <tr>
+        <td class="ef">小&emsp;&emsp;丑</td>
+        <td>当你第一次死亡时，你不会死亡</td>
+    </tr>
+</table>
+
+<hr>
+<h4>外来者</h4>
+<table>
+    <tr>
+        <td class="none">修补匠</td>
+        <td>你随时可能死亡</td>
+    </tr>
+    <tr>
+        <td class="ef">月之子</td>
+        <td>当你得知你死亡时，公开选择一名存活玩家，如果他属于善良阵营，今晚，他死亡</td>
+    </tr>
+    <tr>
+        <td class="ef">暴&emsp;徒</td>
+        <td>每个夜晚，当第一茨着玩家选择你作为技能目标时，他醉酒，直到下个黄昏。然后坯加入他的阵营</td>
+    </tr>
+    <tr>
+        <td class="ef">狂&emsp;人</td>
+        <td>你以为你是恶魔，但其实你不是。恶魔知道你是谁，以及你在每晚选择了谁</td>
+    </tr>
+</table>
+
+<hr>
+<h4>爪牙</h4>
+
+<table>
+    <tr>
+        <td class="none">教父</td>
+        <td>教父：游开始时，你得知本局存在的外来者身份。当一名外来者在白天死亡时，当晚，你选择一名玩家，将他杀害[±1外来者]</td>
+    </tr>
+    <tr>
+        <td class="none">律师</td>
+        <td>每个夜晚，选择一名存活玩家（需与上一夜不同），明天疒当他被处决时，他不会死亡</td>
+    </tr>
+    <tr>
+        <td class="one">刺客</td>
+        <td>整局游戏限一次，夜晚，选择一名玩家，将他杀害。即使你因为某些原因不能这么做。</td>
+    </tr>
+    <tr>
+        <td class="ef">主谋</td>
+        <td>当恶魔死于处决导致游戏结束时，再多进行一天游戏。当这一天有玩家被处决时：该玩家的阵营落</td>
+    </tr>
+</table>
+
+<hr>
+<h4>恶魔</h4>
+
+<table>
+    <tr>
+        <td class="one">僵&emsp;尸</td>
+        <td>每个夜晚，当白天没有玩家死亡时，选择一名玩家，将他杀。当你第一次死亡时，你仍然活着但被视为死亡。</td>
+    </tr>
+    <tr>
+        <td class="none">疫&emsp;魔</td>
+        <td>每个夜晚，，选择一名玩家，他中毒。先前已经中毒的玩家死亡并恢复健康</td>
+    </tr>
+    <tr>
+        <td class="one">憎&emsp;恶</td>
+        <td>每个夜晚，选择两名玩家，将他们杀害。你上一晚选择的玩家可能会复活。</td>
+    </tr>
+    <tr>
+        <td class="one">迷迭香</td>
+        <td>每个夜晚你可以选择一名玩家，将他杀害。如果你上次放弃了选择，你这次改为选择三人。</td>
+    </tr>
+</table></div>]]></content>
+      <categories>
+        <category>桌游</category>
+        <category>血染钟楼</category>
+      </categories>
+      <tags>
+        <tag>血染钟楼 桌游</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>javaGui笔记</title>
     <url>/java/swing/</url>
     <content><![CDATA[<h1 id="AWT-编程"><a href="#AWT-编程" class="headerlink" title="AWT 编程"></a>AWT 编程</h1><h2 id="一、Container容器"><a href="#一、Container容器" class="headerlink" title="一、Container容器"></a>一、Container容器</h2><h3 id="1-1-Container继承体系"><a href="#1-1-Container继承体系" class="headerlink" title="1.1 Container继承体系"></a>1.1 Container继承体系</h3><pre><code class="mermaid">graph TB
@@ -12281,539 +12814,6 @@ movgRow（intstart，intend，intto）：移动指定范围内的数据行
       </categories>
       <tags>
         <tag>-JavaGUI -笔记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>血染钟楼教派与紫罗兰技能</title>
-    <url>/%E6%A1%8C%E6%B8%B8/%E8%A1%80%E6%9F%93%E9%92%9F%E6%A5%BC/%E8%A1%80%E6%9F%93%E9%92%9F%E6%A5%BC%E6%95%99%E6%B4%BE%E4%B8%8E%E7%B4%AB%E7%BD%97%E5%85%B0%E6%8A%80%E8%83%BD/</url>
-    <content><![CDATA[<div style="background-color:#afb4db color:" black"">
-<div style="background-color:black">
-红色字体角色表名该角色技能第一晚不能使用<br>
-绿色字体角色名表示该角色技能整局游戏只能生效一次
-</div>
-
-<hr>
-<style>
-    h4 {
-        display: flex;
-        flex-direction: row;
-    }
-            
-    h4:before,
-    h4:after {
-        content: "";
-        flex: 1 1;
-        border-bottom: 2px solid #000;
-        margin: auto;
-    }        
-    table{
-        font-size: 18px;
-        background: #78cdd1;
-        color: #000000;
-        margin: 0 10px;
-        border-collapse: separate;
-        font-family:"Times New Roman", Times, serif;
-        overflow-x: hidden;
-    }
-    .one{
-        color: red;
-        font-weight: bold;
-        text-align: center;
-        width: 100px;
-    }
-    .ef{
-        color: green;
-        font-weight: bold;
-        text-align: center;
-        width: 100px;
-    }    
-    .none{
-       text-align: center; 
-    }
-</style>
-
-
-<hr>
-<h4>村民</h4>
-
-<table border="0">
-    <tr>
-        <td class="ef">钟&ensp;表&ensp;匠</td>
-        <td>游戏开始时，你得知恶魔与距他最近的爪牙之间的距离</td>
-    </tr>
-    <tr>
-        <td class="none">入梦人</td>
-        <td>每个夜晚，选择一名其他玩家，你得知一个善良身份和一个邪恶身份，其中一个是他的身份</td>
-    </tr>
-    <tr>
-        <td class="none">耍&ensp;蛇&ensp;人</td>
-        <td>每个夜晚，选择一名存活玩家，当你选中一名恶魔时，交换你和他的身份以及阵营，然后，他中毒</td>
-    </tr>
-    <tr>
-        <td class="none">数&ensp;学&ensp;家</td>
-        <td>每个夜晚，你得知有多少玩家的技能因为其他玩家的技能未正常生效。(从拂晓开始算起)</td>
-    </tr>
-    <tr>
-        <td class="one">花&ensp;艺&ensp;师</td>
-        <td>每个夜晚，你得知恶魔在白天是否进行了投票</td>
-    </tr>
-    <tr>
-        <td class="one">传&ensp;令&ensp;员</td>
-        <td>每个夜晚，你得知爪牙在白天是否发起了提名</td>
-    </tr>
-    <tr>
-        <td class="one">祭&emsp;&emsp;司</td>
-        <td>每个夜晚，你得知死去的玩家有多少名属于邪恶阵营</td>
-    </tr>
-    <tr>
-        <td class="none">学&emsp;&emsp;者</td>
-        <td>每个白天，拜访说书人并获得两条信息，其中一条是正确的，一条是错误的</td>
-    </tr>
-    <tr>
-        <td class="ef">裁&emsp;&emsp;缝</td>
-        <td>整局游戏限一次，夜晚，选择两名其他玩家，得知他们是否属于同一阵营</td>
-    </tr>
-    <tr>
-        <td class="ef">哲&ensp;学&ensp;家</td>
-        <td>整局游戏限一次，夜晚，选择一个善良身份，获得他的技能，如果有玩家为该身份，他醉酒</td>
-    </tr>
-    <tr>
-        <td class="ef">艺&ensp;术&ensp;家</td>
-        <td>整局游戏限一次，白天，私下询问说书人一个"是/否"的问题</td>
-    </tr>
-        <tr>
-        <td class="none">贤&emsp;&emsp;者</td>
-        <td>当恶魔杀害你时，你得知两名玩家，其中一名是恶魔</td>
-    </tr>
-    <tr>
-        <td class="none">杂技演员</td>
-        <td>你的第一天白天，公开猜测之多5名玩家的身份，当晚，你将会得知猜对了多少个</td>
-    </tr>
-</table>
-
-<hr>
-<h4>外来者</h4>
-<table>
-    <tr>
-        <td class="none">变种人</td>
-        <td>当你对“我是外来者”疯狂时，你可能会被处决</td>
-    </tr>
-    <tr>
-        <td class="ef">意中人</td>
-        <td>当你死亡时，一名玩家醉酒</td>
-    </tr>
-    <tr>
-        <td class="ef">理发师</td>
-        <td>如果你死亡，恶魔在当晚可以选择两名玩家交换身份。（不可以交换自己外的其他恶魔）</td>
-    </tr>
-    <tr>
-        <td class="ef">笨&emsp;蛋</td>
-        <td>当你得知你死亡时，公开选择一名活着的玩家，如果他属于邪恶阵营，你的阵营落败</td>
-    </tr>
-</table>
-
-<hr>
-<h4>爪牙</h4>
-
-<table>
-    <tr>
-        <td class="one">女&emsp;&emsp;巫</td>
-        <td>每个夜晚选择一名玩家，如果他在明天发起了提名，他死亡。场上剩下三名玩家存活时，你失去该技能</td>
-    </tr>
-    <tr>
-        <td class="one">炼&ensp;药&ensp;师</td>
-        <td>每个夜晚，选择一名玩家和一个身份，他变为该身份(如不存在)。如果你创造了一个恶魔，当晚所有恶魔将随机行动</td>
-    </tr>
-    <tr>
-        <td class="ef">黑白双子</td>
-        <td>你与一名对立阵营的玩家互知。如果其中的善良玩家被处决，邪恶阵营获胜。当两个双子均存活时善良阵营不能获胜</td>
-    </tr>
-    <tr>
-        <td class="none">洗&ensp;脑&ensp;师</td>
-        <td>每个夜晚，选择一名玩家和一个善良身份，明天他需要对“他是这个身份”疯狂，否则他可能会被处决</td>
-    </tr>
-</table>
-
-<hr>
-<h4>恶魔</h4>
-
-<table>
-    <tr>
-        <td class="one">染&emsp;魂</td>
-        <td>每个夜晚选择一名玩家，如果他在明天发起了提名，他死亡。场上剩下三名玩家存活时，你失去该技能</td>
-    </tr>
-    <tr>
-        <td class="one">巫&emsp;妖</td>
-        <td>每个夜晚，选择一名玩家和一个身份，他变为该身份(如不存在)。如果你创造了一个恶魔，当晚所有恶魔将随机行动</td>
-    </tr>
-    <tr>
-        <td class="one">混&emsp;沌</td>
-        <td>你与一名对立阵营的玩家互知。如果其中的善良玩家被处决，邪恶阵营获胜。当两个双子均存活时善良阵营不能获胜</td>
-    </tr>
-    <tr>
-        <td class="one">蚀魂魔</td>
-        <td>每个夜晚，选择一名玩家和一个善良身份，明天他需要对“他是这个身份”疯狂，否则他可能会被处决</td>
-    </tr>
-</table>
-
-
-
-</div>]]></content>
-      <categories>
-        <category>桌游</category>
-        <category>血染钟楼</category>
-      </categories>
-      <tags>
-        <tag>血染钟楼 桌游</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>血染钟楼暗流涌动技能</title>
-    <url>/%E6%A1%8C%E6%B8%B8/%E8%A1%80%E6%9F%93%E9%92%9F%E6%A5%BC/%E8%A1%80%E6%9F%93%E9%92%9F%E6%A5%BC%E6%9A%97%E6%B5%81%E6%B6%8C%E5%8A%A8/</url>
-    <content><![CDATA[<div style="background-color:#afb4db color:" black"">
-<div style="background-color:black">
-红色字体角色表名该角色技能第一晚不能使用<br>
-绿色字体角色名表示该角色技能整局游戏只能生效一次
-</div>
-
-<style>
-    h4 {
-        display: flex;
-        flex-direction: row;
-    }
-            
-    h4:before,
-    h4:after {
-        content: "";
-        flex: 1 1;
-        border-bottom: 2px solid #000;
-        margin: auto;
-    }    
-    table{
-        font-size: 18px;
-        background: #78cdd1;
-        color: #000000;
-        margin: 0 10px;
-        border-collapse: separate;
-        font-family:"Times New Roman", Times, serif;
-        overflow-x: hidden;
-    }
-    .one{
-        color: red;
-        font-weight: bold;
-        text-align: center;
-    }
-    .ef{
-        color: green;
-        font-weight: bold;
-        text-align: center;
-        width: 100px;
-    }    
-    .none{
-       text-align: center; 
-    }
-</style>
-
-
-<hr>
-<h4>村民</h4>
-
-<table border="0">
-    <tr>
-        <td class="ef">洗&ensp;衣&ensp;妇</td>
-        <td>游戏开始时，你得知两名玩家其中一名的村民身份。</td>
-    </tr>
-    <tr>
-        <td class="ef">图书馆员</td>
-        <td>游戏开始时，你得知两名玩家其中一名的外来者身份，或得知本局没有外来者</td>
-    </tr>
-    <tr>
-        <td class="ef">调&ensp;查&ensp;员</td>
-        <td>游戏开始时，你得知两名玩家其中一名的爪牙身份</td>
-    </tr>
-    <tr>
-        <td class="ef">厨&emsp;&emsp;师</td>
-        <td>游戏开始时，你得知有多少对邪恶玩家为邻座</td>
-    </tr>
-    <tr>
-        <td class="none">神&emsp;&emsp;使</td>
-        <td>每个夜晚，你得知与你相邻的存活玩家中有多少名属于邪恶阵营</td>
-    </tr>
-    <tr>
-        <td class="none">预&ensp;言&ensp;家</td>
-        <td>每个夜晚，你选择两名玩家，得短他们两人中是否有恶魔。有一名善良玩家，你的技能始终会把他误认为恶魔</td>
-    </tr>
-    <tr>
-        <td class="one">送&ensp;葬&ensp;者</td>
-        <td>每个夜晚，你得知今天被处决的玩家的身份</td>
-    </tr>
-    <tr>
-        <td class="one">僧&emsp;&emsp;侣</td>
-        <td>每个夜晚，你选择一名其他玩家，他在今晚免受恶魔侵害</td>
-    </tr>
-    <tr>
-        <td class="ef">养&ensp;鸦&ensp;人</td>
-        <td>当你在夜晚死亡时，你选择一名玩家，得短他的身份</td>
-    </tr>
-    <tr>
-        <td class="ef">处&emsp;&emsp;女</td>
-        <td>整局游戏限一次，白天，你可以公开选择一名玩家，如果他是恶魔，他死亡</td>
-    </tr>
-    <tr>
-        <td class="ef">杀&emsp;&emsp;手</td>
-        <td>整局游戏限一次，白天，你可以公开选择一名玩家，如果他是恶魔，他死亡</td>
-    </tr>
-        <tr>
-        <td class="none">军&emsp;&emsp;人</td>
-        <td>你免受恶魔侵害</td>
-    </tr>
-    <tr>
-        <td class="none">镇&emsp;&emsp;长</td>
-        <td>当剩下三名玩家存活，且当天没有玩家被处决时，你的阵营获胜,当你在夜晚死亡时，可能有其他玩家代替你死亡</td>
-    </tr>
-</table>
-
-<hr>
-<h4>外来者</h4>
-<table>
-    <tr>
-        <td class="none">家仆</td>
-        <td>每个夜晚，你选择一名其他玩家，明天当他投票时，你才能投票</td>
-    </tr>
-    <tr>
-        <td class="none">酒鬼</td>
-        <td>你不知道你是酒鬼，你以为你是一个村民角色，但其实你不是</td>
-    </tr>
-    <tr>
-        <td class="ef">圣徒</td>
-        <td>当你被处决时，你的阵营落败</td>
-    </tr>
-    <tr>
-        <td class="none">隐士</td>
-        <td>你可能被视为一名邪恶的爪牙或恶魔，即使你已经死亡</td>
-    </tr>
-</table>
-
-<hr>
-<h4>爪牙</h4>
-
-<table>
-    <tr>
-        <td class="none">毒师</td>
-        <td>每个夜晚，选择一名其他玩家，他中毒，直到下个黄昏</td>
-    </tr>
-    <tr>
-        <td class="none">间谍</td>
-        <td>每个夜晚，你查看魔典。你可能被视为一名善良的村民或外来者，即使你已经死亡。</td>
-    </tr>
-    <tr>
-        <td class="ef">荡妇</td>
-        <td>当存活玩家大于等于5人且恶魔死亡时（不包括旅行者），你成为新的恶魔。</td>
-    </tr>
-    <tr>
-        <td class="none">男爵</td>
-        <td>本局游戏存在額外的外来者。[+2外来者]</td>
-    </tr>
-</table>
-
-<hr>
-<h4>恶魔</h4>
-
-<table>
-    <tr>
-        <td class="one">小恶魔</td>
-        <td>每个夜晚，选择一名玩家，将他杀害。当你杀害自己时，一名爪牙变为新的小恶魔。</td>
-    </tr>
-
-</table></div>]]></content>
-      <categories>
-        <category>桌游</category>
-        <category>血染钟楼</category>
-      </categories>
-      <tags>
-        <tag>桌游 血染钟楼</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>血染钟楼血月升起</title>
-    <url>/%E6%A1%8C%E6%B8%B8/%E8%A1%80%E6%9F%93%E9%92%9F%E6%A5%BC/%E8%A1%80%E6%9F%93%E9%92%9F%E6%A5%BC%E8%A1%80%E6%9C%88%E5%8D%87%E8%B5%B7/</url>
-    <content><![CDATA[<div style="background-color:#afb4db color:" black"">
-<div style="background-color:black">
-红色字体角色表名该角色技能第一晚不能使用<br>
-绿色字体角色名表示该角色技能整局游戏只能生效一次
-</div>
-
-<hr>
-<style>
-    h4 {
-        display: flex;
-        flex-direction: row;
-    }
-            
-    h4:before,
-    h4:after {
-        content: "";
-        flex: 1 1;
-        border-bottom: 2px solid #000;
-        margin: auto;
-    }        
-    table{
-        font-size: 18px;
-        background: #78cdd1;
-        color: #000000;
-        margin: 0 10px;
-        border-collapse: separate;
-        font-family:"Times New Roman", Times, serif;
-        overflow-x: hidden;
-    }
-    .one{
-        color: red;
-        font-weight: bold;
-        text-align: center;
-        width: 100px;
-    }
-    .ef{
-        color: green;
-        font-weight: bold;
-        text-align: center;
-        width: 100px;
-    }    
-    .none{
-       text-align: center; 
-    }
-</style>
-
-
-<hr>
-<h4>村民</h4>
-
-<table border="0">
-    <tr>
-        <td class="one">祖&emsp;&emsp;母</td>
-        <td>游戏开始时，你得知一名善良玩家与他的身份，当恶魔杀害他时，你死亡。
-</td>
-    </tr>
-    <tr>
-        <td class="none">水&emsp;&emsp;手</td>
-        <td>你不会死亡·每个夜晚，选择一名存活玩家，你和他其中一名醉酒，直到下个黄昏。
-</td>
-    </tr>
-    <tr>
-        <td class="none">女&emsp;&emsp;佣</td>
-        <td>每个夜晚，选择两名其他存活玩家，你得知今晚他们当中有多少名由于自身的技能被唤醒</td>
-    </tr>
-    <tr>
-        <td class="one">驱&ensp;魔&ensp;师</td>
-        <td>每个夜，选择一名玩家（需与上一夜不同）如果你选中了魔，他在今晚不会被喚醒，并得知你是谁。</td>
-    </tr>
-    <tr>
-        <td class="one">旅店老板</td>
-        <td>每个夜晚气选择两名玩家，他们在今晚不会死亡，但其中一名会醉酒，到下个黄昏</td>
-    </tr>
-    <tr>
-        <td class="one">赌&emsp;&emsp;徒</td>
-        <td>每个夜晚选择名玩家并猜测他的身份，当你猜测错误时，你死亡</td>
-    </tr>
-    <tr>
-        <td class="none">散&ensp;谣&ensp;者</td>
-        <td>每个白天，可以做出一项公开声明。如果声明正确。名玩家在今晚死亡</td>
-    </tr>
-    <tr>
-        <td class="ef">侍&emsp;&emsp;臣</td>
-        <td>整局游戏限一次，夜晚，选择一个身份，如果该身份在场，对应的玩家醉酒三天三</td>
-    </tr>
-    <tr>
-        <td class="one">教&emsp;&emsp;授</td>
-        <td>整局游戏限一次，夜选择一名死亡玩家，如果他是村民，将他复活</td>
-    </tr>
-    <tr>
-        <td class="none">吟游诗人</td>
-        <td>当爪牙被处决时，除旅行者外的有玩家醉酒，直到明天的黄昏</td>
-    </tr>
-    <tr>
-        <td class="none">茶&emsp;&emsp;女</td>
-        <td>如与你相邻的存活玩家属于善良阵营，他们不会死亡</td>
-    </tr>
-        <tr>
-        <td class="none">调&ensp;停&ensp;者</td>
-        <td>当善良玩家被处决时，他可能不会死亡</td>
-    </tr>
-    <tr>
-        <td class="ef">小&emsp;&emsp;丑</td>
-        <td>当你第一次死亡时，你不会死亡</td>
-    </tr>
-</table>
-
-<hr>
-<h4>外来者</h4>
-<table>
-    <tr>
-        <td class="none">修补匠</td>
-        <td>你随时可能死亡</td>
-    </tr>
-    <tr>
-        <td class="ef">月之子</td>
-        <td>当你得知你死亡时，公开选择一名存活玩家，如果他属于善良阵营，今晚，他死亡</td>
-    </tr>
-    <tr>
-        <td class="ef">暴&emsp;徒</td>
-        <td>每个夜晚，当第一茨着玩家选择你作为技能目标时，他醉酒，直到下个黄昏。然后坯加入他的阵营</td>
-    </tr>
-    <tr>
-        <td class="ef">狂&emsp;人</td>
-        <td>你以为你是恶魔，但其实你不是。恶魔知道你是谁，以及你在每晚选择了谁</td>
-    </tr>
-</table>
-
-<hr>
-<h4>爪牙</h4>
-
-<table>
-    <tr>
-        <td class="none">教父</td>
-        <td>教父：游开始时，你得知本局存在的外来者身份。当一名外来者在白天死亡时，当晚，你选择一名玩家，将他杀害[±1外来者]</td>
-    </tr>
-    <tr>
-        <td class="none">律师</td>
-        <td>每个夜晚，选择一名存活玩家（需与上一夜不同），明天疒当他被处决时，他不会死亡</td>
-    </tr>
-    <tr>
-        <td class="one">刺客</td>
-        <td>整局游戏限一次，夜晚，选择一名玩家，将他杀害。即使你因为某些原因不能这么做。</td>
-    </tr>
-    <tr>
-        <td class="ef">主谋</td>
-        <td>当恶魔死于处决导致游戏结束时，再多进行一天游戏。当这一天有玩家被处决时：该玩家的阵营落</td>
-    </tr>
-</table>
-
-<hr>
-<h4>恶魔</h4>
-
-<table>
-    <tr>
-        <td class="one">僵&emsp;尸</td>
-        <td>每个夜晚，当白天没有玩家死亡时，选择一名玩家，将他杀。当你第一次死亡时，你仍然活着但被视为死亡。</td>
-    </tr>
-    <tr>
-        <td class="none">疫&emsp;魔</td>
-        <td>每个夜晚，，选择一名玩家，他中毒。先前已经中毒的玩家死亡并恢复健康</td>
-    </tr>
-    <tr>
-        <td class="one">憎&emsp;恶</td>
-        <td>每个夜晚，选择两名玩家，将他们杀害。你上一晚选择的玩家可能会复活。</td>
-    </tr>
-    <tr>
-        <td class="one">迷迭香</td>
-        <td>每个夜晚你可以选择一名玩家，将他杀害。如果你上次放弃了选择，你这次改为选择三人。</td>
-    </tr>
-</table></div>]]></content>
-      <categories>
-        <category>桌游</category>
-        <category>血染钟楼</category>
-      </categories>
-      <tags>
-        <tag>血染钟楼 桌游</tag>
       </tags>
   </entry>
 </search>
