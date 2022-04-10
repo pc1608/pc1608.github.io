@@ -193,6 +193,472 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/java/mybatispluss/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/%E6%9F%AF%E5%93%80.gif">
+      <meta itemprop="name" content="千岁">
+      <meta itemprop="description" content="天予不取，反受其咎；时至不迎，反受其殃">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千岁">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/java/mybatispluss/" class="post-title-link" itemprop="url">mybatispluss</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-04-10 23:24:05 / 修改时间：23:25:09" itemprop="dateCreated datePublished" datetime="2022-04-10T23:24:05+08:00">2022-04-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/java/mybatispluss/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/java/mybatispluss/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><ul>
+<li>MyBatis-Plus（简称MP）是一个MyBatils的增强工具，在MyBatis的基础上只做增强不做改变，为简化开发、提高效率而生。</li>
+<li><a target="_blank" rel="noopener" href="https://baomidou.com/">官网</a></li>
+</ul>
+<h2 id="1-特点"><a href="#1-特点" class="headerlink" title="1. 特点"></a>1. 特点</h2><ul>
+<li><strong>无侵入</strong>：只做增强不做改变，引入它不会对现有工程产生影响，如丝般顺滑</li>
+<li><strong>损耗小</strong>：启动即会自动注入基本 CURD，性能基本无损耗，直接面向对象操作</li>
+<li><strong>强大的 CRUD 操作</strong>：内置通用 Mapper、通用 Service，仅仅通过少量配置即可实现单表大部分 CRUD 操作，更有强大的条件构造器，满足各类使用需求</li>
+<li><strong>支持 Lambda 形式调用</strong>：通过 Lambda 表达式，方便的编写各类查询条件，无需再担心字段写错</li>
+<li><strong>支持主键自动生成</strong>：支持多达 4 种主键策略（内含分布式唯一 ID 生成器 - Sequence），可自由配置，完美解决主键问题</li>
+<li><strong>支持 ActiveRecord 模式</strong>：支持 ActiveRecord 形式调用，实体类只需继承 Model 类即可进行强大的 CRUD 操作</li>
+<li><strong>支持自定义全局通用操作</strong>：支持全局通用方法注入（ Write once, use anywhere ）</li>
+<li><strong>内置代码生成器</strong>：采用代码或者 Maven 插件可快速生成 Mapper 、 Model 、 Service 、 Controller 层代码，支持模板引擎，更有超多自定义配置等您来使用</li>
+<li><strong>内置分页插件</strong>：基于 MyBatis 物理分页，开发者无需关心具体操作，配置好插件之后，写分页等同于普通 List 查询</li>
+<li><strong>分页插件支持多种数据库</strong>：支持 MySQL、MariaDB、Oracle、DB2、H2、HSQL、SQLite、Postgre、SQLServer 等多种数据库</li>
+<li><strong>内置性能分析插件</strong>：可输出 SQL 语句以及其执行时间，建议开发测试时启用该功能，能快速揪出慢查询</li>
+<li><strong>内置全局拦截插件</strong>：提供全表 delete 、 update 操作智能分析阻断，也可自定义拦截规则，预防误操作</li>
+</ul>
+<h2 id="3-支持数据库"><a href="#3-支持数据库" class="headerlink" title="3. 支持数据库"></a>3. 支持数据库</h2><blockquote>
+<p>任何能使用 <code>MyBatis</code> 进行 CRUD, 并且支持标准 SQL 的数据库，具体支持情况如下，如果不在下列表查看分页部分教程 PR 您的支持。</p>
+</blockquote>
+<ul>
+<li>MySQL，Oracle，DB2，H2，HSQL，SQLite，PostgreSQL，SQLServer，Phoenix，Gauss ，ClickHouse，Sybase，OceanBase，Firebird，Cubrid，Goldilocks，csiidb</li>
+<li>达梦数据库，虚谷数据库，人大金仓数据库，南大通用(华库)数据库，南大通用数据库，神通数据库，瀚高数据库</li>
+</ul>
+<h2 id="4-框架结构"><a href="#4-框架结构" class="headerlink" title="4. 框架结构"></a>4. 框架结构</h2><p><img src="https://baomidou.com/img/mybatis-plus-framework.jpg"></p>
+<h2 id="5-代码托管"><a href="#5-代码托管" class="headerlink" title="5. 代码托管"></a>5. 代码托管</h2><p><strong><a target="_blank" rel="noopener" href="https://gitee.com/baomidou/mybatis-plus">Gitee</a></strong>| <strong><a target="_blank" rel="noopener" href="https://github.com/baomidou/mybatis-plus">Github</a></strong></p>
+<h1 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h1><p>对于Mybatis整合MP常有三种用法，分别是Mybatis+MP、Spring+Mybatis+MP、SpringBoot+Mybatis+MP</p>
+<h2 id="1-创建数据库及表"><a href="#1-创建数据库及表" class="headerlink" title="1.创建数据库及表"></a>1.创建数据库及表</h2><pre><code class="mysql">DROP TABLE IF EXISTS user;
+#创建表
+CREATE TABLE user
+(
+    id BIGINT(20) NOT NULL COMMENT &#39;主键ID&#39;,
+    name VARCHAR(30) NULL DEFAULT NULL COMMENT &#39;姓名&#39;,
+    age INT(11) NULL DEFAULT NULL COMMENT &#39;年龄&#39;,
+    email VARCHAR(50) NULL DEFAULT NULL COMMENT &#39;邮箱&#39;,
+    PRIMARY KEY (id)
+);
+#插入数据
+INSERT INTO user (id, name, age, email) VALUES
+(1, &#39;Jone&#39;, 18, &#39;test1@baomidou.com&#39;),
+(2, &#39;Jack&#39;, 20, &#39;test2@baomidou.com&#39;),
+(3, &#39;Tom&#39;, 28, &#39;test3@baomidou.com&#39;),
+(4, &#39;Sandy&#39;, 21, &#39;test4@baomidou.com&#39;),
+(5, &#39;Billie&#39;, 24, &#39;test5@baomidou.com&#39;);
+</code></pre>
+<h2 id="2-导入依赖"><a href="#2-导入依赖" class="headerlink" title="2.导入依赖"></a>2.导入依赖</h2><pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;
+         xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+         xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+
+    &lt;groupId&gt;org.example&lt;/groupId&gt;
+    &lt;artifactId&gt;demo3&lt;/artifactId&gt;
+    &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+
+    &lt;properties&gt;
+        &lt;maven.compiler.source&gt;17&lt;/maven.compiler.source&gt;
+        &lt;maven.compiler.target&gt;17&lt;/maven.compiler.target&gt;
+    &lt;/properties&gt;
+    &lt;dependencies&gt;
+        &lt;!--mybatis-plus依赖--&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;com.baomidou&lt;/groupId&gt;
+            &lt;artifactId&gt;mybatis-plus&lt;/artifactId&gt;
+            &lt;version&gt;3.1.1&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;!--mysql--&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;mysql&lt;/groupId&gt;
+            &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+            &lt;version&gt;8.0.28&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;!--连接池--&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;com.alibaba&lt;/groupId&gt;
+            &lt;artifactId&gt;druid&lt;/artifactId&gt;
+            &lt;version&gt;1.1.12&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;!--简化bean代码的工具包--&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
+            &lt;artifactId&gt;lombok&lt;/artifactId&gt;
+            &lt;version&gt;1.18.22&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;junit&lt;/groupId&gt;
+            &lt;artifactId&gt;junit&lt;/artifactId&gt;
+            &lt;version&gt;4.13.2&lt;/version&gt;
+            &lt;scope&gt;test&lt;/scope&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.slf4j&lt;/groupId&gt;
+            &lt;artifactId&gt;slf4j-log4j12&lt;/artifactId&gt;
+            &lt;version&gt;1.7.36&lt;/version&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+
+&lt;/project&gt;
+</code></pre>
+<h2 id="3-mybatis-MP"><a href="#3-mybatis-MP" class="headerlink" title="3.mybatis+MP"></a>3.mybatis+MP</h2><h3 id="3-1查询"><a href="#3-1查询" class="headerlink" title="3.1查询"></a>3.1查询</h3><ol>
+<li><p>将UsersMapper继承BaseMapper，将拥有BaseMapper中的所有方法</p>
+<pre><code class="java">public interface UsersMapper extends BaseMapper&lt;Users&gt; &#123;
+
+    List&lt;Users&gt; selectAll();
+&#125;
+</code></pre>
+</li>
+<li><p>使用MP中的MybatisSqlSessionFavtoryBuilder进程构建</p>
+<pre><code class="java">package cam.it.mp;
+
+import com.baomidou.mybatisplus.core.MybatisSqlSessionFactoryBuilder;
+import com.it.domain.Users;
+import com.it.mapper.UsersMapper;
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.junit.Test;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
+
+public class TestMybatisPlus &#123;
+    @Test
+    public void test1() throws IOException &#123;
+        InputStream resource = Resources.getResourceAsStream(&quot;mybatis-config.xml&quot;);
+        SqlSessionFactory factory = new MybatisSqlSessionFactoryBuilder().build(resource);
+        SqlSession sqlSession = factory.openSession();
+        UsersMapper mapper = sqlSession.getMapper(UsersMapper.class);
+//        List&lt;Users&gt; users = mapper.selectAll();
+        //查询所有
+        List&lt;Users&gt; users = mapper.selectList(null);
+        users.forEach(System.out::println);
+    &#125;
+&#125;
+</code></pre>
+</li>
+</ol>
+<pre><code class="java">package com.it.domain;
+
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@TableName(&quot;user&quot;)/*使用@Table注解要查哪个表，如果表名和类名一样则不用注解*/
+public class Users &#123;
+    private Integer id;
+    private String name;
+    private Integer age;
+    private String email;
+&#125;
+</code></pre>
+<h2 id="4-mybatis-MP-spring"><a href="#4-mybatis-MP-spring" class="headerlink" title="4. mybatis+MP+spring"></a>4. mybatis+MP+spring</h2><pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+       xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
+       xsi:schemaLocation=
+       &quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd&quot;&gt;
+
+    &lt;!--扫描包--&gt;
+    &lt;context:component-scan base-package=&quot;com.it&quot;/&gt;
+    &lt;!--引入数据文件--&gt;
+    &lt;context:property-placeholder location=&quot;classpath:*.properties&quot;/&gt;
+    &lt;!--数据源--&gt;
+    &lt;bean id=&quot;dataSource&quot; class=&quot;com.alibaba.druid.pool.DruidDataSource&quot; destroy-method=&quot;close&quot;&gt;
+        &lt;property name=&quot;driverClassName&quot; value=&quot;$&#123;jdbc.driver&#125;&quot;/&gt;
+        &lt;property name=&quot;url&quot; value=&quot;$&#123;jdbc.url&#125;&quot;/&gt;
+        &lt;property name=&quot;username&quot; value=&quot;$&#123;jdbc.username&#125;&quot;/&gt;
+        &lt;property name=&quot;password&quot; value=&quot;$&#123;jdbc.password&#125;&quot;/&gt;
+        &lt;property name=&quot;maxActive&quot; value=&quot;10&quot;/&gt;
+        &lt;property name=&quot;minIdle&quot; value=&quot;5&quot;/&gt;
+    &lt;/bean&gt;
+    &lt;!--这里使用MP提供的sqlSessionFactory，完成了Spring与MP的整合--&gt;
+    &lt;bean id=&quot;sqlSessionFactory&quot; class=&quot;com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean&quot;&gt;
+        &lt;property name=&quot;dataSource&quot; ref=&quot;dataSource&quot;/&gt;
+    &lt;/bean&gt;
+    &lt;!--扫描mapper接口，依然使用的mybatis原生的扫描器--&gt;
+    &lt;bean class=&quot;org.mybatis.spring.mapper.MapperScannerConfigurer&quot;&gt;
+        &lt;property name=&quot;basePackage&quot; value=&quot;com.it.mapper&quot;/&gt;
+    &lt;/bean&gt;
+    
+&lt;/beans&gt;
+</code></pre>
+<h1 id="通用CRUD"><a href="#通用CRUD" class="headerlink" title="通用CRUD"></a>通用CRUD</h1><h2 id="1-插入操作"><a href="#1-插入操作" class="headerlink" title="1.插入操作"></a>1.插入操作</h2><pre><code class="java">// 插入一条记录
+int insert(T entity);
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>T</td>
+<td>entity</td>
+<td>实体对象</td>
+</tr>
+</tbody></table>
+<div align="center"><font color="red">自增长的id会回填到对象中</font></div>
+
+<h2 id="2-更新操作"><a href="#2-更新操作" class="headerlink" title="2.更新操作"></a>2.更新操作</h2><pre><code class="java">// 根据 UpdateWrapper 条件，更新记录 需要设置sqlset
+boolean update(Wrapper&lt;T&gt; updateWrapper);
+// 根据 whereWrapper 条件，更新记录
+boolean update(T updateEntity, Wrapper&lt;T&gt; whereWrapper);
+// 根据 ID 选择修改
+boolean updateById(T entity);
+// 根据ID 批量更新
+boolean updateBatchById(Collection&lt;T&gt; entityList);
+// 根据ID 批量更新
+boolean updateBatchById(Collection&lt;T&gt; entityList, int batchSize);
+//QueryWrapper条件
+QueryWrapper&lt;User&gt; wrapper = new QueryWrapper&lt;&gt;();
+wrapper.eq(&quot;user_name&quot;,&quot;zhangsan&quot;)
+</code></pre>
+<table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="center">参数名</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Wrapper<T></T></td>
+<td align="center">updateWrapper</td>
+<td align="center">实体对象封装操作类 UpdateWrapper</td>
+</tr>
+<tr>
+<td align="center">T</td>
+<td align="center">entity</td>
+<td align="center">实体对象</td>
+</tr>
+<tr>
+<td align="center">Collection<T></T></td>
+<td align="center">entityList</td>
+<td align="center">实体对象集合</td>
+</tr>
+<tr>
+<td align="center">int</td>
+<td align="center">batchSize</td>
+<td align="center">更新批次数量</td>
+</tr>
+</tbody></table>
+<h2 id="3-删除操作"><a href="#3-删除操作" class="headerlink" title="3.删除操作"></a>3.删除操作</h2><pre><code class="java">// 根据 entity 条件，删除记录
+int delete(@Param(Constants.WRAPPER) Wrapper&lt;T&gt; wrapper);
+// 删除（根据ID 批量删除）
+int deleteBatchIds(@Param(Constants.COLLECTION) Collection&lt;? extends Serializable&gt; idList);
+// 根据 ID 删除
+int deleteById(Serializable id);
+// 根据 columnMap 条件，删除记录，多条件之间是and关系
+int deleteByMap(@Param(Constants.COLUMN_MAP) Map&lt;String, Object&gt; columnMap);
+</code></pre>
+<p>参数说明</p>
+<table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="center">参数名</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Wrapper<T></T></td>
+<td align="center">wrapper</td>
+<td align="center">实体对象封装操作类（可以为 null）</td>
+</tr>
+<tr>
+<td align="center">Collection&lt;? extends Serializable&gt;</td>
+<td align="center">idList</td>
+<td align="center">主键 ID 列表(不能为 null 以及 empty)</td>
+</tr>
+<tr>
+<td align="center">Serializable</td>
+<td align="center">id</td>
+<td align="center">主键 ID</td>
+</tr>
+<tr>
+<td align="center">Map&lt;String, Object&gt;</td>
+<td align="center">columnMap</td>
+<td align="center">表字段 map 对象</td>
+</tr>
+</tbody></table>
+<h2 id="4-查询"><a href="#4-查询" class="headerlink" title="4.查询"></a>4.查询</h2><pre><code class="java">// 根据 ID 查询
+T selectById(Serializable id);
+// 根据 entity 条件，查询一条记录
+T selectOne(@Param(Constants.WRAPPER) Wrapper&lt;T&gt; queryWrapper);
+
+// 查询（根据ID 批量查询）
+List&lt;T&gt; selectBatchIds(@Param(Constants.COLLECTION) Collection&lt;? extends Serializable&gt; idList);
+// 根据 entity 条件，查询全部记录
+List&lt;T&gt; selectList(@Param(Constants.WRAPPER) Wrapper&lt;T&gt; queryWrapper);
+// 查询（根据 columnMap 条件）
+List&lt;T&gt; selectByMap(@Param(Constants.COLUMN_MAP) Map&lt;String, Object&gt; columnMap);
+// 根据 Wrapper 条件，查询全部记录
+List&lt;Map&lt;String, Object&gt;&gt; selectMaps(@Param(Constants.WRAPPER) Wrapper&lt;T&gt; queryWrapper);
+// 根据 Wrapper 条件，查询全部记录。注意： 只返回第一个字段的值
+List&lt;Object&gt; selectObjs(@Param(Constants.WRAPPER) Wrapper&lt;T&gt; queryWrapper);
+
+// 根据 entity 条件，查询全部记录（并翻页）
+IPage&lt;T&gt; selectPage(IPage&lt;T&gt; page, @Param(Constants.WRAPPER) Wrapper&lt;T&gt; queryWrapper);
+// 根据 Wrapper 条件，查询全部记录（并翻页）
+IPage&lt;Map&lt;String, Object&gt;&gt; selectMapsPage(IPage&lt;T&gt; page, @Param(Constants.WRAPPER) Wrapper&lt;T&gt; queryWrapper);
+// 根据 Wrapper 条件，查询总记录数
+Integer selectCount(@Param(Constants.WRAPPER) Wrapper&lt;T&gt; queryWrapper);
+</code></pre>
+<h4 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h4><table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="center">参数名</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Serializable</td>
+<td align="center">id</td>
+<td align="center">主键 ID</td>
+</tr>
+<tr>
+<td align="center">Wrapper<T></T></td>
+<td align="center">queryWrapper</td>
+<td align="center">实体对象封装操作类（可以为 null）</td>
+</tr>
+<tr>
+<td align="center">Collection&lt;? extends Serializable&gt;</td>
+<td align="center">idList</td>
+<td align="center">主键 ID 列表(不能为 null 以及 empty)</td>
+</tr>
+<tr>
+<td align="center">Map&lt;String, Object&gt;</td>
+<td align="center">columnMap</td>
+<td align="center">表字段 map 对象</td>
+</tr>
+<tr>
+<td align="center">IPage<T></T></td>
+<td align="center">page</td>
+<td align="center">分页查询条件（可以为 RowBounds.DEFAULT）</td>
+</tr>
+</tbody></table>
+<h1 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h1><h2 id="1-TableField"><a href="#1-TableField" class="headerlink" title="1.@TableField"></a>1.@TableField</h2><p>在MP中通过该注解可以指定字段的一些属性，通常解决两个问题</p>
+<ol>
+<li>对象中属性名字和字段不一致的问题(非驼峰)</li>
+<li>对象中属性字段在表中不存在的问题</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th align="left">类型</th>
+<th align="left">必须指定</th>
+<th align="left">默认值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">value</td>
+<td align="left">String</td>
+<td align="left">否</td>
+<td align="left">“”</td>
+<td align="left">数据库字段名</td>
+</tr>
+<tr>
+<td align="left">exist</td>
+<td align="left">boolean</td>
+<td align="left">否</td>
+<td align="left">true</td>
+<td align="left">是否为数据库表字段</td>
+</tr>
+<tr>
+<td align="left">select</td>
+<td align="left">boolean</td>
+<td align="left">否</td>
+<td align="left">true</td>
+<td align="left">是否进行 select 查询</td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/java/spring/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -6727,7 +7193,7 @@ E==&gt;I(Applet)
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
